@@ -1,17 +1,27 @@
 import { TabNavigator } from 'react-navigation';
-import { HomeScreen, NotificationScreen, ProfileScreen } from '../screens';
+import { HomeScreen, ProfileScreen, NewsScreen, HolderScreen, StockScreen } from '../screens';
 import Colors from '../../constants/Colors';
 
 export default TabNavigator({
+  News: {
+    screen: NewsScreen,
+  },
+  Holder: {
+    screen: HolderScreen,
+  },
   Home: {
     screen: HomeScreen,
   },
-  Notification: {
-    screen: NotificationScreen,
+  Stocks: {
+    screen: StockScreen,
   },
+  // Notification: {
+  //   screen: NotificationScreen,
+  // },
   Profile: {
     screen: ProfileScreen,
   },
+
 },
 {
   swipeEnabled: true,
