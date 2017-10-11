@@ -1,58 +1,47 @@
-import Dashboard from './src/Dashboard'
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { LoadingScreen } from './src/commons';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from './constants/Colors';
+import { cachedFonts } from './helpers';
+import Root from './src/Root';
 
-// export default class App extends React.Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Open up App.js to start working on your app!</Text>
-//         <Text>Changes you make will automatically reload.</Text>
-//         <Text>Shake your phone to open the developer menu.</Text>
-//         <View>
-//           <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-//           <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
-//           <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
-//         </View>
-//         <View style={{flex: 1, flexDirection: 'row'}}>
-//           <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-//           <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-//           <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-//         </View>
-//         <View style={{ flex: 1,flexDirection: 'column', justifyContent: 'space-between',}}>
-//             <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-//             <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-//             <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-//         </View>
-//         <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center',}}>
-//           <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-//           <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
-//           <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
-//         </View>
-//       </View>
-//     );
-//   }
-// }
+EStyleSheet.build(Colors);
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+class App extends React.Component {
+  state = {
+    fontLoaded: false,
+  }
 
-// 注册应用(registerComponent)后才能正确渲染
-// 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
-// AppRegistry.registerComponent('App', () => App);
+  componentDidMount() {
+    this._loadAssetsAsync();
+  }
 
-export default class App extends React.Component {
+  async _loadAssetsAsync() {
+    const fontAssets = cachedFonts([
+      {
+        montserrat: require('./assets/fonts/Montserrat-Regular.ttf'),
+      },
+      {
+        montserratBold: require('./assets/fonts/Montserrat-Bold.ttf'),
+      },
+      {
+        montserratLight: require('./assets/fonts/Montserrat-Light.ttf'),
+      },
+      {
+        montserratMed: require('./assets/fonts/Montserrat-Medium.ttf'),
+      },
+    ]);
+
+    await Promise.all(fontAssets);
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
-      return ( 
-        <View>
-            <Dashboard/>
-        </View>
-    );
+    if (!this.state.fontLoaded) {
+      return <LoadingScreen />;
+    }
+    return <Root />;
   }
 }
+
+export default App;
