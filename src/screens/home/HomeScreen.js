@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { WordpressApi } from '../../../constants/api';
 import { LoadingScreen } from '../../commons/';
 import { PostList } from './components/';
-import { Button, Icon } from 'native-base';
+import { Drawer, Button, Icon } from 'native-base';
 import { FontAwesome } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 
