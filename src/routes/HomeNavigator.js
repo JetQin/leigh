@@ -1,8 +1,8 @@
 import { TabNavigator } from 'react-navigation';
-import { HomeScreen, ProfileScreen, NewsScreen, HolderScreen, StockScreen } from '../screens';
+import { HomeScreen, ProfileScreen, NewsScreen, HolderScreen, MoreScreen } from '../screens';
 import Colors from '../../constants/Colors';
 
-export default TabNavigator({
+export const HomeNavigator = TabNavigator({
   News: {
     screen: NewsScreen,
   },
@@ -12,14 +12,11 @@ export default TabNavigator({
   Home: {
     screen: HomeScreen,
   },
-  Stocks: {
-    screen: StockScreen,
-  },
-  // Notification: {
-  //   screen: NotificationScreen,
-  // },
   Profile: {
     screen: ProfileScreen,
+  },
+  More: {
+    screen: MoreScreen,
   },
 
 },

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import { MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
+import styles from './styles/HolderScreen';
 
 class HolderScreen extends Component {
   static navigationOptions = {
@@ -10,11 +12,18 @@ class HolderScreen extends Component {
       <MaterialCommunityIcons name="account-card-details" size={25} color={tintColor} />
     ),
   }
+  search() {
+    console.log('search holder');
+  }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Text>News</Text>
+      <View>
+        <SearchBar
+          lightTheme
+          onChangeText={this.search}
+          placeholder='Type Here...'
+        />
       </View>
     );
   }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Content, List, ListItem, Text, Icon, Left, Body } from 'native-base';
+import styles from './styles/SidebarScreen';
 
 class SidebarScreen extends Component {
   render() {
     return (
-      <Content style={{ backgroundColor: '#FFFFFF' }}>
+      <Content style={styles.root}>
         <List>
           <ListItem icon >
             <Left>

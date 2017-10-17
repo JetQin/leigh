@@ -3,31 +3,31 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const styles = EStyleSheet.create({
   root: {
     flex: 1,
-    justifyContent: 'center',
     backgroundColor: '$blackBlueColor',
   },
-  topContainer: {
-    flex: 0.5,
+  avatar: {
+    flex: 4,
+    marginTop: 75,
+  },
+  titleContainer: {
+    flex: 0.4,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  bottomContainer: {
-    flex: 1,
+    top: '2%',
   },
   title: {
+    fontFamily: 'montserratBold',
+    position: 'absolute',
     color: '$whiteColor',
-    left: 15,
-    fontSize: 18,
-    paddingTop: 12,
-    fontFamily: 'montserrat',
+    top: '2%',
   },
-  logo: {
-    top: 15,
-    left: 10,
-    width: 20,
-    height: 20,
+  signinBtn: {
+    top: '1%',
+    paddingTop: 10,
   },
-
+  bottom: {
+    top: 20,
+  },
 });
 
 export default styles;

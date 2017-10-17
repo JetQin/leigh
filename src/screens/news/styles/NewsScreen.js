@@ -1,4 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from '../../../../constants/Colors';
 
 const styles = EStyleSheet.create({
   root: {
@@ -6,26 +7,18 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '$blackBlueColor',
   },
-  topContainer: {
-    flex: 0.5,
+  headerContainer: {
+    color: '$whiteColor',
     justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bottomContainer: {
-    flex: 1,
   },
   title: {
-    color: '$whiteColor',
-    left: 15,
-    fontSize: 18,
-    paddingTop: 12,
+    color: Colors.$whiteColor,
+    fontSize: 20,
     fontFamily: 'montserrat',
   },
-  logo: {
-    top: 15,
-    left: 10,
-    width: 20,
-    height: 20,
+
+  bottomContainer: {
+    flex: 1,
   },
 
 });

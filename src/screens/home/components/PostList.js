@@ -13,15 +13,15 @@ const PostList = ({ posts }) => (
           <View key={i} style={styles.postCard}>
             <View style={styles.postCardTopContainer}>
               <Text style={styles.postName}>
-                {post.postName}
+                {post.title}
               </Text>
             </View>
             <View style={styles.postCardBottomContainer}>
               <Text style={styles.postContent}>
-                {post.postContent}
+                {post.content}
               </Text>
               <Text style={styles.postDate} >
-                Mar 2m 6:00pm
+                {post.date}
               </Text>
             </View>
           </View>
