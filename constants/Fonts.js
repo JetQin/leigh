@@ -24,4 +24,16 @@ export default {
     color: Colors.$whiteColor,
     fontFamily: 'montserrat',
   },
+  cardTitle: {
+    fontSize: 14,
+    fontFamily: 'montserratBold',
+    color: Colors.$black,
+    backgroundColor: 'transparent',
+  },
+  footerTitle: {
+    fontSize: 8,
+    fontFamily: 'montserratBold',
+    color: Colors.$black,
+    backgroundColor: 'transparent',
+  },
 };

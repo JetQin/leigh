@@ -1,16 +1,17 @@
 import { TabNavigator } from 'react-navigation';
 import { HomeScreen, ProfileScreen, NewsScreen, HolderScreen, MoreScreen } from '../screens';
+//import ProfileNavigator from './ProfileNavigator';
 import Colors from '../../constants/Colors';
 
 export const HomeNavigator = TabNavigator({
-  News: {
-    screen: NewsScreen,
+  Home: {
+    screen: HomeScreen,
   },
   Holder: {
     screen: HolderScreen,
   },
-  Home: {
-    screen: HomeScreen,
+  News: {
+    screen: NewsScreen,
   },
   Profile: {
     screen: ProfileScreen,
@@ -21,7 +22,7 @@ export const HomeNavigator = TabNavigator({
 
 },
 {
-  swipeEnabled: true,
+  swipeEnabled: false,
   animationEabled: true,
   tabBarPosition: 'bottom',
   tabBarOptions: {

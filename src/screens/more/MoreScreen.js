@@ -45,6 +45,7 @@ const sublist = [
 
 class MoreScreen extends Component {
   static navigationOptions = {
+    title: '关于',
     headerStyle: { backgroundColor: Colors.$redColor },
     tabBarIcon: ({ tintColor }) => (
       <MaterialCommunityIcons name="more" size={25} color={tintColor} />

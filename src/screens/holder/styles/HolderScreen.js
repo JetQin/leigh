@@ -1,12 +1,23 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Colors from '../../../../constants/Colors';
 
 const styles = EStyleSheet.create({
   root: {
-    marginTop: 0,
-  },
-  content: {
     flex: 1,
-    flexDirection: 'row',
+  },
+  searchContainer: {
+    flex: 0.1,
+  },
+  searchBtnContainer: {
+    flex: 0.1,
+  },
+  stockContainer: {
+    flex: 0.2,
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  holderContainer: {
+    flex: 0.6,
   },
 
 });

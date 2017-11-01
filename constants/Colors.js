@@ -1,5 +1,7 @@
 export default {
   $blackColor: 'black',
+  $black: '#1a1917',
+  $grayColor: '#888888',
   $whiteColor: '#fff',
   $blackBlueColor: '#384259',
   $redColor: '#f73859',

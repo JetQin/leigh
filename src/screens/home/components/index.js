@@ -1,6 +1,6 @@
 import PostList from './PostList';
-import PostCardList from './PostCardList';
+import NewsCardList from './NewsCardList';
 
 export {
-  PostList, PostCardList,
+  PostList, NewsCardList,
 };

@@ -1,30 +1,23 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { WordpressApi } from '../../../constants/api';
 import { LoadingScreen } from '../../commons/';
-import { PostList, PostCardList } from './components/';
+import { NewsCardList } from './components/';
 import { Button, Icon } from 'native-base';
+import Swiper from 'react-native-swiper';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import { connect } from 'react-redux';
 import styles from './styles/HomeScreen';
 
-import { fetchPosts } from './actions';
-
-const wordpressApi = new WordpressApi();
+import { fetchData } from './actions';
 
 @connect(
   state => ({
-    posts: state.home.posts,
+    data: state.home.data,
   }),
-  { fetchPosts }
+  { fetchData }
 )
-
 class HomeScreen extends React.Component {
-  static defaultProps = {
-    wordpressApi,
-  }
-
   static navigationOptions = ({ navigation }) => ({
     headerStyle: { backgroundColor: Colors.$redColor },
     headerLeft: (
@@ -49,26 +42,41 @@ class HomeScreen extends React.Component {
   });
 
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchData();
   }
 
   render() {
     const {
-      posts: {
+      data: {
+        news,
         isFetched,
-        data,
       },
     } = this.props;
+
     if (!isFetched) {
       return <LoadingScreen />;
     }
+    const swiperItems = news.map((item, i) => {
+      const imgUri = item.img;
+      return (
+        <View key={i} style={styles.slide}>
+          <Image source={{ uri: imgUri }} style={styles.image}>
+            <View style={styles.backdrop}>
+              <Text style={styles.text}>{item.content}</Text>
+            </View>
+          </Image>
+        </View>);
+    });
     return (
+
       <View style={styles.root}>
         <View style={styles.topContainer}>
-          <Text>Welcome HomeScreen</Text>
+          <Swiper style={styles.wrapper} >
+            {swiperItems}
+          </Swiper>
         </View>
         <View style={styles.bottomContainer}>
-          <PostCardList posts={data} />
+          <NewsCardList news={news} navigation={this.props.navigation} />
         </View>
       </View>
     );

@@ -1,5 +1,6 @@
 import ProfileScreen from './ProfileScreen';
+import ProfileReducer from './reducer';
 
 export {
-  ProfileScreen,
+  ProfileScreen, ProfileReducer,
 };

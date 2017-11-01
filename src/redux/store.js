@@ -8,5 +8,6 @@ const middleware = applyMiddleware(promise(), thunk, createLogger());
 
 export default createStore(
   reducers,
+  undefined,
   middleware
 );

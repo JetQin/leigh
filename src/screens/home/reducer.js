@@ -1,8 +1,9 @@
-import { FETCH_POSTS } from './actions';
+import { FETCH_DATA } from './actions';
 
 const INITIAL_STATE = {
-  posts: {
-    data: [],
+  data: {
+    posts: [],
+    news: [],
     isFetched: false,
     error: {
       on: false,
@@ -12,14 +13,12 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log( "ACTION TYPE:" + action.type);
   switch (action.type) {
-    case `${FETCH_POSTS}_PENDING`:
-      return INITIAL_STATE;
-    case `${FETCH_POSTS}_FULFILLED`:
+    case `${FETCH_DATA}`:
       return {
-        posts: {
-          data: action.payload,
+        data: {
+          posts: action.payload.posts,
+          news: action.payload.news,
           isFetched: true,
           error: {
             on: false,
@@ -27,10 +26,25 @@ export default (state = INITIAL_STATE, action) => {
           },
         },
       };
-    case `${FETCH_POSTS}_REJECTED`:
+    case `${FETCH_DATA}_PENDING`:
+      return INITIAL_STATE;
+    case `${FETCH_DATA}_FULFILLED`:
       return {
-        posts: {
-          data: action.payload,
+        data: {
+          posts: action.posts,
+          news: action.news,
+          isFetched: true,
+          error: {
+            on: false,
+            message: 'get posts done',
+          },
+        },
+      };
+    case `${FETCH_DATA}_REJECTED`:
+      return {
+        data: {
+          posts: action.payload,
+          news: action.payload,
           isFetched: true,
           error: {
             on: true,

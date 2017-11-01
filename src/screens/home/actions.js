@@ -2,9 +2,10 @@ import { WordpressApi } from '../../../constants/api';
 
 const wordpressApi = new WordpressApi();
 
-export const FETCH_POSTS = 'FETCH_POSTS';
+export const FETCH_DATA = 'FETCH_DATA';
 
-export const fetchPosts = () => ({
-  type: FETCH_POSTS,
-  payload: wordpressApi.fetchPost(),
+export const fetchData = () => ({
+  type: FETCH_DATA,
+  payload: wordpressApi.fetchData(),
 });
+

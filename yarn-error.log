@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add styled-components
+  /usr/local/bin/node /usr/local/bin/yarn add fetch
 
 PATH: 
-  /Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/jet/app/bookkeeper-server-4.4.0//bin:/Users/jet/app/kibana-4.0.2/bin:/Users/jet/app/logstash-1.4.2/bin:/Users/jet/app/elasticsearch-1.5.2/bin:/Users/jet/app/apached/bin:/Users/jet/app/h2/bin:/usr/local/metasploit-framework:/usr/local/nginx/sbin:/usr/local/mysql/bin:/usr/local/git/bin/bin:/Users/jet/app/zookeeper3.4/bin:/Users/jet/app/spring-roo-1.2.5/bin:/Users/jet/app/spark1.0/bin:/Users/jet/app/spark1.0/sbin:/Users/jet/app/redis/bin:/Users/jet/app/protobuf-2.5.0/bin:/Users/jet/app/mongodb2.6/bin:/bin:/Users/jet/app/mahout-0.9/bin:/Users/jet/app/kafka2.8/bin:/Users/jet/app/hadoop-2.6.0/bin:/Users/jet/app/hadoop-2.6.0/sbin:/Users/jet/app/findbugs-3.0.0/bin:/Users/jet/app/cmake-3.0.1/bin:/Users/jet/app/apache-storm-0.9.2/bin:/Users/jet/app/apache-flume-1.5.0/bin:/Users/jet/app/apache-maven-3.2.2/bin:/Users/jet/app/apache-ant-1.9.4/bin:/Users/jet/app/apache-tomcat-8.0.14/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home//bin:/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/Users/jet/app/mongodb2.6/bin/:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/jet/app/bookkeeper-server-4.4.0//bin:/Users/jet/app/kibana-4.0.2/bin:/Users/jet/app/logstash-1.4.2/bin:/Users/jet/app/elasticsearch-1.5.2/bin:/Users/jet/app/apached/bin:/Users/jet/app/h2/bin:/usr/local/metasploit-framework:/usr/local/nginx/sbin:/usr/local/mysql/bin:/usr/local/git/bin/bin:/Users/jet/app/zookeeper3.4/bin:/Users/jet/app/spring-roo-1.2.5/bin:/Users/jet/app/spark1.0/bin:/Users/jet/app/spark1.0/sbin:/Users/jet/app/redis/bin:/Users/jet/app/protobuf-2.5.0/bin:/Users/jet/app/mongodb2.6/bin:/Users/jet/app/mahout-0.9/bin:/Users/jet/app/kafka2.8/bin:/Users/jet/app/hadoop-2.6.0/bin:/Users/jet/app/hadoop-2.6.0/sbin:/Users/jet/app/findbugs-3.0.0/bin:/Users/jet/app/cmake-3.0.1/bin:/Users/jet/app/apache-storm-0.9.2/bin:/Users/jet/app/apache-flume-1.5.0/bin:/Users/jet/app/apache-maven-3.2.2/bin:/Users/jet/app/apache-ant-1.9.4/bin:/Users/jet/app/apache-tomcat-8.0.14/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home//bin:/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/:/Users/jet/.rvm/bin
+  /Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/jet/app/bookkeeper-server-4.4.0//bin:/Users/jet/app/kibana-4.0.2/bin:/Users/jet/app/logstash-1.4.2/bin:/Users/jet/app/elasticsearch-1.5.2/bin:/Users/jet/app/apached/bin:/Users/jet/app/h2/bin:/usr/local/metasploit-framework:/usr/local/nginx/sbin:/usr/local/mysql/bin:/usr/local/git/bin/bin:/Users/jet/app/zookeeper3.4/bin:/Users/jet/app/spring-roo-1.2.5/bin:/Users/jet/app/spark1.0/bin:/Users/jet/app/spark1.0/sbin:/Users/jet/app/redis/bin:/Users/jet/app/protobuf-2.5.0/bin:/Users/jet/app/mongodb2.6/bin:/bin:/Users/jet/app/mahout-0.9/bin:/Users/jet/app/kafka2.8/bin:/Users/jet/app/hadoop-2.6.0/bin:/Users/jet/app/hadoop-2.6.0/sbin:/Users/jet/app/findbugs-3.0.0/bin:/Users/jet/app/cmake-3.0.1/bin:/Users/jet/app/apache-storm-0.9.2/bin:/Users/jet/app/apache-flume-1.5.0/bin:/Users/jet/app/apache-maven-3.2.2/bin:/Users/jet/app/apache-ant-1.9.4/bin:/Users/jet/app/apache-tomcat-8.0.14/bin:/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/bin:/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/Users/jet/app/mongodb2.6/bin/:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:/Users/jet/app/bookkeeper-server-4.4.0//bin:/Users/jet/app/kibana-4.0.2/bin:/Users/jet/app/logstash-1.4.2/bin:/Users/jet/app/elasticsearch-1.5.2/bin:/Users/jet/app/apached/bin:/Users/jet/app/h2/bin:/usr/local/metasploit-framework:/usr/local/nginx/sbin:/usr/local/mysql/bin:/usr/local/git/bin/bin:/Users/jet/app/zookeeper3.4/bin:/Users/jet/app/spring-roo-1.2.5/bin:/Users/jet/app/spark1.0/bin:/Users/jet/app/spark1.0/sbin:/Users/jet/app/redis/bin:/Users/jet/app/protobuf-2.5.0/bin:/Users/jet/app/mongodb2.6/bin:/Users/jet/app/mahout-0.9/bin:/Users/jet/app/kafka2.8/bin:/Users/jet/app/hadoop-2.6.0/bin:/Users/jet/app/hadoop-2.6.0/sbin:/Users/jet/app/findbugs-3.0.0/bin:/Users/jet/app/cmake-3.0.1/bin:/Users/jet/app/apache-storm-0.9.2/bin:/Users/jet/app/apache-flume-1.5.0/bin:/Users/jet/app/apache-maven-3.2.2/bin:/Users/jet/app/apache-ant-1.9.4/bin:/Users/jet/app/apache-tomcat-8.0.14/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home//bin:/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/:/Users/jet/.rvm/bin
 
 Yarn version: 
   1.2.0
@@ -45,7 +45,14 @@ npm manifest:
       "react-native": "^0.48.4",
       "react-native-elements": "^0.17.0",
       "react-native-extended-stylesheet": "^0.7.0",
-      "react-navigation": "^1.0.0-beta.13"
+      "react-native-swiper": "^1.5.13",
+      "react-navigation": "^1.0.0-beta.13",
+      "react-redux": "^5.0.6",
+      "redux": "^3.7.2",
+      "redux-logger": "^3.0.6",
+      "redux-promise-middleware": "^4.4.1",
+      "redux-thunk": "^2.2.0",
+      "styled-components": "^2.2.1"
     }
   }
 
@@ -7094,14 +7101,9 @@ Lockfile:
     resolved "http://registry.npm.taobao.org/yesno/download/yesno-0.0.1.tgz#ffbc04ff3d6f99dad24f7463134e9b92ae41bef6"
 
 Trace: 
-  Error: http://registry.npm.taobao.org/styled-components/download/styled-components-2.2.1.tgz: ESOCKETTIMEDOUT
-      at ClientRequest.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:123551:19)
-      at ClientRequest.g (events.js:292:16)
-      at emitNone (events.js:86:13)
-      at ClientRequest.emit (events.js:185:7)
-      at TLSSocket.emitTimeout (_http_client.js:630:10)
-      at TLSSocket.g (events.js:292:16)
-      at emitNone (events.js:86:13)
-      at TLSSocket.emit (events.js:185:7)
-      at TLSSocket.Socket._onTimeout (net.js:338:8)
-      at ontimeout (timers.js:386:11)
+  SyntaxError: /Users/jet/Library/Caches/Yarn/v1/npm-lodash._getnative-3.9.1-570bc7dede46d61cdcde687d65d3eecbaa3aaff5/.yarn-metadata.json: Unexpected end of JSON input
+      at Object.parse (native)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:770:59
+      at next (native)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:92:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:103:13

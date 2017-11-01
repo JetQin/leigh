@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, Animated, Image, Easing } from 'react-native';
+import { Text, Animated, Easing } from 'react-native';
 import styled from 'styled-components/native';
 import Colors from '../../../constants/Colors';
-
+import { connect } from 'react-redux';
+import { signin, signup } from './action';
 import styles from './styles/LoginScreen';
 import Fonts from '../../../constants/Fonts';
 
@@ -24,6 +25,7 @@ const Button = styled.TouchableOpacity`
   backgroundColor: ${({ color }) => color};
 `;
 
+@connect(undefined, { signin, signup })
 class LoginScreen extends Component {
   static navigationOptions = {
     headerStyle: { backgroundColor: Colors.$redColor },
@@ -35,6 +37,18 @@ class LoginScreen extends Component {
 
   componentDidMount() {
     this.spin();
+  }
+
+  signin() {
+    console.log("signin action");
+    this.props.navigation.navigate(signin());
+    // this.props.signin();
+  }
+
+  signup() {
+    console.log("signup action");
+    this.props.navigation.navigate(signup());
+    // this.props.dispatch(signup());
   }
 
   spin() {
@@ -73,10 +87,10 @@ class LoginScreen extends Component {
             </FlexContainer>
           </FlexContainer>
           <BottomButtonWrapper>
-            <Button color={Colors.$signinButtonColor}>
+            <Button color={Colors.$signinButtonColor} onPress={this.signin}>
               <Text style={Fonts.buttonAuth}>Sign-In</Text>
             </Button>
-            <Button color={Colors.$signupButtonColor}>
+            <Button color={Colors.$signupButtonColor} onPress={this.signup}>
               <Text style={Fonts.buttonAuth}>Sign-Up</Text>
             </Button>
           </BottomButtonWrapper>
