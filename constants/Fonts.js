@@ -36,4 +36,10 @@ export default {
     color: Colors.$black,
     backgroundColor: 'transparent',
   },
+  searchText: {
+    fontSize: 12,
+    fontFamily: 'montserratBold',
+    color: Colors.$black,
+    backgroundColor: 'transparent',
+  },
 };

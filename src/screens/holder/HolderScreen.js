@@ -20,6 +20,7 @@ class HolderScreen extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     headerStyle: { backgroundColor: Colors.$redColor },
+    tabBarLabel: '股东查询',
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <Image source={require('../../../assets/imgs/logo.png')} style={styles.logo} />
@@ -44,38 +45,40 @@ class HolderScreen extends Component {
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
-    this.searchStock = this.searchStock.bind(this);
+    this.searchStockHolder = this.searchStockHolder.bind(this);
   }
 
   state = {
     stockCode: '',
-    companyName: '',
-    stock: '',
-    holder: '',
+    page: 1,
+    stock: [],
+    holder: [],
+  }
+
+  componentDidMount() {
+    const params = {
+      type: 'fetchStock',
+      page: this.state.page,
+    };
+    this.fetchStock(params);
   }
 
   search(title) {
     this.setState({ stockCode: title });
   }
 
-  searchStock() {
-    const params = {
-      type: 'fetchStock',
-      companyCode: this.state.stockCode,
-    };
-    this.fetchStock(params);
+  searchStockHolder() {
+    this.fetchHolder({ type: 'fetchHolder', companyCode: this.state.stockCode });
   }
 
   async fetchStock(params) {
     const response = await this.props.api.fetchStock(params);
-    this.setState({ stock: response[0] });
     console.log(response);
-    this.fetchHolder({ type: 'fetchHolder', companyCode: this.state.stockCode });
+    this.setState({ stock: response });
   }
 
   async fetchHolder(params) {
     const response = await this.props.api.fetchHolder(params);
-    console.log(response);
     this.setState({ holder: response });
   }
 
@@ -86,36 +89,46 @@ class HolderScreen extends Component {
     let holder = (
       <View />
     );
-
     if (this.state.stock) {
-      stock = (
-        <StockCard stock={this.state.stock} />
-      );
+      console.log('render stock card');
+      stock = (<StockCard stocks={this.state.stock} />);
     }
+
     if (this.state.holder) {
-      holder = (
-        <HolderCard holders={this.state.holder} />
-      );
+      console.log('render holder card');
+      holder = (<HolderCard holders={this.state.holder} />);
     }
+
     return (
       <View style={styles.root}>
-        <View style={styles.searchContainer}>
-          <SearchBar
-            lightTheme
-            onChangeText={this.search}
-            placeholder='Type Here...'
-          />
-        </View>
-        <View style={styles.searchBtnContainer}>
-          <Button title='搜索' backgroundColor={Colors.$blackBlueColor} color={Colors.$whiteColor} onPress={this.searchStock} />
-        </View>
-        <View style={styles.stockContainer}>
-          {stock}
-        </View>
-
-        <View style={styles.holderContainer}>
-          {holder}
-        </View>
+        <Tabs initialPage={1}>
+          <Tab heading='股票查询'>
+            <View style={styles.stockContainer}>
+              {stock}
+            </View>
+          </Tab>
+          <Tab heading='股东查询' >
+            <View style={styles.searchContainer}>
+              <View style={styles.searchBar}>
+                <View style={styles.searchTool}>
+                  <SearchBar
+                    lightTheme
+                    onChangeText={this.search}
+                    placeholder='Type Here...'
+                  />
+                </View>
+                <View style={styles.searchBtnContainer}>
+                  <Button bordered light onPress={this.searchStockHolder}>
+                    <Text style={Fonts.searchText}>搜索</Text>
+                  </Button>
+                </View>
+              </View>
+            </View>
+            <View style={styles.holderContainer}>
+              {holder}
+            </View>
+          </Tab>
+        </Tabs>
       </View>
     );
   }

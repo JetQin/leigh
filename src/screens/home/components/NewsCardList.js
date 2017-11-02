@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { MaterialCommunityIcons } from '@expo/vector-icons/';
 import { Card, CardItem, Thumbnail, Text, Button, Left, Body } from 'native-base';
 
 import Fonts from '../../../../constants/Fonts';
@@ -26,8 +27,13 @@ class NewsCardList extends Component {
       <CardItem>
         <Left>
           <Button transparent textStyle={{ color: '#87838B' }}>
-            <Icon size={24} name='tags' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
+            <Icon size={16} name='tags' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
             <Text style={styles.footerTitle}>{item.category}</Text>
+            <MaterialCommunityIcons name='wechat' style={{ fontSize: 18, color: '#384259' }} />
+            <Text style={styles.footerTitle}>{item.category}</Text>
+            <Icon size={16} name='bookmark' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
+            <Text />
+            <Icon size={16} name='share' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
           </Button>
         </Left>
       </CardItem>

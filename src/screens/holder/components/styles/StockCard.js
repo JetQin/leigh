@@ -73,6 +73,11 @@ const styles = EStyleSheet.create({
     fontFamily: 'montserratBold',
     color: Colors.$redColor,
   },
+  separator: {
+    flex: 1,
+    height: 10,
+    backgroundColor: '$blackBlueColor',
+  },
 
 });
 

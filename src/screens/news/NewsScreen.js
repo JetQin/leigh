@@ -15,6 +15,7 @@ class NewsScreen extends Component {
   }
 
   static navigationOptions = ({ navigation }) => ({
+    tabBarLabel: '商业新闻',
     headerStyle: { backgroundColor: Colors.$redColor },
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -53,8 +54,6 @@ class NewsScreen extends Component {
   }
 
   async scroll() {
-    console.log(this.state.page);
-    console.log(this.state.news);
     this.setState({ page: this.state.page + 1 });
     const request = {
       type: this.state.type,

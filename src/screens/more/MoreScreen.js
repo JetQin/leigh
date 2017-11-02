@@ -46,6 +46,7 @@ const sublist = [
 
 class MoreScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
+    tabBarLabel: '关于',
     headerStyle: { backgroundColor: Colors.$redColor },
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>

@@ -19,6 +19,8 @@ import { fetchData } from './actions';
 )
 class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
+    tabBarLabel: '主页',
+    titleStyle: { color: Colors.$redColor },
     headerStyle: { backgroundColor: Colors.$redColor },
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>

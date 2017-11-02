@@ -25,7 +25,7 @@ const PassBtn = styled.TouchableOpacity`
 class ProfileScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
-    const title = '个人信息';
+    const tabBarLabel = '个人信息';
     const headerStyle = { backgroundColor: Colors.$redColor };
     let headerRight = (
       <View />
@@ -43,7 +43,7 @@ class ProfileScreen extends Component {
     const tabBarIcon = ({ tintColor }) => (
       <MaterialCommunityIcons name="account-circle" size={25} color={tintColor} />
     );
-    return { title, headerStyle, headerRight, tabBarIcon };
+    return { tabBarLabel, headerStyle, headerRight, tabBarIcon };
   };
 
   constructor(props) {

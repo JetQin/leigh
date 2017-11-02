@@ -8,11 +8,18 @@ const styles = EStyleSheet.create({
   searchContainer: {
     flex: 0.1,
   },
+  searchBar: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  searchTool: {
+    flex: 0.9,
+  },
   searchBtnContainer: {
     flex: 0.1,
   },
   stockContainer: {
-    flex: 0.2,
+    flex: 1,
     marginTop: 5,
     marginBottom: 5,
   },
@@ -30,7 +37,7 @@ const styles = EStyleSheet.create({
     height: 20,
   },
   holderContainer: {
-    flex: 0.6,
+    flex: 1,
   },
 
 });

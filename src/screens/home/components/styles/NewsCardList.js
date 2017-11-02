@@ -41,17 +41,14 @@ const styles = EStyleSheet.create({
     resizeMode: 'cover',
   },
   footerTitle: {
-    top: 0,
-    left: 8,
-    right: 5,
-    fontSize: 15,
+    fontSize: 10,
     fontFamily: 'montserratBold',
     color: Colors.$black,
     backgroundColor: 'transparent',
   },
   icon: {
-    left: 10,
-    right: 10,
+    left: 5,
+    right: 3,
   },
 });
 
