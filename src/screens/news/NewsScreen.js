@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { Tabs, Tab, Button, Icon } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons/';
-import { Tabs, Tab } from 'native-base';
 import Colors from '../../../constants/Colors';
 import NewsCard from './components/NewsCard';
 import styles from './styles/NewsScreen';
@@ -14,13 +14,28 @@ class NewsScreen extends Component {
     wordpressApi,
   }
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerStyle: { backgroundColor: Colors.$redColor },
-    title: '商业新闻',
+    headerLeft: (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Image source={require('../../../assets/imgs/logo.png')} style={styles.logo} />
+        <Text style={styles.headerTitle}>新历财经</Text>
+      </View>
+    ),
+    headerRight: (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
+          <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+        </Button>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
+          <MaterialCommunityIcons name='share' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+        </Button>
+      </View>
+    ),
     tabBarIcon: ({ tintColor }) => (
       <MaterialCommunityIcons name="newspaper" size={25} color={tintColor} />
     ),
-  }
+  });
 
   state = {
     type: 'fetchPosts',
@@ -54,11 +69,14 @@ class NewsScreen extends Component {
     return (
       <View style={styles.root}>
         <View style={styles.bottomContainer}>
-          <Tabs initialPage={1}>
-            <Tab heading='新闻'>
+          <Tabs>
+            <Tab heading='金融'>
               <NewsCard news={this.state.news} scroll={this.scroll.bind(this)} />
             </Tab>
-            <Tab heading='股市'>
+            <Tab heading='地产'>
+              <NewsCard news={this.state.news} scroll={this.scroll.bind(this)} />
+            </Tab>
+            <Tab heading='科技'>
               <NewsCard news={this.state.news} scroll={this.scroll.bind(this)} />
             </Tab>
           </Tabs>

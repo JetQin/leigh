@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { ScrollView, Image } from 'react-native';
+import { View, ScrollView, Image } from 'react-native';
 import { Card, Button, Text, List, ListItem } from 'react-native-elements';
 import styles from './styles/NewsCard';
 
 class NewsCard extends Component {
-
   constructor(props) {
     super(props);
     this.scrollLoad = this.scrollLoad.bind(this);
@@ -15,6 +14,9 @@ class NewsCard extends Component {
   }
 
   render() {
+    if (!this.props.news) {
+      return (<View />);
+    }
     const listItems = this.props.news.map((l, i) => (
       <ListItem
         key={i}

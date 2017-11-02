@@ -1,21 +1,10 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://leigh365.net/wp-json/wp/v2/posts/14111';
-
-const fakeGroupId = 'sdfsdf';
+const apiUrl = 'http://local.com/wordp/wordpressApi.php';
 
 class WordpressApi {
   constructor() {
-    this.groupId = fakeGroupId;
     this.path = '/groups/${this.groupId}/meetups';
-  }
-
-  async fetchPost() {
-    const { data } = await axios.get('https://raw.githubusercontent.com/JetQin/leigh/master/posts.json')
-      .then((response) => {
-        console.log('posts:'.concat(response));
-      });
-    return data;
   }
 
   fetchData() {
@@ -34,7 +23,7 @@ class WordpressApi {
   }
 
   async fetchPosts(request) {
-    const wordpressApiUrl = 'http://local.com/wordp/wordpressApi.php';
+    const wordpressApiUrl = apiUrl;
     const params = new URLSearchParams();
     params.append('type', request.type);
     params.append('page', request.login);
@@ -43,16 +32,17 @@ class WordpressApi {
   }
 
   async fetchStock(request) {
-    const wordpressApiUrl = 'http://local.com/wordp/wordpressApi.php';
+    const wordpressApiUrl = apiUrl;
     const params = new URLSearchParams();
     params.append('type', request.type);
-    params.append('companyCode', request.companyCode);
+    params.append('page', request.page);
+ 
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }
 
   async fetchHolder(request) {
-    const wordpressApiUrl = 'http://local.com/wordp/wordpressApi.php';
+    const wordpressApiUrl = apiUrl;
     const params = new URLSearchParams();
     params.append('type', request.type);
     params.append('companyCode', request.companyCode);
@@ -71,7 +61,7 @@ class WordpressApi {
   }
 
   async fetchReviewedArticle(authdata) {
-    const wordpressApiUrl = 'http://local.com/wordp/wordpressApi.php';
+    const wordpressApiUrl = apiUrl;
     const params = new URLSearchParams();
     params.append('type', authdata.type);
     params.append('user_id', authdata.user_id);
@@ -81,7 +71,7 @@ class WordpressApi {
   }
 
   async register(authdata) {
-    const wordpressApiUrl = 'http://local.com/wordp/wordpressApi.php';
+    const wordpressApiUrl = apiUrl;
     const params = new URLSearchParams();
     params.append('type', authdata.type);
     params.append('user_name', authdata.user_name);

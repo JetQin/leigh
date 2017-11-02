@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { Icon, Button } from 'native-base';
 import { List, ListItem } from 'react-native-elements';
 import { MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
@@ -44,13 +45,28 @@ const sublist = [
 ];
 
 class MoreScreen extends Component {
-  static navigationOptions = {
-    title: '关于',
+  static navigationOptions = ({ navigation }) => ({
     headerStyle: { backgroundColor: Colors.$redColor },
+    headerLeft: (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Image source={require('../../../assets/imgs/logo.png')} style={styles.logo} />
+        <Text style={styles.title}>新历财经</Text>
+      </View>
+    ),
+    headerRight: (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
+          <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+        </Button>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
+          <MaterialCommunityIcons name='share' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+        </Button>
+      </View>
+    ),
     tabBarIcon: ({ tintColor }) => (
       <MaterialCommunityIcons name="more" size={25} color={tintColor} />
     ),
-  }
+  });
 
   render() {
     return (

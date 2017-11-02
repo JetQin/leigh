@@ -16,6 +16,19 @@ const styles = EStyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
   },
+  title: {
+    color: '$whiteColor',
+    left: 15,
+    fontSize: 18,
+    paddingTop: 12,
+    fontFamily: 'montserrat',
+  },
+  logo: {
+    top: 15,
+    left: 10,
+    width: 20,
+    height: 20,
+  },
   holderContainer: {
     flex: 0.6,
   },

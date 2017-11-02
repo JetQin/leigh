@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { SearchBar, Button } from 'react-native-elements';
+import { View, Text, Image } from 'react-native';
+import { Tabs, Tab, Icon, Button } from 'native-base';
+import { SearchBar } from 'react-native-elements';
 import { MaterialCommunityIcons } from '@expo/vector-icons/';
 
 import { StockCard, HolderCard } from './components';
@@ -12,25 +13,33 @@ import { WordpressApi } from '../../../constants/api';
 
 const api = new WordpressApi();
 
-// const Button = styled.TouchableOpacity`
-//   flex: 1;
-//   justifyContent: center
-//   backgroundColor: ${({ color }) => color};
-// `;
-
 class HolderScreen extends Component {
   static defaultProps = {
     api,
   }
 
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerStyle: { backgroundColor: Colors.$redColor },
-    titleStyle: { color: Colors.$whiteColor },
-    title: '股票信息',
+    headerLeft: (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Image source={require('../../../assets/imgs/logo.png')} style={styles.logo} />
+        <Text style={styles.title}>新历财经</Text>
+      </View>
+    ),
+    headerRight: (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
+          <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+        </Button>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
+          <MaterialCommunityIcons name='share' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+        </Button>
+      </View>
+    ),
     tabBarIcon: ({ tintColor }) => (
       <MaterialCommunityIcons name="account-card-details" size={25} color={tintColor} />
     ),
-  }
+  });
 
   constructor(props) {
     super(props);

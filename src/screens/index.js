@@ -9,5 +9,6 @@ export * from './sidebar';
 export * from './signup';
 export * from './signin';
 export * from './more';
+export * from './search';
 export * from './webview';
 

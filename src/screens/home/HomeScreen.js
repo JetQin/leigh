@@ -28,10 +28,10 @@ class HomeScreen extends React.Component {
     ),
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Button transparent onPress={() => navigation.navigate('Login')}>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
           <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
         </Button>
-        <Button transparent onPress={() => navigation.navigate('Signin')}>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
           <MaterialCommunityIcons name='share' style={{ fontSize: 30, color: Colors.$whiteColor }} />
         </Button>
       </View>
