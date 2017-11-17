@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const apiUrl = 'http://local.com/wordp/wordpressApi.php';
+const apiUrl = 'http://synebusiness.cn/wordpressApi.php';
+const authenticationUrl = 'http://synebusiness.cn/authentication.php';
 
 class WordpressApi {
   constructor() {
@@ -36,7 +37,7 @@ class WordpressApi {
     const params = new URLSearchParams();
     params.append('type', request.type);
     params.append('page', request.page);
- 
+
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }
@@ -51,7 +52,6 @@ class WordpressApi {
   }
 
   async authenticate(authdata) {
-    const authenticationUrl = 'http://local.com/wordp/authentication.php';
     const params = new URLSearchParams();
     params.append('type', authdata.type);
     params.append('login', authdata.login);
