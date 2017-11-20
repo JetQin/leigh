@@ -10,6 +10,14 @@ class WordpressApi {
 
   fetchData() {
     return {
+      indexs: [
+        { name: '恒生', value: '10000', change_value: 450, change_percent: 0.23 },
+        { name: '沪市', value: '10000', change_value: 450, change_percent: 0.23 },
+        { name: '深市', value: '10000', change_value: -450, change_percent: -0.23 },
+        { name: '恒生', value: '10000', change_value: 450, change_percent: 0.23 },
+        { name: '沪市', value: '10000', change_value: 450, change_percent: 0.23 },
+        { name: '深市', value: '10000', change_value: -450, change_percent: -0.23 },
+      ],
       posts: [
         { postId: '1', postName: 'test1', postContent: 'Welcome 1' },
         { postId: '2', postName: 'test2', postContent: 'Welcome 2' },
@@ -25,7 +33,7 @@ class WordpressApi {
 
   async fetchPosts(request) {
     const wordpressApiUrl = apiUrl;
-    const params = new URLSearchParams();
+    const params = new FormData();
     params.append('type', request.type);
     params.append('page', request.login);
     const response = await axios.post(wordpressApiUrl, params);
@@ -34,7 +42,7 @@ class WordpressApi {
 
   async fetchStock(request) {
     const wordpressApiUrl = apiUrl;
-    const params = new URLSearchParams();
+    const params = new FormData();
     params.append('type', request.type);
     params.append('page', request.page);
 
@@ -44,7 +52,7 @@ class WordpressApi {
 
   async fetchHolder(request) {
     const wordpressApiUrl = apiUrl;
-    const params = new URLSearchParams();
+    const params = new FormData();
     params.append('type', request.type);
     params.append('companyCode', request.companyCode);
     const response = await axios.post(wordpressApiUrl, params);
@@ -52,7 +60,7 @@ class WordpressApi {
   }
 
   async authenticate(authdata) {
-    const params = new URLSearchParams();
+    const params = new FormData();
     params.append('type', authdata.type);
     params.append('login', authdata.login);
     params.append('password', authdata.password);
@@ -62,7 +70,7 @@ class WordpressApi {
 
   async fetchReviewedArticle(authdata) {
     const wordpressApiUrl = apiUrl;
-    const params = new URLSearchParams();
+    const params = new FormData();
     params.append('type', authdata.type);
     params.append('user_id', authdata.user_id);
     params.append('article_type', authdata.article_type);
@@ -72,7 +80,7 @@ class WordpressApi {
 
   async register(authdata) {
     const wordpressApiUrl = apiUrl;
-    const params = new URLSearchParams();
+    const params = new FormData();
     params.append('type', authdata.type);
     params.append('user_name', authdata.user_name);
     params.append('email', authdata.email);

@@ -1,5 +1,6 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Dimensions } from 'react-native';
+import Colors from '../../../../constants/Colors';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height * 0.5;
@@ -11,12 +12,18 @@ const styles = EStyleSheet.create({
     backgroundColor: '$blackBlueColor',
   },
   topContainer: {
-    flex: 0.5,
+    flex: 0.4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  indexContainer: {
+    flex: 0.2,
+    backgroundColor: Colors.$whiteColor,
     justifyContent: 'center',
     alignItems: 'center',
   },
   bottomContainer: {
-    flex: 1,
+    flex: 0.4,
   },
   title: {
     color: '$whiteColor',
