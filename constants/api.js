@@ -33,10 +33,13 @@ class WordpressApi {
 
   async fetchPosts(request) {
     const wordpressApiUrl = apiUrl;
+    console.log(request);
     const params = new FormData();
     params.append('type', request.type);
-    params.append('page', request.login);
+    params.append('page', request.page);
+    params.append('category', request.category);
     const response = await axios.post(wordpressApiUrl, params);
+    console.log(response);
     return response.data;
   }
 
