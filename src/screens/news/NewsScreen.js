@@ -39,101 +39,116 @@ class NewsScreen extends Component {
     super(props);
     this.state = {
       type: 'fetchPosts',
-      financeNews: { page: 1, data: [] },
-      businessNews: { page: 1, data: [] },
-      bankNews: { page: 1, data: [] },
-      houseNews: { page: 1, data: [] },
+      hotNews: { page: 1, data: [] },
       techNews: { page: 1, data: [] },
+      financeNews: { page: 1, data: [] },
+      houseNews: { page: 1, data: [] },
+      findNews: { page: 1, data: [] },
     };
     this.updateFinanceNews = this.updateFinanceNews.bind(this);
+    this.updateHotNews = this.updateHotNews.bind(this);
+    this.updateFindNews = this.updateFindNews.bind(this);
+    this.updateHouseNews = this.updateHouseNews.bind(this);
+    this.updateTechNews = this.updateTechNews.bind(this);
+    // this.changeTab = this.changeTab.bind(this);
   }
 
   async componentDidMount() {
-    const request = {
-      type: this.state.type,
-      page: this.state.financeNews.page,
-    };
-    const posts = await this.props.wordpressApi.fetchPosts(request);
-    this.setState({ financeNews: { page: 2, data: posts } });
+    const hot = this.hot;
+    const tech = this.tech;
+    const finance = this.finance;
+    const house = this.house;
+    const find = this.find;
+    this.hot._onRefresh();
   }
 
-  prepend(newValue, oldValue) {
-    for (let data = 0; data < oldValue.length; data++) {
-      newValue.push(oldValue[data]);
-    }
-    return newValue;
+  async updateHotNews() {
+    const request = {
+      type: this.state.type,
+      page: this.state.hotNews.page + 1,
+      category: 'hotnews',
+    };
+    const posts = await this.props.wordpressApi.fetchPosts(request);
+    this.setState({ hotNews: { page: this.state.hotNews.page + 1, data: posts.concat(this.state.hotNews.data) } });
   }
 
   async updateFinanceNews() {
-    console.log('***************updateFinanceNews*******************');
     const request = {
       type: this.state.type,
       page: this.state.financeNews.page + 1,
-      category: 'finance',
+      category: 'financenews',
     };
     const posts = await this.props.wordpressApi.fetchPosts(request);
     this.setState({ financeNews: { page: this.state.financeNews.page + 1, data: posts.concat(this.state.financeNews.data) } });
   }
 
-  async updateBusinessNews() {
+  async updateFindNews() {
     const request = {
       type: this.state.type,
-      page: this.state.businessNews.page + 1,
-      category: 'business',
+      page: this.state.findNews.page + 1,
+      category: 'findnews',
     };
     const posts = await this.props.wordpressApi.fetchPosts(request);
-    this.setState({ businessNews: { page: this.state.businessNews.page + 1, data: this.prepend(posts, this.state.businessNews.data) } });
-  }
-
-  async updateBankNews() {
-    const request = {
-      type: this.state.type,
-      page: this.state.bankNews.page + 1,
-      category: 'business',
-    };
-    const posts = await this.props.wordpressApi.fetchPosts(request);
-    this.setState({ bankNews: { page: this.state.bankNews.page + 1, data: this.prepend(posts, this.state.bankNews.data) } });
+    this.setState({ findNews: { page: this.state.findNews.page + 1, data: posts.concat(this.state.findNews.data) } });
   }
 
   async updateHouseNews() {
     const request = {
       type: this.state.type,
       page: this.state.houseNews.page + 1,
-      category: 'house',
+      category: 'housenews',
     };
     const posts = await this.props.wordpressApi.fetchPosts(request);
-    this.setState({ houseNews: { page: this.state.houseNews.page + 1, data: this.prepend(posts, this.state.houseNews.data) } });
+    this.setState({ houseNews: { page: this.state.houseNews.page + 1, data: posts.concat(this.state.houseNews.data) } });
   }
 
   async updateTechNews() {
     const request = {
       type: this.state.type,
       page: this.state.techNews.page + 1,
-      category: 'tech',
+      category: 'technews',
     };
     const posts = await this.props.wordpressApi.fetchPosts(request);
-    this.setState({ techNews: { page: this.state.techNews.page + 1, data: this.prepend(posts, this.state.techNews.data) } });
+    this.setState({ techNews: { page: this.state.techNews.page + 1, data: posts.concat(this.state.techNews.data) } });
+  }
+
+  changeTab(ref) {
+    if (ref.props.heading === '热点') {
+      this.hot._onRefresh();
+    }
+    if (ref.props.heading === '科技') {
+      this.tech._onRefresh();
+    }
+    if (ref.props.heading === '金融') {
+      this.finance._onRefresh();
+    }
+    if (ref.props.heading === '地产') {
+      this.house._onRefresh();
+    }
+    if (ref.props.heading === '发现') {
+      this.find._onRefresh();
+    }
   }
 
   render() {
     return (
       <View style={styles.root}>
         <View style={styles.bottomContainer}>
-          <Tabs renderTabBar={() => <ScrollableTab />} >
-            <Tab heading='金融'>
-              <NewsCard news={this.state.financeNews.data} scroll={this.updateFinanceNews} />
-            </Tab>
-            <Tab heading='商业'>
-              <NewsCard news={this.state.businessNews.data} scroll={this.updateBusinessNews} />
-            </Tab>
-            <Tab heading='银行'>
-              <NewsCard news={this.state.bankNews.data} scroll={this.updateBankNews} />
-            </Tab>
-            <Tab heading='地产'>
-              <NewsCard news={this.state.houseNews.data} scroll={this.updateHouseNews} />
+          <Tabs renderTabBar={() => <ScrollableTab />} onChangeTab={({ ref }) => this.changeTab(ref)} >
+            <Tab heading='热点'>
+              <NewsCard ref={(c) => { this.hot = c; }} news={this.state.hotNews.data} scroll={this.updateHotNews} navigation={this.props.navigation} />
             </Tab>
             <Tab heading='科技'>
-              <NewsCard news={this.state.techNews.data} scroll={this.updateTechNews} />
+              <NewsCard ref={(c) => { this.tech = c; }} news={this.state.techNews.data} scroll={this.updateTechNews} navigation={this.props.navigation} />
+            </Tab>
+            <Tab heading='金融'>
+              <NewsCard ref={(c) => { this.finance = c; }} news={this.state.financeNews.data} scroll={this.updateFinanceNews} navigation={this.props.navigation} />
+            </Tab>
+            <Tab heading='地产'>
+              <NewsCard ref={(c) => { this.house = c; }} news={this.state.houseNews.data} scroll={this.updateHouseNews} navigation={this.props.navigation} />
+            </Tab>
+            <Tab heading='发现'>
+              <NewsCard ref={(c) => { this.find = c; }} news={this.state.findNews.data} scroll={this.updateFindNews} navigation={this.props.navigation} />
             </Tab>
           </Tabs>
         </View>

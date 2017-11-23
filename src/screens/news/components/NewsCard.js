@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { View, ScrollView, FlatList, RefreshControl } from 'react-native';
-import { Avatar, List, ListItem } from 'react-native-elements';
-import { Card, CardItem, Thumbnail, Text, Left, Body } from 'native-base';
+import { View, ScrollView, FlatList, RefreshControl, Image, TouchableOpacity } from 'react-native';
+import { Icon, List, ListView, ListItem, Avatar } from 'react-native-elements';
+import { Card, CardItem, Thumbnail, Text, Left, Body, Button } from 'native-base';
+import moment from 'moment';
 import styles from './styles/NewsCard';
 
 class NewsCard extends Component {
   constructor(props) {
     super(props);
-    // this.scrollLoad = this.scrollLoad.bind(this);
     this._onRefresh = this._onRefresh.bind(this);
     this.state = {
       refreshing: false,
@@ -26,38 +26,10 @@ class NewsCard extends Component {
     });
   }
 
-  keyExtractor = (item, index) => index;
-
-  renderItem = ({ item }) => (
-    <Card style={{ flex: 0 }}>
-      <CardItem>
-        <Left>
-          { item.picUrl === '' ? <View /> : <Thumbnail square source={{ uri: item.picUrl }} />}
-          <Body>
-            <Text>{ item.name }</Text>
-            <Text note>{ item.date }</Text>
-          </Body>
-        </Left>
-      </CardItem>
-    </Card>
-  );
-
   render() {
     if (!this.props.news) {
       return (<View />);
     }
-    // const listItems = this.state.news.map((l, i) => (
-    //   <ListItem
-    //     avatar={<Avatar
-    //       medium
-    //       source={{ uri: l.picUrl }}
-    //     />}
-    //     key={i}
-    //     title={l.name}
-    //     subtitle={l.date}
-    //     rightTitle={l.author}
-    //   />
-    // ));
     return (
       <ScrollView
         refreshControl={
@@ -67,12 +39,30 @@ class NewsCard extends Component {
           />
         }
       >
-        <FlatList
-          data={this.state.news}
-          keyExtractor={this.keyExtractor}
-          //  renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-          renderItem={this.renderItem}
-        />
+        {
+          this.state.news.map((item, i) => (
+            <ListItem
+              key={i}
+              onPress={() => (this.props.navigation.navigate('ViewHtml', { uri: item.url }))}
+              leftIcon={item.picUrl === '' ? <View style={styles.emptyView} /> : <Avatar medium source={{ uri: item.picUrl }} />}
+              avatarContainerStyle={{ paddingLeft: 0, left: 0 }}
+              title={item.name}
+              titleStyle={{ paddingLeft: 10 }}
+              hideChevron
+              subtitle={
+                <View style={styles.footer}>
+                  <Text style={styles.footerText}>{moment(item.date, 'YYYY-MM-DD').startOf('day').fromNow()}</Text>
+                  <Icon size={12} name='tags' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
+                  <Text style={styles.footerText}>{item.category}</Text>
+                  <Icon size={12} name='comments' type='font-awesome' color='#384259' iconStyle={styles.icon} />
+                  <Icon size={12} name='bookmark' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
+                  <Icon size={12} name='share' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
+                </View>
+              }
+              subtitleContainerStyle={{ paddingLeft: 10, paddingTop: 8, paddingBottom: 5 }}
+            />
+          ))
+        }
       </ScrollView>
     );
   }
