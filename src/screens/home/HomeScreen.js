@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { LoadingScreen } from '../../commons/';
-import { NewsCardList } from './components/';
+import { NewsCardList, IndexCard } from './components/';
 import { Button, Icon } from 'native-base';
 import Swiper from 'react-native-swiper';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
@@ -51,10 +51,11 @@ class HomeScreen extends React.Component {
     const {
       data: {
         news,
+        indexs,
         isFetched,
       },
     } = this.props;
-
+    console.log(this.props);
     if (!isFetched) {
       return <LoadingScreen />;
     }
@@ -69,12 +70,18 @@ class HomeScreen extends React.Component {
           </Image>
         </View>);
     });
+
     return (
 
       <View style={styles.root}>
         <View style={styles.topContainer}>
-          <Swiper style={styles.wrapper} >
+          <Swiper style={styles.wrapper} showsButtons >
             {swiperItems}
+          </Swiper>
+        </View>
+        <View style={styles.indexContainer}>
+          <Swiper style={styles.wrapper}>
+            <IndexCard indexs={indexs} />
           </Swiper>
         </View>
         <View style={styles.bottomContainer}>

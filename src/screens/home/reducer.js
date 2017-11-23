@@ -17,6 +17,7 @@ export default (state = INITIAL_STATE, action) => {
     case `${FETCH_DATA}`:
       return {
         data: {
+          indexs: action.payload.indexs,
           posts: action.payload.posts,
           news: action.payload.news,
           isFetched: true,
@@ -31,6 +32,7 @@ export default (state = INITIAL_STATE, action) => {
     case `${FETCH_DATA}_FULFILLED`:
       return {
         data: {
+          indexs: action.payload.indexs,
           posts: action.posts,
           news: action.news,
           isFetched: true,
@@ -43,6 +45,7 @@ export default (state = INITIAL_STATE, action) => {
     case `${FETCH_DATA}_REJECTED`:
       return {
         data: {
+          indexs: action.payload.indexs,
           posts: action.payload,
           news: action.payload,
           isFetched: true,
