@@ -13,12 +13,12 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch (action.type) {
     case `${FETCH_DATA}`:
       return {
         data: {
           indexs: action.payload.indexs,
-          posts: action.payload.posts,
           news: action.payload.news,
           isFetched: true,
           error: {
@@ -33,8 +33,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         data: {
           indexs: action.payload.indexs,
-          posts: action.posts,
-          news: action.news,
+          news: action.payload.news,
           isFetched: true,
           error: {
             on: false,
@@ -46,8 +45,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         data: {
           indexs: action.payload.indexs,
-          posts: action.payload,
-          news: action.payload,
+          news: action.payload.news,
           isFetched: true,
           error: {
             on: true,
