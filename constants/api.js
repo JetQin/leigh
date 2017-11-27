@@ -35,7 +35,6 @@ class WordpressApi {
     const params = new FormData();
     params.append('type', request.type);
     params.append('page', request.page);
-
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }

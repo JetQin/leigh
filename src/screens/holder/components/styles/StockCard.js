@@ -10,73 +10,91 @@ const styles = EStyleSheet.create({
     paddingRight: 15,
     borderWidth: 1,
   },
-  titleContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  redBorder: {
+    borderLeftWidth: 5,
+    borderStyle: 'solid',
+    borderLeftColor: Colors.$redColor,
   },
-  infoContainer: {
+  greenBorder: {
+    borderLeftWidth: 5,
+    borderStyle: 'solid',
+    borderLeftColor: Colors.$redColor,
+  },
+  header: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  companyCodeContainer: {
+  headerLeft: {
     flex: 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
   },
-  companyCode: {
-    fontSize: 16,
-    fontFamily: 'montserratBold',
-    color: Colors.$whiteColor,
+  headerCenter: {
+    flex: 0.2,
   },
-  companyNameContainer: {
+  headerRight: {
+    flex: 0.3,
+    alignItems: 'flex-end',
+  },
+  headerText: {
+    fontSize: 18,
+    fontFamily: 'montserrat',
+    color: Colors.$black,
+    backgroundColor: 'transparent',
+  },
+  headerRedText: {
+    marginLeft: 10,
+    fontSize: 18,
+    fontFamily: 'montserrat',
+    color: Colors.$redColor,
+    backgroundColor: 'transparent',
+  },
+  headerGreenText: {
+    marginLeft: 10,
+    fontSize: 18,
+    fontFamily: 'montserrat',
+    color: Colors.$greenColor,
+    backgroundColor: 'transparent',
+  },
+  footer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  footerLeft: {
     flex: 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
   },
-  companyName: {
+  footerCenter: {
+    flex: 0.2,
+  },
+  footerRight: {
+    flex: 0.3,
+    flexDirection: 'row',
+  },
+  footerText: {
     fontSize: 12,
-    fontFamily: 'montserratBold',
-    color: Colors.$whiteColor,
+    fontFamily: 'montserrat',
+    color: Colors.$black,
+    backgroundColor: 'transparent',
   },
-  priceContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  price: {
-    fontSize: 12,
-    fontFamily: 'montserratBold',
+  footerRedText: {
+    marginLeft: 2,
+    fontSize: 18,
+    fontFamily: 'montserrat',
     color: Colors.$redColor,
+    backgroundColor: 'transparent',
   },
-  changeContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  footerGreenText: {
+    marginLeft: 2,
+    fontSize: 18,
+    fontFamily: 'montserrat',
+    color: Colors.$greenColor,
+    backgroundColor: 'transparent',
   },
-  change: {
-    fontSize: 12,
-    fontFamily: 'montserratBold',
-    color: Colors.$redColor,
-  },
-  percentContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  percent: {
-    fontSize: 12,
-    fontFamily: 'montserratBold',
-    color: Colors.$redColor,
+  icon: {
+    marginLeft: 20,
   },
   separator: {
     flex: 1,
-    height: 10,
-    backgroundColor: '$blackBlueColor',
+    height: 3,
+    backgroundColor: Colors.$blackBlueColor,
   },
 
 });

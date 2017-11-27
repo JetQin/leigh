@@ -9,7 +9,7 @@ export const HomeNavigator = TabNavigator({
     screen: HomeScreen,
   },
   Holder: {
-    title: '股东查询',
+    title: '市场行情',
     screen: HolderScreen,
   },
   News: {
