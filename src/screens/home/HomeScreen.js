@@ -30,7 +30,7 @@ class HomeScreen extends React.Component {
     ),
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Button transparent onPress={() => navigation.navigate('Search')}>
+        <Button transparent onPress={() => navigation.navigate('Report')}>
           <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
         </Button>
       </View>
