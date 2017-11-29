@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, AsyncStorage, Image } from 'react-native';
-import { CheckBox } from 'react-native-elements';
+import { View, AsyncStorage, Image, Alert } from 'react-native';
+// import { CheckBox } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { Tabs, Tab, Input, Item, Icon, Title, Button, Text } from 'native-base';
@@ -8,6 +8,7 @@ import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import styles from './styles/SigninScreen';
 import { authenticate } from './actions';
+import CheckBox from './checkbox';
 
 // import WordpressApi from '../../../constants/api';
 // const api = new WordpressApi();
@@ -55,7 +56,6 @@ class SigninScreen extends Component {
     this.signin = this.signin.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.changeUsername = this.changeUsername.bind(this);
-    this.changeAutoLogin = this.changeAutoLogin.bind(this);
   }
 
   changeUsername(title) {
@@ -65,11 +65,6 @@ class SigninScreen extends Component {
   changePassword(title) {
     this.setState({ password: title });
   }
-
-  changeAutoLogin(title) {
-    this.setState({ aotoLogin: title });
-  }
-
   /**
    * 登陆
    * @returns 
@@ -134,9 +129,12 @@ class SigninScreen extends Component {
             <Item style={styles.inputStyle} regular>
               <Input placeholder='请输入密码' onChangeText={this.changePassword} />
             </Item>
-            <View>
-              <CheckBox title='下次自动登陆' checked={this.state.checked} onValueChange={this.changeAutoLogin} />
-            </View>
+            <CheckBox 
+              label="下次自动登陆" checked={this.state.aotoLogin} 
+              value={this.state.aotoLogin} 
+              checkStyle={styles.check}
+              labelStyle={styles.labelCheck}
+            />   
             <View style={styles.flexContainer}>
               <View style={styles.cell}>
                 <Button style={styles.buttonStyle} onPress={this.login} >
@@ -156,7 +154,7 @@ class SigninScreen extends Component {
               </View>
             </View>
             <Button transparent info><Text style={styles.myColor}>忘记密码？</Text></Button>
-            <Button transparent info style={styles.myColor}>
+            <Button transparent info >
               <MaterialCommunityIcons name='phone' style={[{ fontSize: 15, marginLeft: '4%', paddingRight: '0%' }, styles.myColor]} />
               <Text style={[{ paddingLeft: '0%' }, styles.myColor]}>联系我们</Text>
             </Button>                                  

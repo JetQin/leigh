@@ -65,11 +65,18 @@ const styles = EStyleSheet.create({
     height: 20,
   },
   titleText: {
-    color: '$navigationHeaderTextColor',
+    // color: '$navigationHeaderTextColor',
     left: 15,
     fontSize: 18,
     paddingTop: 12,
     fontFamily: 'montserrat',
+    fontWeight: 'bold',
+  },
+  check: {
+    marginLeft: 10,
+    marginTop: 10,
+  },
+  labelCheck: {
     fontWeight: 'bold',
   },
 });
