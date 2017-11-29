@@ -50,7 +50,6 @@ class NewsScreen extends Component {
     this.updateFindNews = this.updateFindNews.bind(this);
     this.updateHouseNews = this.updateHouseNews.bind(this);
     this.updateTechNews = this.updateTechNews.bind(this);
-    // this.changeTab = this.changeTab.bind(this);
   }
 
   async componentDidMount() {
@@ -69,6 +68,7 @@ class NewsScreen extends Component {
       category: 'hotnews',
     };
     const posts = await this.props.wordpressApi.fetchPosts(request);
+    console.log(posts);
     this.setState({ hotNews: { page: this.state.hotNews.page + 1, data: posts.concat(this.state.hotNews.data) } });
   }
 

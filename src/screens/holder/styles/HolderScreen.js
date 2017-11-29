@@ -30,6 +30,12 @@ const styles = EStyleSheet.create({
     paddingTop: 12,
     fontFamily: 'montserrat',
   },
+  sortText: {
+    marginLeft: 30,
+    textAlign: 'center',
+    fontSize: 18,
+    fontFamily: 'montserrat',
+  },
   logo: {
     top: 15,
     left: 10,

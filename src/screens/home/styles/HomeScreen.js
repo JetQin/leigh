@@ -9,10 +9,10 @@ const styles = EStyleSheet.create({
   root: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '$blackBlueColor',
+    // backgroundColor: '$blackBlueColor',
   },
   topContainer: {
-    flex: 0.4,
+    flex: 0.3,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -23,7 +23,7 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
   },
   bottomContainer: {
-    flex: 0.4,
+    flex: 0.5,
   },
   title: {
     color: '$whiteColor',

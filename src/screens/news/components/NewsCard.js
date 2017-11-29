@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { View, ScrollView, FlatList, RefreshControl, Image, TouchableOpacity } from 'react-native';
-import { Icon, List, ListView, ListItem, Avatar } from 'react-native-elements';
-import { Card, CardItem, Thumbnail, Text, Left, Body, Button } from 'native-base';
+import { View, Text, ScrollView, RefreshControl } from 'react-native';
+import { Icon, ListItem, Avatar } from 'react-native-elements';
 import moment from 'moment';
 import styles from './styles/NewsCard';
 
@@ -20,6 +19,7 @@ class NewsCard extends Component {
   }
 
   _onRefresh() {
+    console.log('refresh');
     this.setState({ refreshing: true });
     this.props.scroll().then(() => {
       this.setState({ refreshing: false, news: this.props.news });

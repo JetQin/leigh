@@ -30,11 +30,8 @@ class HomeScreen extends React.Component {
     ),
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Button transparent onPress={() => navigation.navigate('Search')}>
+        <Button transparent onPress={() => navigation.navigate('Report')}>
           <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
-        </Button>
-        <Button transparent onPress={() => navigation.navigate('Search')}>
-          <MaterialCommunityIcons name='share' style={{ fontSize: 30, color: Colors.$whiteColor }} />
         </Button>
       </View>
     ),
@@ -43,31 +40,56 @@ class HomeScreen extends React.Component {
     ),
   });
 
-  componentDidMount() {
-    this.props.fetchData();
+  constructor(props) {
+    super(props);
+    this.reloadData = this.reloadData.bind(this);
+  }
+  state = {
+    page: 1,
+    isFetched: false,
+    slides: [],
+    indexs: [],
+    news: [],
+  }
+
+  async componentDidMount() {
+    const cardList = this.cardList;
+    this.reloadData();
+  }
+
+  async reloadData() {
+    console.log('reload data');
+    const response = await this.props.fetchData(this.state.page);
+    this.setState({
+      isFetched: true,
+      slides: response.action.payload.slides,
+      indexs: response.action.payload.indexs,
+      news: response.action.payload.news,
+      page: 1 + this.state.page,
+    });
   }
 
   render() {
-    const {
-      data: {
-        news,
-        indexs,
-        isFetched,
-      },
-    } = this.props;
-    console.log(this.props);
-    if (!isFetched) {
+    if (!this.state.isFetched) {
       return <LoadingScreen />;
     }
-    const swiperItems = news.map((item, i) => {
-      const imgUri = item.img;
+    const swiperItems = this.state.slides.map((item, i) => {
       return (
         <View key={i} style={styles.slide}>
-          <Image source={{ uri: imgUri }} style={styles.image}>
-            <View style={styles.backdrop}>
-              <Text style={styles.text}>{item.content}</Text>
-            </View>
-          </Image>
+          {
+            item.picUrl === '' ?
+              (<View style={styles.backdrop}>
+                <Text style={styles.text}>{item.name}</Text>
+              </View>
+              ) :
+              (
+                <Image source={{ uri: item.picUrl }} style={styles.image}>
+                  <View style={styles.backdrop}>
+                    <Text style={styles.text}>{item.name}</Text>
+                  </View>
+                </Image>
+              )
+          }
         </View>);
     });
 
@@ -81,11 +103,11 @@ class HomeScreen extends React.Component {
         </View>
         <View style={styles.indexContainer}>
           <Swiper style={styles.wrapper}>
-            <IndexCard indexs={indexs} />
+            <IndexCard indexs={this.state.indexs} />
           </Swiper>
         </View>
         <View style={styles.bottomContainer}>
-          <NewsCardList news={news} navigation={this.props.navigation} />
+          <NewsCardList ref={(c) => { this.cardList = c; }} news={this.state.news} scroll={this.reloadData} navigation={this.props.navigation} />
         </View>
       </View>
     );

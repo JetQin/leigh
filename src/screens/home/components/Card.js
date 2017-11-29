@@ -19,7 +19,7 @@ class Card extends Component {
         <View style={styles.footer}>
           { icon }
           <Text style={index.change_value > 0 ? styles.footerRedText : styles.footerGreenText}>{index.change_value}</Text>
-          <Text style={index.change_value > 0 ? styles.footerRedText : styles.footerGreenText}>({index.change_percent > 0 * 100}%)</Text>
+          <Text style={index.change_value > 0 ? styles.footerRedText : styles.footerGreenText}>({index.change_percent}%)</Text>
         </View>
       </View>
     );

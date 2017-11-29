@@ -1,5 +1,4 @@
 export * from './home';
-export * from './notification';
 export * from './profile';
 export * from './holder';
 export * from './news';
@@ -11,4 +10,5 @@ export * from './signin';
 export * from './more';
 export * from './search';
 export * from './webview';
+export * from './reports';
 
