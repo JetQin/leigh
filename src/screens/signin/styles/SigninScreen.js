@@ -28,6 +28,57 @@ const styles = EStyleSheet.create({
   bottom: {
     top: 20,
   },
+  inputStyle: {
+    borderRadius: 3,
+    margin: '2%',
+    marginLeft: '2%',
+  }, 
+  formTitle: {
+    flexDirection: 'row',
+    marginTop: '4%',
+    marginLeft: '2%',
+  },
+  buttonStyle: {   
+    width: '91%',
+    justifyContent: 'center',
+    backgroundColor: '#6A97BE',
+  },
+  flexContainer: {
+    flexDirection: 'row',
+    marginLeft: '2%',
+  },
+  cell: {
+    flex: 1, 
+    marginTop: '4%',  
+  },
+  smallBtn: {
+    justifyContent: 'center',
+    marginLeft: '10%',
+  },
+  myColor: {
+    color: '#6A97BE',
+  },
+  logo: {
+    top: 15,
+    left: 10,
+    width: 20,
+    height: 20,
+  },
+  titleText: {
+    // color: '$navigationHeaderTextColor',
+    left: 15,
+    fontSize: 18,
+    paddingTop: 12,
+    fontFamily: 'montserrat',
+    fontWeight: 'bold',
+  },
+  check: {
+    marginLeft: 10,
+    marginTop: 10,
+  },
+  labelCheck: {
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

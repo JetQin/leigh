@@ -11,4 +11,5 @@ export default {
   $signupButtonColor: '#384259',
   $passButtonColor: '#384259',
   $notpassButtonColor: '#384259',
+  $navigationHeaderTextColor: '#0090D7',
 };
