@@ -13,28 +13,61 @@ const styles = EStyleSheet.create({
     paddingRight: 2,
     paddingBottom: 5,
   },
-  columnContainer: {
-    flex: 0.33,
+  narrowColumnContainer: {
+    flex: 0.3,
+    flexDirection: 'row',
+  },
+  wideColumnContainer: {
+    flex: 0.35,
+    flexDirection: 'row',
+  },
+  normalColumnContainer: {
+    flex: 0.5,
     flexDirection: 'row',
   },
   labelTitle: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: 'montserratBold',
     color: Colors.$grayColor,
     textAlign: 'center',
   },
   label: {
-    fontSize: 14,
+    fontSize: 12,
     fontFamily: 'montserratBold',
     color: Colors.$grayColor,
     textAlign: 'center',
   },
-  labelText: {
+  labelRedText: {
+    paddingTop: 2,
     paddingLeft: 3,
-    fontSize: 12,
+    fontSize: 10,
+    fontFamily: 'montserrat',
+    color: Colors.$redColor,
+    textAlign: 'right',
+  },
+  labelGreenText: {
+    paddingTop: 2,
+    paddingLeft: 3,
+    fontSize: 10,
+    fontFamily: 'montserrat',
+    color: Colors.$greenColor,
+    textAlign: 'right',
+  },
+  labelText: {
+    paddingTop: 2,
+    paddingLeft: 3,
+    fontSize: 10,
     fontFamily: 'montserrat',
     color: Colors.$black,
     textAlign: 'center',
+  },
+  labelSimpleText: {
+    paddingTop: 2,
+    paddingLeft: 3,
+    fontSize: 10,
+    fontFamily: 'montserrat',
+    color: Colors.$black,
+    textAlign: 'left',
   },
   chart: {
     flex: 1,
