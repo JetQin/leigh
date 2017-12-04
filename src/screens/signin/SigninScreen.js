@@ -23,11 +23,11 @@ class SigninScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: '个人信息',
     titleStyle: { color: Colors.$redColor },
-    headerStyle: { 
-      backgroundColor: Colors.$whiteColor, 
-      borderBottomWidth: 3, 
-      borderBottomColor: Colors.$navigationHeaderTextColor, 
-      borderStyle: 'solid', 
+    headerStyle: {
+      backgroundColor: Colors.$whiteColor,
+      borderBottomWidth: 3,
+      borderBottomColor: Colors.$navigationHeaderTextColor,
+      borderStyle: 'solid',
     },
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -59,15 +59,17 @@ class SigninScreen extends Component {
   }
 
   changeUsername(title) {
+    console.log(title);
     this.setState({ username: title });
   }
 
   changePassword(title) {
+    console.log(title);
     this.setState({ password: title });
   }
   /**
    * 登陆
-   * @returns 
+   * @returns
    * @memberof SigninScreen
    */
   login() {
@@ -129,20 +131,20 @@ class SigninScreen extends Component {
             <Item style={styles.inputStyle} regular>
               <Input placeholder='请输入密码' onChangeText={this.changePassword} />
             </Item>
-            <CheckBox 
-              label="下次自动登陆" checked={this.state.aotoLogin} 
-              value={this.state.aotoLogin} 
+            <CheckBox
+              label="下次自动登陆" checked={this.state.aotoLogin}
+              value={this.state.aotoLogin}
               checkStyle={styles.check}
               labelStyle={styles.labelCheck}
-            />   
+            />
             <View style={styles.flexContainer}>
               <View style={styles.cell}>
                 <Button style={styles.buttonStyle} onPress={this.login} >
                   <MaterialCommunityIcons name='account' style={{ fontSize: 20, color: Colors.$whiteColor, marginRight: '2%' }} />
-                  <Text>登入</Text>                  
+                  <Text>登入</Text>
                 </Button>
-              </View> 
-              <View style={[styles.cell, styles.smallBtn]}> 
+              </View>
+              <View style={[styles.cell, styles.smallBtn]}>
                 <Button small style={styles.buttonStyle}>
                   <Text>微信登陆</Text>
                 </Button>
@@ -157,12 +159,12 @@ class SigninScreen extends Component {
             <Button transparent info >
               <MaterialCommunityIcons name='phone' style={[{ fontSize: 15, marginLeft: '4%', paddingRight: '0%' }, styles.myColor]} />
               <Text style={[{ paddingLeft: '0%' }, styles.myColor]}>联系我们</Text>
-            </Button>                                  
+            </Button>
           </Tab>
           <Tab heading='注册'>
             <View style={styles.formTitle}>
               <Title>注册新账户</Title>
-            </View>           
+            </View>
             <Item style={styles.inputStyle} regular>
               <Input placeholder='请输入您的邮箱地址' />
             </Item>
@@ -179,10 +181,10 @@ class SigninScreen extends Component {
               <View style={styles.cell}>
                 <Button style={styles.buttonStyle} onPress={this.signin} >
                   <MaterialCommunityIcons name='lead-pencil' style={{ fontSize: 20, color: Colors.$whiteColor }} />
-                  <Text>注册</Text>                 
+                  <Text>注册</Text>
                 </Button>
-              </View> 
-              <View style={[styles.cell, styles.smallBtn]}> 
+              </View>
+              <View style={[styles.cell, styles.smallBtn]}>
                 <Button small style={styles.buttonStyle}>
                   <Text>微信登陆</Text>
                 </Button>
@@ -195,7 +197,7 @@ class SigninScreen extends Component {
             </View>
           </Tab>
         </Tabs>
-        
+
       </View>
     );
   }

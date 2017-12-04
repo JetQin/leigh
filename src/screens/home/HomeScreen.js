@@ -4,7 +4,7 @@ import { LoadingScreen } from '../../commons/';
 import { NewsCardList, IndexCard } from './components/';
 import { Button, Icon } from 'native-base';
 import Swiper from 'react-native-swiper';
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
+import { FontAwesome } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import { connect } from 'react-redux';
 import styles from './styles/HomeScreen';
@@ -30,7 +30,7 @@ class HomeScreen extends React.Component {
     ),
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Button transparent onPress={() => navigation.navigate('Report')}>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
           <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
         </Button>
       </View>

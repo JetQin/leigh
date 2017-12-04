@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { Card, Button } from 'react-native-elements';
+import { SmoothLine } from 'react-native-pathjs-charts';
 import styles from './styles/BasicReport';
 import Colors from '../../../../constants/Colors';
 
@@ -57,10 +58,192 @@ class BasicReport extends Component {
     console.log(this.fetchBasicInfo);
   }
 
+  chartOptions() {
+    return {
+      width: 250,
+      height: 100,
+      color: Colors.$chartColor,
+      margin: {
+        top: 20,
+        left: 35,
+        bottom: 5,
+        right: 20,
+      },
+      animate: {
+        type: 'delayed',
+        duration: 200,
+      },
+      axisX: {
+        showAxis: false,
+        showLines: true,
+        showLabels: true,
+        showTicks: true,
+        zeroAxis: false,
+        orient: 'bottom',
+        label: {
+          fontFamily: 'montserratBold',
+          fontSize: 10,
+          fontWeight: true,
+          fill: Colors.$chartLegend,
+        },
+      },
+      axisY: {
+        showAxis: true,
+        showLines: false,
+        showLabels: true,
+        showTicks: true,
+        zeroAxis: false,
+        orient: 'left',
+        label: {
+          fontFamily: 'montserratBold',
+          fontSize: 14,
+          fontWeight: true,
+          fill: Colors.$chartLegend,
+        },
+      },
+    };
+  }
+
   render() {
+    const data = [
+      [{
+        x: -10,
+        y: -100,
+      }, {
+        x: -9,
+        y: -79,
+      }, {
+        x: -8,
+        y: -12,
+      }, {
+        x: -7,
+        y: -343,
+      }, {
+        x: -6,
+        y: -216,
+      }, {
+        x: -5,
+        y: -125,
+      }, {
+        x: -4,
+        y: -64,
+      }, {
+        x: -3,
+        y: -27,
+      }, {
+        x: -2,
+        y: -8,
+      }, {
+        x: -1,
+        y: -1,
+      }, {
+        x: 0,
+        y: 0,
+      }, {
+        x: 1,
+        y: 1,
+      }, {
+        x: 2,
+        y: 8,
+      }, {
+        x: 3,
+        y: 27,
+      }, {
+        x: 4,
+        y: 64,
+      }, {
+        x: 5,
+        y: 125,
+      }, {
+        x: 6,
+        y: 216,
+      }, {
+        x: 7,
+        y: 343,
+      }, {
+        x: 8,
+        y: 512,
+      }, {
+        x: 9,
+        y: 729,
+      }, {
+        x: 10,
+        y: 100,
+      }],
+      [{
+        x: -10,
+        y: 100,
+      }, {
+        x: -9,
+        y: 81,
+      }, {
+        x: -8,
+        y: 64,
+      }, {
+        x: -7,
+        y: 49,
+      }, {
+        x: -6,
+        y: 36,
+      }, {
+        x: -5,
+        y: 25,
+      }, {
+        x: -4,
+        y: 16,
+      }, {
+        x: -3,
+        y: 9,
+      }, {
+        x: -2,
+        y: 4,
+      }, {
+        x: -1,
+        y: 1,
+      }, {
+        x: 0,
+        y: 0,
+      }, {
+        x: 1,
+        y: 1,
+      }, {
+        x: 2,
+        y: 4,
+      }, {
+        x: 3,
+        y: 9,
+      }, {
+        x: 4,
+        y: 16,
+      }, {
+        x: 5,
+        y: 25,
+      }, {
+        x: 6,
+        y: 36,
+      }, {
+        x: 7,
+        y: 49,
+      }, {
+        x: 8,
+        y: 64,
+      }, {
+        x: 9,
+        y: 81,
+      }, {
+        x: 10,
+        y: 100,
+      }],
+    ];
+
+    const options = this.chartOptions();
+
     return (
       <ScrollView style={styles.root} >
         <Card title='基本信息'>
+          <View style={styles.lineContainer}>
+            <SmoothLine data={data} options={options} xKey='x' yKey='y' />
+          </View>
           <View style={styles.lineContainer}>
             <View style={styles.narrowColumnContainer}>
               <Text style={styles.label}>现价:</Text>
@@ -111,7 +294,12 @@ class BasicReport extends Component {
           <Text style={styles.labelSimpleText}>{this.state.basicInfo.industry}</Text>
         </Card>
         <View>
-          <Button title='解锁更多数据' backgroundColor={Colors.$blackBlueColor} textStyle={{ color: Colors.$whiteColor }} onPress={() => console.log('press')} />
+          <Button
+            title='解锁更多数据'
+            backgroundColor={Colors.$blackBlueColor}
+            textStyle={{ color: Colors.$whiteColor }}
+            onPress={() => console.log('press')}
+          />
         </View>
         <Card title='付费内容'>
           <View style={styles.lineContainer}>

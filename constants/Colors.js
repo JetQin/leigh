@@ -12,4 +12,6 @@ export default {
   $passButtonColor: '#384259',
   $notpassButtonColor: '#384259',
   $navigationHeaderTextColor: '#0090D7',
+  $chartLegend: '#34495E',
+  $chartColor: '#2980B9',
 };

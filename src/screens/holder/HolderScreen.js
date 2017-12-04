@@ -167,10 +167,21 @@ class HolderScreen extends Component {
       <View />
     );
     if (this.state.stock) {
-      stock = (<StockCard ref={(c) => { this.stockCard = c; }} stocks={this.state.stock.data} scroll={this.fetchStock} />);
+      stock = (
+        <StockCard
+          ref={(c) => { this.stockCard = c; }}
+          stocks={this.state.stock.data} scroll={this.fetchStock}
+          navigation={this.props.navigation}
+        />);
     }
     if (this.state.nasdaq_stock) {
-      nasdaqStock = (<StockCard ref={(c) => { this.nasdaqStockCard = c; }} stocks={this.state.nasdaq_stock.data} scroll={this.fetchNasdaqStock} />);
+      nasdaqStock = (
+        <StockCard
+          ref={(c) => { this.nasdaqStockCard = c; }}
+          stocks={this.state.nasdaq_stock.data}
+          scroll={this.fetchNasdaqStock}
+          navigation={this.props.navigation}
+        />);
     }
     const component1 = () => (
       <Button transparent onPress={this.sortByName}>
