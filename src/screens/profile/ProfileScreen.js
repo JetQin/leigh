@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, AsyncStorage, Image } from 'react-native';
 import { Avatar, Badge, List, ListItem } from 'react-native-elements';
-import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon } from 'native-base';
+import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon , Badge} from 'native-base';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
@@ -221,14 +221,18 @@ class ProfileScreen extends Component {
           </View>
         </View>
         <View style={styles.followContainer}>
-          <PassBtn color={Colors.$passButtonColor}>
-            <Text style={Fonts.buttonAuth}>已通过版本</Text>
-            <Badge value={this.state.passed} textStyle={{ color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} />
-          </PassBtn>
-          <PassBtn color={Colors.$notpassButtonColor}>
-            <Text style={Fonts.buttonAuth}>未通过版本</Text>
-            <Badge value={this.state.unpassed} textStyle={{ color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} />
-          </PassBtn>
+          {/* <Text style={Fonts.buttonAuth}>已通过版本</Text> */}
+          {/* <Badge value={this.state.passed + '已收藏文章'} textStyle={{ flexDirection: 'row', color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} /> */}
+          {/* <Text style={Fonts.buttonAuth}>未通过版本</Text> */}
+          {/* <Badge value={this.state.unpassed + '已自选行情'} textStyle={{ flexDirection: 'row', color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} /> */}
+          <Badge style={{ backgroundColor: Colors.$whiteColor }}>
+            <Text style={{flexDirection: 'row' }}>{this.state.passed}</Text>
+            <Text style={{flexDirection: 'row' }}>已收藏文章</Text>
+          </Badge>
+          <Badge style={{ backgroundColor: Colors.$whiteColor }}>
+            <Text style={{flexDirection: 'row' }}>{this.state.passed}</Text>
+            <Text style={{flexDirection: 'row' }}>已自选行情</Text>
+          </Badge>
         </View>
         <View style={styles.paneContainer}>
           <Container>
