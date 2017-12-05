@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage } from 'react-native';
-import { Avatar, Badge, List, ListItem, Icon } from 'react-native-elements';
-import { Container, Button, Segment, Content } from 'native-base';
+import { View, Text, AsyncStorage, Image } from 'react-native';
+import { Avatar, Badge, List, ListItem } from 'react-native-elements';
+import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon , Badge} from 'native-base';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
@@ -23,28 +23,29 @@ const PassBtn = styled.TouchableOpacity`
   data: state.profile.data,
 }), { fetchArticle })
 class ProfileScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { params = {} } = navigation.state;
-    const tabBarLabel = '个人信息';
-    const headerStyle = { backgroundColor: Colors.$redColor };
-    let headerRight = (
-      <View />
-    );
-    if (params.isLogin) {
-      headerRight = (
-        <View style={styles.headerContainer}>
-          <Button transparent onPress={params.logout}>
-            <MaterialCommunityIcons name='logout' size={25} color={Colors.$whiteColor} />
-          </Button>
-        </View>
-      );
-    }
-
-    const tabBarIcon = ({ tintColor }) => (
+  
+  static navigationOptions = ({ navigation }) => ({
+    tabBarLabel: '个人信息',
+    headerStyle: { backgroundColor: Colors.$redColor },
+    headerLeft: (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Image source={require('../../../assets/imgs/logo.png')} style={styles.logo} />
+        <Text style={styles.headerTitle}>新历财经</Text>
+      </View>
+    ),
+    headerRight: (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Button transparent onPress={() => navigation.navigate('Search')}>
+          <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+        </Button>
+        <Button rounded light onPress={() => navigation.navigate('Logout')}><Text style={Fonts.buttonAuth}>登出</Text>
+        </Button>
+      </View>
+    ),
+    tabBarIcon: ({ tintColor }) => (
       <MaterialCommunityIcons name="account-circle" size={25} color={tintColor} />
-    );
-    return { tabBarLabel, headerStyle, headerRight, tabBarIcon };
-  };
+    ),
+  });
 
   constructor(props) {
     super(props);
@@ -193,6 +194,19 @@ class ProfileScreen extends Component {
     }
     return (
       <View style={styles.root}>
+        <View style={styles.bottomContainer}>
+          <Tabs renderTabBar={() => <ScrollableTab />} onChangeTab={({ ref }) => this.changeTab(ref)} >
+            <Tab heading='我的新历'>
+              {/* <NewsCard ref={(c) => { this.hot = c; }} news={this.state.hotNews.data} scroll={this.updateHotNews} navigation={this.props.navigation} /> */}
+            </Tab>
+            <Tab heading='文章收藏夹'>
+              {/* <NewsCard ref={(c) => { this.tech = c; }} news={this.state.techNews.data} scroll={this.updateTechNews} navigation={this.props.navigation} /> */}
+            </Tab>
+            <Tab heading='自选行情'>
+              {/* <NewsCard ref={(c) => { this.finance = c; }} news={this.state.financeNews.data} scroll={this.updateFinanceNews} navigation={this.props.navigation} /> */}
+            </Tab>
+          </Tabs>
+        </View>
         <View style={styles.avatarContainer}>
           <Avatar
             large
@@ -207,14 +221,18 @@ class ProfileScreen extends Component {
           </View>
         </View>
         <View style={styles.followContainer}>
-          <PassBtn color={Colors.$passButtonColor}>
-            <Text style={Fonts.buttonAuth}>已通过版本</Text>
-            <Badge value={this.state.passed} textStyle={{ color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} />
-          </PassBtn>
-          <PassBtn color={Colors.$notpassButtonColor}>
-            <Text style={Fonts.buttonAuth}>未通过版本</Text>
-            <Badge value={this.state.unpassed} textStyle={{ color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} />
-          </PassBtn>
+          {/* <Text style={Fonts.buttonAuth}>已通过版本</Text> */}
+          {/* <Badge value={this.state.passed + '已收藏文章'} textStyle={{ flexDirection: 'row', color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} /> */}
+          {/* <Text style={Fonts.buttonAuth}>未通过版本</Text> */}
+          {/* <Badge value={this.state.unpassed + '已自选行情'} textStyle={{ flexDirection: 'row', color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} /> */}
+          <Badge style={{ backgroundColor: Colors.$whiteColor }}>
+            <Text style={{flexDirection: 'row' }}>{this.state.passed}</Text>
+            <Text style={{flexDirection: 'row' }}>已收藏文章</Text>
+          </Badge>
+          <Badge style={{ backgroundColor: Colors.$whiteColor }}>
+            <Text style={{flexDirection: 'row' }}>{this.state.passed}</Text>
+            <Text style={{flexDirection: 'row' }}>已自选行情</Text>
+          </Badge>
         </View>
         <View style={styles.paneContainer}>
           <Container>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, AsyncStorage, Image } from 'react-native';
-// import { CheckBox } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { Tabs, Tab, Icon, Title, Button, Text } from 'native-base';
@@ -10,8 +9,6 @@ import styles from './styles/SigninScreen';
 import { authenticate, register } from './actions';
 import CheckBox from './components/CheckBox';
 import Input from './components/Input';
-// import WordpressApi from '../../../constants/api';
-// const api = new WordpressApi();
 
 @connect(
   state => ({
