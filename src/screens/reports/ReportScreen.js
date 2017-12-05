@@ -13,10 +13,25 @@ class ReportScreen extends Component {
     ),
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      code: '600000',
+    };
+  }
+
+  componentDidMount() {
+    const { state } = this.props.navigation;
+    if (!state.params.code) {
+      this.setState({ code: state.params.code });
+    }
+    console.log(this.state.code);
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Tabs renderTabBar={() => <ScrollableTab />} >
+        <Tabs>
           <Tab heading='基本信息'>
             <BasicReport />
           </Tab>
