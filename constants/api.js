@@ -4,10 +4,6 @@ const apiUrl = 'http://synebusiness.cn/wordpressApi.php';
 const authenticationUrl = 'http://synebusiness.cn/authentication.php';
 
 class WordpressApi {
-  constructor() {
-    this.path = '/groups/${this.groupId}/meetups';
-  }
-
   async fetchData(page) {
     const wordpressApiUrl = apiUrl;
     const params = new FormData();

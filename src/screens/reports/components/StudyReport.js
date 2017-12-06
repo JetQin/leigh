@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { Card, Button } from 'react-native-elements';
-import { Pie } from 'react-native-pathjs-charts';
+// import { Pie } from 'react-native-pathjs-charts';
 import styles from './styles/StudyReport';
 import Colors from '../../../../constants/Colors';
 
@@ -10,29 +10,32 @@ class StudyReport extends Component {
     super(props);
     this.state = {
       basic: {
-        buy: 28,
-        hold: 2,
-        sell: 4,
-        total: 34,
+        buy: '--',
+        hold: '--',
+        sell: '--',
+        total: '--',
       },
+      chartData: [
+        { name: '买入', desc: 'buy', value: 0 },
+        { name: '持有', desc: 'hold', value: 0 },
+        { name: '卖出', desc: 'sell', value: 0 },
+      ],
     };
+    this.update = this.update.bind(this);
+  }
+
+  update() {
+    this.setState({
+      basic: this.props.data.basic,
+      chartData: [
+        { name: '买入', desc: 'buy', value: parseInt(this.props.data.basic.buy, 10) },
+        { name: '持有', desc: 'hold', value: parseInt(this.props.data.basic.hold, 10) },
+        { name: '卖出', desc: 'sell', value: parseInt(this.props.data.basic.sell, 10) },
+      ],
+    });
   }
 
   render() {
-    const data = [{
-      name: '买入',
-      desc: 'buy',
-      value: 28,
-    }, {
-      name: '持有',
-      desc: 'hold',
-      value: 2,
-    }, {
-      name: '卖出',
-      desc: 'sell',
-      value: 4,
-    }];
-
     const options = {
       margin: {
         top: 0,
@@ -64,11 +67,11 @@ class StudyReport extends Component {
         <Card title='基本信息'>
           <View style={styles.lineContainer}>
             <View style={styles.columnContainer} >
-              <Pie
-                data={data}
+              {/* <Pie
+                data={this.state.chartData}
                 options={options}
                 accessorKey="value"
-              />
+              /> */}
             </View>
             <View style={styles.columnContainer}>
               <View style={styles.rowContainer}>

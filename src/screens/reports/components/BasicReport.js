@@ -1,61 +1,64 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import { Card, Button } from 'react-native-elements';
-import { SmoothLine } from 'react-native-pathjs-charts';
+// import { SmoothLine } from 'react-native-pathjs-charts';
 import styles from './styles/BasicReport';
 import Colors from '../../../../constants/Colors';
 
 class BasicReport extends Component {
   constructor(props) {
     super(props);
-    this.fetchBasicInfo = this.fetchBasicInfo.bind(this);
     this.state = {
       priceInfo: {
-        price: 769.42,
-        price_change: 0.91,
-        p_change: 6.93,
-        open: 770.37,
-        close: 770.37,
-        max: 770.37,
-        min: 770.37,
-        weekMax: 778,
-        weekMin: 760,
+        price: '--',
+        price_change: '--',
+        p_change: '--',
+        open: '--',
+        close: '--',
+        max: '--',
+        min: '--',
+        weekMax: '--',
+        weekMin: '--',
       },
       basicInfo: {
-        breifInfo: '公司成立于1984年,1988年进入房地产行业,1991年成为深圳证券交易所第二家上市公司。经过二十多年的发展,成为国内最大的住宅开发企业,目前业务覆盖珠三角、长三角、环渤海三大城市经济圈以及中西部地区,共计53个大中城市。近三年来,年均住宅销售规模在6万套以上,2011年公司实现销售面积1075万平米,销售金额1215亿元,2012年销售额超过1400亿。销售规模持续居全球同行业首位。万科企业股份有限公司是目前中国最大的专业住宅开发企业。2007年公司完成新开工面积776.7万平方米,竣工面积445.3万平方米,实现销售金额523.6亿元,结算收入351.8亿元,净利润48.4亿元,纳税53.2亿元。以理念奠基、视道德伦理重于商业利益,是万科的最大特色。2014年6月25日,本公司B股以介绍方式转换上市地在香港联交所(H股)上市。',
-        industry: '房地产',
-        company: '',
+        breifInfo: '--',
+        industry: '--',
+        company: '--',
       },
       stockInfo: {
-        turnoverVolume3M: 900,
-        pettm: 23.90,
-        floatShare: 34,
-        eps: 23,
-        basicEps: 20,
-        highprice: 203,
-        lowprice: 180,
-        isin: 'ASFSD',
-        ceo: 'Jackie',
-        betaHS300: 12,
-        employee: 3000,
+        turnoverVolume3M: '--',
+        pettm: '--',
+        floatShare: '--',
+        eps: '--',
+        basicEps: '--',
+        highprice: '--',
+        lowprice: '--',
+        isin: '--',
+        ceo: '--',
+        betaHS300: '--',
+        employee: '--',
       },
       stockShare: {
-        holdSumChangeRate: 3,
-        holdSumChange: 30,
-        holdSum: 300,
-        institutionHoldProp: 22,
-        floatShare: 30,
-        institutionHolding: 50,
+        holdSumChangeRate: '--',
+        holdSumChange: '--',
+        holdSum: '--',
+        institutionHoldProp: '--',
+        floatShare: '--',
+        institutionHolding: '--',
       },
     };
+    this.update = this.update.bind(this);
   }
 
   componentDidMount() {
-    this.fetchBasicInfo();
   }
 
-  fetchBasicInfo() {
-    console.log(this.fetchBasicInfo);
+  update() {
+    this.setState({
+      priceInfo: this.props.data.price_info,
+      basicInfo: this.props.data.basic_info,
+      stockInfo: this.props.data.stock_info,
+    });
   }
 
   chartOptions() {
@@ -240,9 +243,9 @@ class BasicReport extends Component {
 
     return (
       <ScrollView style={styles.root} >
-        <Card title='基本信息'>
+        <Card title={this.state.basicInfo.company}>
           <View style={styles.lineContainer}>
-            <SmoothLine data={data} options={options} xKey='x' yKey='y' />
+            {/* <SmoothLine data={data} options={options} xKey='date' yKey='value' /> */}
           </View>
           <View style={styles.lineContainer}>
             <View style={styles.narrowColumnContainer}>
@@ -255,7 +258,7 @@ class BasicReport extends Component {
             </View>
             <View style={styles.wideColumnContainer}>
               <Text style={styles.label}>变化百分比:</Text>
-              <Text style={styles.labelText}>{this.state.priceInfo.price_change}}%</Text>
+              <Text style={styles.labelText}>{this.state.priceInfo.price_change}%</Text>
             </View>
           </View>
           <View style={styles.lineContainer}>

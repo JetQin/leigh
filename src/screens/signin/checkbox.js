@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { FontAwesome as Icon } from '@expo/vector-icons/';
 
@@ -24,15 +25,15 @@ const styles = StyleSheet.create({
   },
 });
 
-class CheckBox extends Component { 
+class CheckBox extends Component {
     static defaultProps = { label: 'Label',
       labelBefore: false,
       checked: false,
-    }; 
+    };
     static propTypes={
-      label: React.PropTypes.string,
-      checked: React.PropTypes.bool,
-      onChange: React.PropTypes.func,
+      label: PropTypes.string.isRequired,
+      checked: PropTypes.bool.isRequired,
+      onChange: PropTypes.func.isRequired,
     };
     constructor(props) {
       super(props);
@@ -48,7 +49,7 @@ class CheckBox extends Component {
       if (this.state.checked) {
         source = 'check-square-o';
       }
-     
+
       let container = (
         <View style={styles.container}>
           <Icon name={source} size={16} style={styles.checkbox} color='#AEAEAE' />
