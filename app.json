@@ -1,14 +1,14 @@
 {
   "expo": {
-    "sdkVersion": "21.0.0",
+    "sdkVersion": "23.0.0",
     "name": "Leigh",
     "version": "1.0.0",
-    "slug": "your-app-slug",
+    "slug": "leigh",
     "ios": {
-      "bundleIdentifier": "com.yourcompany.yourappname"
+      "bundleIdentifier": "cn.synebusiness"
     },
     "android": {
-      "package": "com.yourcompany.yourappname"
+      "package": "cn.synebusiness"
     }
   }
 }

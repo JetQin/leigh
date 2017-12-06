@@ -83,11 +83,11 @@ class HomeScreen extends React.Component {
               </View>
               ) :
               (
-                <Image source={{ uri: item.picUrl }} style={styles.image}>
-                  <View style={styles.backdrop}>
-                    <Text style={styles.text}>{item.name}</Text>
-                  </View>
-                </Image>
+                <View style={styles.backdrop}>
+                  <Image source={{ uri: item.picUrl }} style={styles.image} />
+                  {/* <Text style={styles.text}>{item.name}</Text> */}
+                </View>
+
               )
           }
         </View>);

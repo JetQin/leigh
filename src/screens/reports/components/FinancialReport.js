@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
-import { Bar } from 'react-native-pathjs-charts';
+import { ScrollView, View, Text, Dimensions } from 'react-native';
+// import { Bar } from 'react-native-pathjs-charts';
+// import Svg from 'react-native-svg';
+import { Constants, Svg } from 'expo';
+import { VictoryTheme } from 'victory-core';
+import { VictoryChart, VictoryBar, VictoryAxis, VictoryLine, VictoryLegend } from 'victory-native';
 import { Card, Button } from 'react-native-elements';
 import styles from './styles/FinancialReport';
 import Colors from '../../../../constants/Colors';
@@ -9,112 +13,58 @@ class FinancialReport extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      revenue: [],
+      revenue: [[]],
       profit: [],
       income: [],
       revenueAll: [],
       profitAll: [],
       incomeAll: [],
       revenueTable: {
-        operatingRevenueTTM: 300,
-        ebitda: 500,
-        netProfitTTM: 499,
-        incomeRatioTTM: 23989,
-        epsTTM: 23321,
-        dividendRatio: 123,
+        operatingRevenueTTM: '--',
+        ebitda: '--',
+        netProfitTTM: '--',
+        incomeRatioTTM: '--',
+        epsTTM: '--',
+        dividendRatio: '--',
       },
       predictionTable: {
-        opIncomeAvg: 12321,
-        EVToEBITDA: 12313,
-        ROAAvg: 123213,
-        EBITDAToTLiability: 1231313,
-        ROEAvg: 1231,
+        opIncomeAvg: '--',
+        EVToEBITDA: '--',
+        ROAAvg: '--',
+        EBITDAToTLiability: '--',
+        ROEAvg: '--',
       },
       liabilityTable: {
-        performanceTotalMV: 123123,
-        totalLiability: 12313,
-        totalCurrentLiability: 1231231,
-        enterpriseValue: 3123123,
+        performanceTotalMV: '--',
+        totalLiability: '--',
+        totalCurrentLiability: '--',
+        enterpriseValue: '--',
       },
       cashTable: {
-        netCashFlowTTM: 123123,
-        freeCashFlow: 123213123,
+        netCashFlowTTM: '--',
+        freeCashFlow: '--',
       },
     };
-  }
-  chartData() {
-    const data = [
-      [{
-        v: 21,
-        name: 'apple',
-      }, {
-        v: 32,
-        name: 'banana',
-      }, {
-        v: 40,
-        name: 'grape',
-      }, {
-        v: 29,
-        name: 'orange',
-      }],
-    ];
-
-    return data;
+    this.update = this.update.bind(this);
   }
 
-  chartOptions() {
-    const options = {
-      width: 150,
-      height: 200,
-      margin: {
-        top: 20,
-        left: 25,
-        bottom: 10,
-        right: 20,
-      },
-      color: '#2980B9',
-      gutter: 10,
-      animate: {
-        type: 'oneByOne',
-        duration: 200,
-        fillTransition: 3,
-      },
-      axisX: {
-        showAxis: true,
-        showLines: true,
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'bottom',
-        label: {
-          fontFamily: 'montserrat',
-          fontSize: 8,
-          fontWeight: true,
-          fill: Colors.$chartLegend,
-        },
-      },
-      axisY: {
-        showAxis: true,
-        showLines: true,
-        showLabels: true,
-        showTicks: true,
-        zeroAxis: false,
-        orient: 'left',
-        label: {
-          fontFamily: 'montserrat',
-          fontSize: 8,
-          fontWeight: true,
-          fill: Colors.$chartLegend,
-        },
-      },
-    };
-    return options;
+  update() {
+    this.setState({
+      revenue: this.props.data.revenue,
+      profit: this.props.data.profit,
+      income: this.props.data.income,
+      revenueAll: this.props.data.revenueAll,
+      profitAll: this.props.data.profitAll,
+      incomeAll: this.props.data.incomeAll,
+      revenueTable: this.props.data.revenueTable,
+      predictionTable: this.props.data.predictionTable,
+      liabilityTable: this.props.data.liabilityTable,
+      cashTable: this.props.data.cashTable,
+    });
+    console.log([this.state.revenue]);
   }
 
   render() {
-    const data = this.chartData();
-    const options = this.chartOptions();
-
     return (
       <ScrollView style={styles.root}>
         <View style={styles.lineContainer}>
@@ -126,17 +76,37 @@ class FinancialReport extends Component {
           </View>
         </View>
         <View style={styles.lineContainer}>
-          <Bar data={data} options={options} accessorKey='v' />
-          <Bar data={data} options={options} accessorKey='v' />
+          <VictoryChart
+            theme={VictoryTheme.material} domainPadding={30}
+            height={200}
+            width={400}
+          >
+            <VictoryBar
+              padding={5}
+              style={{
+                data: { fill: '#c43a31' },
+              }}
+              data={this.state.revenue}
+              x="name"
+              y={(d) => (d.value / 10000000)}
+            />
+            <VictoryAxis
+              dependentAxis
+              label="千万"
+              style={{
+                axisLabel: { padding: 30 },
+              }}
+            />
+          </VictoryChart>
+        </View>
+        {/* <View style={styles.lineContainer}>
+          <Bar data={this.state.profit} options={options} accessorKey='value' />
+          <Bar data={this.state.profitAll} options={options} accessorKey='value' />
         </View>
         <View style={styles.lineContainer}>
-          <Bar data={data} options={options} accessorKey='v' />
-          <Bar data={data} options={options} accessorKey='v' />
-        </View>
-        <View style={styles.lineContainer}>
-          <Bar data={data} options={options} accessorKey='v' />
-          <Bar data={data} options={options} accessorKey='v' />
-        </View>
+          <Bar data={this.state.income} options={options} accessorKey='value' />
+          <Bar data={this.state.incomeAll} options={options} accessorKey='value' />
+        </View> */}
         <View>
           <Button
             title='解锁更多数据'
