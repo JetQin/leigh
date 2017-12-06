@@ -7,27 +7,36 @@ const styles = EStyleSheet.create({
     backgroundColor: '$blackBlueColor',
   },
   avatarContainer: {
-    flex: 0.2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '$blackBlueColor',
   },
-  settingContainer: {
-    flex: 1,
+  wordContainer: {
+    flex: 0.2,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  followContainer: {
-    flex: 0.1,
+  settingContainer: {
+    flex: 0.2,
     flexDirection: 'row',
+    justifyContent: 'flex-end',
+    // float: 'right',
+    // alignItems: 'flex-end',
+  },
+  followContainer: {
+    flex: 0.5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   paneContainer: {
     flex: 0.7,
     backgroundColor: '$blackBlueColor',
   },
   bottomContainer: {
-    flex: 1,
+    flex: 0.1,
   },
   logo: {
     top: 15,
