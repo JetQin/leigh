@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const apiUrl = 'http://synebusiness.cn/reportApi.php';
-const apiUrl = 'http://local.com/wordp/reportApi.php';
+const apiUrl = 'http://synebusiness.cn/reportApi.php';
+// const apiUrl = 'http://local.com/wordp/reportApi.php';
 
 class ReportApi {
   constructor() {

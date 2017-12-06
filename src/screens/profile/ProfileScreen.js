@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, AsyncStorage, Image } from 'react-native';
 import { Avatar, Badge, List, ListItem } from 'react-native-elements';
-import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon , Badge} from 'native-base';
+import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon } from 'native-base';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
@@ -23,7 +23,7 @@ const PassBtn = styled.TouchableOpacity`
   data: state.profile.data,
 }), { fetchArticle })
 class ProfileScreen extends Component {
-  
+
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: '个人信息',
     headerStyle: { backgroundColor: Colors.$redColor },
