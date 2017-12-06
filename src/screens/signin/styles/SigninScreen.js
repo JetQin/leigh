@@ -28,11 +28,6 @@ const styles = EStyleSheet.create({
   bottom: {
     top: 20,
   },
-  inputStyle: {
-    borderRadius: 3,
-    margin: '2%',
-    marginLeft: '2%',
-  }, 
   formTitle: {
     flexDirection: 'row',
     marginTop: '4%',
