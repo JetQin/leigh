@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, AsyncStorage, Image } from 'react-native';
-import { Avatar, Badge, List, ListItem } from 'react-native-elements';
-import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon , Badge} from 'native-base';
+import { Avatar, List, ListItem } from 'react-native-elements';
+import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon, Badge} from 'native-base';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
