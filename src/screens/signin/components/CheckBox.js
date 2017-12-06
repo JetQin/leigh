@@ -33,7 +33,6 @@ class CheckBox extends Component {
     static propTypes={
       label: PropTypes.string.isRequired,
       checked: PropTypes.bool.isRequired,
-      onChange: PropTypes.func.isRequired,
     };
     constructor(props) {
       super(props);
