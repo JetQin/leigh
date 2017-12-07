@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, AsyncStorage, Image } from 'react-native';
-import { Avatar, List, ListItem } from 'react-native-elements';
-import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon, Badge } from 'native-base';
+import { Avatar, List, ListItem, Badge } from 'react-native-elements';
+import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon } from 'native-base';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
@@ -209,45 +209,36 @@ class ProfileScreen extends Component {
             </View>            
             <View style={styles.settingContainer}>
               <Icon color='#00aced' size={16} name='settings' onPress={this.changeAvatar} />
-              {/* <Text style={Fonts.buttonAuth}>{this.state.user.name}</Text> */}
               <Text>编辑头像</Text>
             </View>
             <View style={styles.followContainer}>
-              {/* <Text style={Fonts.buttonAuth}>已通过版本</Text> */}
-              {/* <Badge value={this.state.passed + '已收藏文章'} textStyle={{ flexDirection: 'row', color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} /> */}
-              {/* <Text style={Fonts.buttonAuth}>未通过版本</Text> */}
-              {/* <Badge value={this.state.unpassed + '已自选行情'} textStyle={{ flexDirection: 'row', color: Colors.$whiteColor }} containerStyle={{ backgroundColor: Colors.$redColor }} /> */}
-              <Badge info>
+              <Badge >
                 <Text style={{ flexDirection: 'row' }}>{this.state.passed}</Text>
                 <Text style={{ flexDirection: 'row' }}>已收藏文章</Text>
               </Badge>
-              <Badge info>
+              <Badge >
                 <Text style={{ flexDirection: 'row' }}>{this.state.passed}</Text>
                 <Text style={{ flexDirection: 'row' }}>已自选行情</Text>
               </Badge>
             </View>
-            {/* <View style={styles.paneContainer}>
-              <Container>
-                <Segment style={{ backgroundColor: Colors.$blackBlueColor }}>
-                  <Button first active={this.state.first} onPress={(e) => this.changeTab(e, 'first')}><Text style={Fonts.buttonAuth}>已通过</Text></Button>
-                  <Button second active={this.state.second} onPress={(e) => this.changeTab(e, 'second')}><Text style={Fonts.buttonAuth}>待通过</Text></Button>
-                  <Button last active={this.state.last} onPress={(e) => this.changeTab(e, 'last')}><Text style={Fonts.buttonAuth}>未通过</Text></Button>
-                </Segment>
-                <Content padder>
-                  <List containerStyle={{ marginBottom: 20 }}>
-                    { listItems }
-                  </List>
-                </Content>
-              </Container>
-            </View> */}
-            {/* <NewsCard ref={(c) => { this.hot = c; }} news={this.state.hotNews.data} scroll={this.updateHotNews} navigation={this.props.navigation} /> */}
+            <View style={styles.paneContainer}>
+              <Text >会员单日</Text>
+              <Text >会员单月</Text>
+              <Text >会员12个月</Text>
+            </View>
+            <View style={styles.moneyContainer}>
+              <Text >10￥</Text>
+              <Text >150￥</Text>
+              <Text >1500</Text>
+            </View>
+            <View>
+              <Button block >
+                <Text>充值</Text>
+              </Button>
+            </View>
           </Tab>
-          <Tab heading='文章收藏夹'>
-            {/* <NewsCard ref={(c) => { this.tech = c; }} news={this.state.techNews.data} scroll={this.updateTechNews} navigation={this.props.navigation} /> */}
-          </Tab>
-          <Tab heading='自选行情'>
-            {/* <NewsCard ref={(c) => { this.finance = c; }} news={this.state.financeNews.data} scroll={this.updateFinanceNews} navigation={this.props.navigation} /> */}
-          </Tab>
+          <Tab heading='文章收藏夹' />
+          <Tab heading='自选行情' />
         </Tabs>
         
       </View>
