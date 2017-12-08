@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, AsyncStorage, Image } from 'react-native';
-import { Avatar, List, ListItem, Badge } from 'react-native-elements';
+import { Avatar, List, ListItem, Badge, colors } from 'react-native-elements';
 import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon } from 'native-base';
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons/';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
 import styled from 'styled-components/native';
@@ -193,8 +193,68 @@ class ProfileScreen extends Component {
     }
     return (
       <View style={styles.root}>
-        <Tabs renderTabBar={() => <ScrollableTab />} onChangeTab={({ ref }) => this.changeTab(ref)} >
+        <Tabs onChangeTab={({ ref }) => this.changeTab(ref)} >
           <Tab heading='我的新历'>
+            <View style={styles.avatarContainer}>
+              <Avatar
+                xlarge
+                rounded
+                source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' }}
+                onPress={this.login}
+                activeOpacity={0.7}
+              />
+              <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>wordpress</Text>
+            </View>
+            <View style={styles.settingContainer}>
+              <Button transparent info onPress={this.changeAvatar}>
+                <FontAwesome name="gear" size={18} color={'#6A97BE'} />
+                <Text style={{ paddingLeft: '2%', fontSize: 18, color: '#6A97BE' }}>编辑头像</Text>
+              </Button>
+            </View>
+            <View style={styles.myCollectContainer}>
+              <View style={styles.followContainer}>
+                <Badge style={styles.collectContainer}>
+                  <View style={styles.collectText}>
+                    <Text>{this.state.passed}</Text>
+                    <Text>已收藏文章</Text>
+                  </View>
+                </Badge>
+                <Badge style={styles.collectContainer}>
+                  <View style={styles.collectText}>
+                    <Text>{this.state.passed}</Text>
+                    <Text>已自选行情</Text>
+                  </View>
+                </Badge>
+              </View>
+            </View>
+            <View style={styles.payContainer}>
+              <View style={styles.paneContainer}>
+                <Text style={styles.paneText}>会员单日</Text>
+                <Text style={styles.paneText}>会员单月</Text>
+                <Text style={styles.paneText}>会员12个月</Text>
+              </View>
+              <View style={styles.moneyContainer}>
+                <Button small style={styles.moneyText}>
+                  <MaterialCommunityIcons name='phone' style={{ color: '#BFA218' }} />
+                  <Text style={{ color: '#8CD6D7' }}>10￥</Text>
+                </Button> 
+                <Button small style={styles.moneyText}>
+                  <MaterialCommunityIcons name='phone' style={{ color: '#BFA218' }} />
+                  <Text style={{ color: '#8CD6D7' }}>150￥</Text>
+                </Button> 
+                <Button small style={styles.moneyText}>
+                  <MaterialCommunityIcons name='phone' style={{ color: '#BFA218' }} />
+                  <Text style={{ color: '#8CD6D7' }}>1500￥</Text>
+                </Button>
+              </View>
+              <View style={{ marginTop: '5%' }}>
+                <Button style={styles.buttonStyle}>
+                  <Text>充值</Text>
+                </Button>
+              </View>
+            </View>
+
+            {/*
             <View style={styles.avatarContainer}>
               <Avatar
                 large
@@ -203,39 +263,53 @@ class ProfileScreen extends Component {
                 onPress={this.login}
                 activeOpacity={0.7}
               />
-              <View style={styles.wordContainer}>
-                <Text style={Fonts.buttonAuth}>wordpress</Text>
-              </View>
-            </View>            
+            </View>
+            <View style={styles.wordContainer}>
+              <Text style={[Fonts.buttonAuth, { color: 'black' }]}>wordpress</Text>
+            </View> 
+
             <View style={styles.settingContainer}>
-              <Icon color='#00aced' size={16} name='settings' onPress={this.changeAvatar} />
-              <Text>编辑头像</Text>
-            </View>
-            <View style={styles.followContainer}>
-              <Badge >
-                <Text style={{ flexDirection: 'row' }}>{this.state.passed}</Text>
-                <Text style={{ flexDirection: 'row' }}>已收藏文章</Text>
-              </Badge>
-              <Badge >
-                <Text style={{ flexDirection: 'row' }}>{this.state.passed}</Text>
-                <Text style={{ flexDirection: 'row' }}>已自选行情</Text>
-              </Badge>
-            </View>
-            <View style={styles.paneContainer}>
-              <Text >会员单日</Text>
-              <Text >会员单月</Text>
-              <Text >会员12个月</Text>
-            </View>
-            <View style={styles.moneyContainer}>
-              <Text >10￥</Text>
-              <Text >150￥</Text>
-              <Text >1500</Text>
-            </View>
-            <View>
-              <Button block >
-                <Text>充值</Text>
+              <Button transparent info onPress={this.changeAvatar}>
+                <FontAwesome name="gear" size={18} color={'#6A97BE'} />
+                <Text style={{ paddingLeft: '0%', color: '#6A97BE' }}>编辑头像</Text>
               </Button>
             </View>
+
+            <View style={styles.myCollectContainer}>            
+              <View style={styles.followContainer}>
+                <Badge style={styles.collectContainer}>
+                  <View style={styles.collectText}>
+                    <Text>{this.state.passed}</Text>
+                    <Text>已收藏文章</Text>
+                  </View>
+                </Badge>
+                <Badge style={styles.collectContainer}>
+                  <View style={styles.collectText}>
+                    <Text>{this.state.passed}</Text>
+                    <Text>已自选行情</Text>
+                  </View>
+                </Badge>
+              </View>
+            </View>
+            
+             <View style={{ marginBottom: '2%' }}>
+              <View style={styles.paneContainer}>
+                <Text >会员单日</Text>
+                <Text >会员单月</Text>
+                <Text >会员12个月</Text>
+              </View>
+              <View style={styles.moneyContainer}>
+                <Text >10￥</Text>
+                <Text >150￥</Text>
+                <Text >1500</Text>
+              </View>
+              <View style={{ marginTop: '5%' }}>
+                <Button style={styles.buttonStyle}>
+                  <Text>充值</Text>
+                </Button>
+              </View>
+            </View> */}
+            
           </Tab>
           <Tab heading='文章收藏夹' />
           <Tab heading='自选行情' />
