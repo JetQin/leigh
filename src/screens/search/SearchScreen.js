@@ -106,7 +106,7 @@ class SearchScreen extends Component {
               placeholder="请输入关键词 按Enter搜索" 
               underlineColorAndroid='transparent'
               value={this.state.searchValue}
-              onChangeText={(searchValue)=>this.setState({searchValue})}
+              onChangeText={(searchValue) => this.setState({ searchValue })}
               style={styles.searchInput}
             />
             <Button transparent onPress={this.doSearch} style={{ position: 'absolute', right: '12%' }}>
