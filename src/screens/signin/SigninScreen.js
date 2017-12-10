@@ -32,7 +32,7 @@ class SigninScreen extends Component {
     },
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Button transparent onPress={() => navigation.navigate('Search')}>
+        <Button transparent onPress={() => navigation.goBack()}>
           <Icon name='md-menu' style={{ fontSize: 30, color: Colors.$navigationHeaderTextColor, marginTop: '6%' }} />
         </Button>
         <Image source={require('../../../assets/imgs/logo.png')} style={styles.logo} />
