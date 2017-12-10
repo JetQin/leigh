@@ -5,6 +5,16 @@ const styles = EStyleSheet.create({
   root: {
     flex: 1,
   },
+  chart: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chartContainer: {
+    flex: 1,
+    width: 300,
+    height: 400,
+  },
   lineContainer: {
     flex: 1,
     flexDirection: 'row',
