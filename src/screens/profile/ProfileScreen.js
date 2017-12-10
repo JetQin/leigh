@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, AsyncStorage, Image } from 'react-native';
 import { Avatar, Badge, List, ListItem } from 'react-native-elements';
-import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon } from 'native-base';
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons/';
+import { Container, Button, Segment, Content, Tabs, Tab, Icon } from 'native-base';
+import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import Fonts from '../../../constants/Fonts';
 import styled from 'styled-components/native';
@@ -23,10 +23,6 @@ const PassBtn = styled.TouchableOpacity`
   data: state.profile.data,
 }), { fetchArticle })
 class ProfileScreen extends Component {
-<<<<<<< HEAD
-
-=======
->>>>>>> 44ff3bd04be8d407690cabeb8f266541d93b298f
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: '个人信息',
     headerStyle: { backgroundColor: Colors.$redColor },

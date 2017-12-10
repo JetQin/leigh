@@ -7,13 +7,18 @@ const styles = EStyleSheet.create({
   },
   chart: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   chartContainer: {
     flex: 1,
-    width: 300,
-    height: 400,
+    left: 0,
+    top: 0,
+    paddingLeft: 0,
+    paddingTop: 0,
+    width: 270,
+    height: 300,
+    backgroundColor: 'red',
   },
   lineContainer: {
     flex: 1,
