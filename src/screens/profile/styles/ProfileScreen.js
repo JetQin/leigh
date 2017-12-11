@@ -97,7 +97,7 @@ const styles = EStyleSheet.create({
     height: 20,
   },
   headerTitle: {
-    color: '$whiteColor',
+    color: '$navigationHeaderTextColor',
     left: 15,
     fontSize: 18,
     paddingTop: 12,
