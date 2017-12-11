@@ -37,10 +37,13 @@ class StudyReport extends Component {
   }
 
   render() {
-    let url = 'http://synebusiness.cn/study_report_chart.html?code=';
+    let url = 'http://synebusiness.cn/study_report_chart.html?';
     url = url.concat('buy=').concat(this.state.basic.buy);
     url = url.concat('&hold=').concat(this.state.basic.hold);
     url = url.concat('&sell=').concat(this.state.basic.sell);
+
+    const financialTableUrl = 'http://synebusiness.cn/study_report_table.html?code=';
+    financialTableUrl.concat(this.state.code);
     return (
       <ScrollView style={styles.root} >
         <Card title='基本信息'>
@@ -73,6 +76,15 @@ class StudyReport extends Component {
           <Button
             title='解锁更多数据' backgroundColor={Colors.$blackBlueColor} textStyle={{ color: Colors.$whiteColor }}
             onPress={() => console.log('press')}
+          />
+        </View>
+        <View style={styles.chart} >
+          <WebView
+            style={styles.chartContainer}
+            source={{ uri: financialTableUrl }}
+            scrollEnabled={false}
+            automaticallyAdjustContentInsets
+            contentInset={{ top: 0, left: 0 }}
           />
         </View>
       </ScrollView>
