@@ -86,9 +86,7 @@ class HolderScreen extends Component {
       type: 'fetchStock',
       page: this.state.nasdaq_stock.page,
     };
-    console.log(this.state);
     const response = await this.props.api.fetchStock(params);
-    console.log(response);
     this.setState({
       nasdaq_stock: {
         data: response,

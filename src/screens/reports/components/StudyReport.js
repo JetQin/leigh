@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, View, Text, WebView } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 // import { Pie } from 'react-native-pathjs-charts';
 import styles from './styles/StudyReport';
@@ -9,6 +9,7 @@ class StudyReport extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      code: '',
       basic: {
         buy: '--',
         hold: '--',
@@ -36,52 +37,37 @@ class StudyReport extends Component {
   }
 
   render() {
-    const options = {
-      margin: {
-        top: 0,
-        left: 0,
-        right: 20,
-        bottom: 20,
-      },
-      width: 120,
-      height: 120,
-      color: [Colors.$redColor, Colors.$grayColor, Colors.$greenColor],
-      r: 30,
-      R: 60,
-      legendPosition: 'topLeft',
-      animate: {
-        type: 'oneByOne',
-        duration: 200,
-        fillTransition: 3,
-      },
-      label: {
-        fontFamily: 'Arial',
-        fontSize: 8,
-        fontWeight: true,
-        color: Colors.$blackBlueColor,
-      },
-    };
+    let url = 'http://synebusiness.cn/study_report_chart.html?';
+    url = url.concat('buy=').concat(this.state.basic.buy);
+    url = url.concat('&hold=').concat(this.state.basic.hold);
+    url = url.concat('&sell=').concat(this.state.basic.sell);
 
+    const financialTableUrl = 'http://synebusiness.cn/study_report_table.html?code=';
+    financialTableUrl.concat(this.state.code);
     return (
       <ScrollView style={styles.root} >
         <Card title='基本信息'>
+          <View style={styles.chart} >
+            <WebView
+              style={styles.chartContainer}
+              source={{ uri: url }}
+              scrollEnabled={false}
+              automaticallyAdjustContentInsets
+              contentInset={{ top: 0, left: 0 }}
+            />
+          </View>
           <View style={styles.lineContainer}>
-            <View style={styles.columnContainer} >
-              {/* <Pie
-                data={this.state.chartData}
-                options={options}
-                accessorKey="value"
-              /> */}
-            </View>
             <View style={styles.columnContainer}>
               <View style={styles.rowContainer}>
                 <Button title='买入' backgroundColor={Colors.$redColor} color={Colors.$whiteColor} />
                 <Text style={styles.label}>基于{this.state.basic.total}份评级报告</Text>
-                <View style={styles.columnContainer}>
-                  <Text style={styles.labelRedText}>{this.state.basic.buy}-买入</Text>
-                  <Text style={styles.labelGrayText}>{this.state.basic.hold}-持有</Text>
-                  <Text style={styles.labelGreenText}>{this.state.basic.sell}-卖出</Text>
-                </View>
+              </View>
+            </View>
+            <View style={styles.columnContainer}>
+              <View style={styles.rowContainer}>
+                <Text style={styles.labelRedText}>{this.state.basic.buy}-买入</Text>
+                <Text style={styles.labelGrayText}>{this.state.basic.hold}-持有</Text>
+                <Text style={styles.labelGreenText}>{this.state.basic.sell}-卖出</Text>
               </View>
             </View>
           </View>
@@ -90,6 +76,15 @@ class StudyReport extends Component {
           <Button
             title='解锁更多数据' backgroundColor={Colors.$blackBlueColor} textStyle={{ color: Colors.$whiteColor }}
             onPress={() => console.log('press')}
+          />
+        </View>
+        <View style={styles.chart} >
+          <WebView
+            style={styles.chartContainer}
+            source={{ uri: financialTableUrl }}
+            scrollEnabled={false}
+            automaticallyAdjustContentInsets
+            contentInset={{ top: 0, left: 0 }}
           />
         </View>
       </ScrollView>

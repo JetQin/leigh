@@ -6,12 +6,24 @@ const styles = EStyleSheet.create({
     flex: 1,
   },
   chart: {
-    width: 200,
-    height: 200,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chartContainer: {
+    flex: 1,
+    left: 0,
+    top: 0,
+    paddingLeft: 0,
+    paddingTop: 0,
+    width: 270,
+    height: 300,
   },
   lineContainer: {
     flex: 1,
     flexDirection: 'row',
+    top: 0,
+    left: 0,
   },
   columnContainer: {
     flex: 0.6,

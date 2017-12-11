@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Tabs, Tab } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
+import { LoadingScreen } from '../../commons';
 import { BasicReport, StudyReport, FinancialReport } from './components';
 import { ReportApi } from '../../../constants/reportApi';
 
@@ -23,6 +24,7 @@ class ReportScreen extends Component {
     super(props);
     this.state = {
       stockCode: '',
+      loading: false,
       basic_report: {},
       study_report: {},
       financial_report: {},
@@ -41,16 +43,17 @@ class ReportScreen extends Component {
     if (params.code) {
       this.setState({ stockCode: params.code });
       this.loadBaicReport(params.code);
-      // this.loadFinancialReport(params.code);
-      // this.loadStudyReport(params.code);
     }
   }
 
   async loadBaicReport(code) {
     const response = await this.props.reportApi.fetchBasicReport(code);
     console.log(response);
-    this.setState({ basic_report: response });
-    this.basic_report_view.update();
+    this.setState({ basic_report: response, loading: true });
+    console.log(this.state.loading);
+    if (this.basic_report_view) {
+      this.basic_report_view.update();
+    }
   }
 
   async loadStudyReport() {
@@ -82,6 +85,9 @@ class ReportScreen extends Component {
   }
 
   render() {
+    if (!this.state.loading) {
+      return <LoadingScreen />;
+    }
     return (
       <View style={{ flex: 1 }}>
         <Tabs onChangeTab={({ ref }) => this.changeTab(ref)} >
@@ -92,7 +98,7 @@ class ReportScreen extends Component {
             <StudyReport ref={(c) => (this.study_report_view = c)} data={this.state.study_report} />
           </Tab>
           <Tab heading='财报'>
-            <FinancialReport ref={(c) => (this.financial_report_view = c)} data={this.state.financial_report} />
+            <FinancialReport ref={(c) => (this.financial_report_view = c)} data={this.state.financial_report} code={this.state.stockCode} />
           </Tab>
         </Tabs>
       </View>

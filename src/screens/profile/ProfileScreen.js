@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, AsyncStorage, Image } from 'react-native';
-import { Avatar, List, ListItem, Badge, colors } from 'react-native-elements';
-import { Container, Button, Segment, Content, Tabs, Tab, ScrollableTab, Icon } from 'native-base';
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
+import { Avatar, Badge, List, ListItem } from 'react-native-elements';
+import { Container, Button, Segment, Content, Tabs, Tab, Icon } from 'native-base';
+import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import styles from './styles/ProfileScreen';
 import { fetchArticle } from './actions';
@@ -229,11 +229,11 @@ class ProfileScreen extends Component {
                 <Button small style={styles.moneyText}>
                   <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
                   <Text style={{ color: '#8CD6D7' }}>10￥</Text>
-                </Button> 
+                </Button>
                 <Button small style={styles.moneyText}>
                   <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
                   <Text style={{ color: '#8CD6D7' }}>150￥</Text>
-                </Button> 
+                </Button>
                 <Button small style={styles.moneyText}>
                   <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
                   <Text style={{ color: '#8CD6D7' }}>1500￥</Text>
@@ -256,7 +256,7 @@ class ProfileScreen extends Component {
           </Tab>
           <Tab heading='自选行情' />
         </Tabs>
-        
+
       </View>
     );
   }
