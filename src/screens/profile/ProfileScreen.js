@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { View, Text, AsyncStorage, Image, Platform } from 'react-native';
-import { Avatar, Badge, List, ListItem, PricingCard, normalize, fonts } from 'react-native-elements';
-import { Container, Button, Segment, Content, Tabs, Tab, Icon } from 'native-base';
-import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
+import { ScrollView, View, Text, AsyncStorage, Image } from 'react-native';
+import { Avatar, Badge, PricingCard } from 'react-native-elements';
+import { Button, Tabs, Tab, Icon } from 'native-base';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import styles from './styles/ProfileScreen';
 import { fetchArticle } from './actions';
@@ -219,18 +218,21 @@ class ProfileScreen extends Component {
                 </Badge>
               </View>
             </View>
-            <View style={styles.payContainer}>
+            <ScrollView style={styles.payContainer}>
               <PricingCard
-                style={{ width: '30%' }}
+                // containerStyle={{ width: 120, height: 200 }}
                 color='#4f9deb'
                 title='会员单日'
                 price='$10'
-                info={[]}
+                info={['Free']}
+                // titleFont={{ fontFamily: 'montserratBold' }}
+                // infoFont={{ fontFamily: 'montserratBold' }}
+                // buttonFont={{ fontFamily: 'montserratBold' }}
                 // containerStyle={{ fontSize: 18 }}
-                wrapperStyle={{ fontSize: normalize(30) }}
+                // wrapperStyle={{ fontSize: normalize(30) }}
                 button={{ title: '充值' }}
               />
-              <PricingCard
+              {/* <PricingCard
                 style={{ width: '30%' }}
                 color='#4f9deb'
                 title='会员单月'
@@ -244,9 +246,9 @@ class ProfileScreen extends Component {
                 title='会员12个月'
                 price='$1500'
                 info={[]}
-                button={{ title: '充值'}}
-              />
-            </View>
+                button={{ title: '充值' }}
+              /> */}
+            </ScrollView>
             {/* <View style={styles.payContainer}>
               <View style={styles.paneContainer}>
                 <Text style={styles.paneText}>会员单日</Text>
@@ -272,11 +274,7 @@ class ProfileScreen extends Component {
                   <Text>充值</Text>
                 </Button>
               </View>
-<<<<<<< HEAD
-            </View>
-=======
-            </View>             */}
->>>>>>> f9e92d1ca661d9149953d05791ab66571f45c98c
+              </View>*/}
           </Tab>
           <Tab heading='文章收藏夹' >
             <NewsInfo
