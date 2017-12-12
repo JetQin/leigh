@@ -40,11 +40,11 @@ class SearchScreen extends Component {
       this.searchNews();
     }
   }
-  async searchStock(value) {
+  async searchStock() {
     const params = {
       type: 'searchStock',
       page: this.state.stock.page,
-      searchValue:this.state.searchValue,
+      searchValue: this.state.searchValue,
     };
     const response = await this.props.api.searchStock(params);
     this.setState({
@@ -59,7 +59,7 @@ class SearchScreen extends Component {
     const params = {
       type: 'searchNews',
       page: this.state.news.page,
-      value: this.state.searchValue
+      value: this.state.searchValue,
     };
     const posts = await this.props.wordpressApi.fetchPosts(params);
     this.setState({ 
