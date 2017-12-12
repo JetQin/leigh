@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, AsyncStorage, Image } from 'react-native';
-import { Avatar, Badge, List, ListItem } from 'react-native-elements';
+import { View, Text, AsyncStorage, Image, Platform } from 'react-native';
+import { Avatar, Badge, List, ListItem, PricingCard, normalize, fonts } from 'react-native-elements';
 import { Container, Button, Segment, Content, Tabs, Tab, Icon } from 'native-base';
 import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import styles from './styles/ProfileScreen';
 import { fetchArticle } from './actions';
 import NewsInfo from './components/NewsInfo';
+import { StockCard } from '../holder/components';
 import { WordpressApi } from '../../../constants/api';
 
 const wordpressApi = new WordpressApi();
@@ -77,7 +78,6 @@ class ProfileScreen extends Component {
     this.login = this.login.bind(this);
     this.changeAvatar = this.changeAvatar.bind(this);
     this.logout = this.logout.bind(this);
-    this.searchArticle = this.searchArticle.bind(this);
   }
 
   componentDidMount() {
@@ -151,7 +151,7 @@ class ProfileScreen extends Component {
     }
     if (ref.props.heading === '自选行情') {
       if (this.state.isLogin) {
-        this.house._onRefresh();
+        this.stockCard._onRefresh();
       }
     }
   }
@@ -220,6 +220,34 @@ class ProfileScreen extends Component {
               </View>
             </View>
             <View style={styles.payContainer}>
+              <PricingCard
+                style={{ width: '30%' }}
+                color='#4f9deb'
+                title='会员单日'
+                price='$10'
+                info={[]}
+                // containerStyle={{ fontSize: 18 }}
+                wrapperStyle={{ fontSize: normalize(30) }}
+                button={{ title: '充值' }}
+              />
+              <PricingCard
+                style={{ width: '30%' }}
+                color='#4f9deb'
+                title='会员单月'
+                price='$150'
+                info={[]}
+                button={{ title: '充值' }}
+              />
+              <PricingCard
+                style={{ width: '30%' }}
+                color='#4f9deb'
+                title='会员12个月'
+                price='$1500'
+                info={[]}
+                button={{ title: '充值'}}
+              />
+            </View>
+            {/* <View style={styles.payContainer}>
               <View style={styles.paneContainer}>
                 <Text style={styles.paneText}>会员单日</Text>
                 <Text style={styles.paneText}>会员单月</Text>
@@ -244,7 +272,11 @@ class ProfileScreen extends Component {
                   <Text>充值</Text>
                 </Button>
               </View>
+<<<<<<< HEAD
             </View>
+=======
+            </View>             */}
+>>>>>>> f9e92d1ca661d9149953d05791ab66571f45c98c
           </Tab>
           <Tab heading='文章收藏夹' >
             <NewsInfo
@@ -254,7 +286,14 @@ class ProfileScreen extends Component {
               navigation={this.props.navigation}
             />
           </Tab>
-          <Tab heading='自选行情' />
+          <Tab heading='自选行情' >
+            <StockCard
+              ref={(c) => { this.stockCard = c; }}
+              stocks={this.state.myStock.data}
+              scroll={this.searchStock}
+              navigation={this.props.navigation}
+            />
+          </Tab>
         </Tabs>
 
       </View>
