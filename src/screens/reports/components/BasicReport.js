@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { ScrollView, View, WebView, Text, AsyncStorage } from 'react-native';
+import { ScrollView, View, WebView, Text, AsyncStorage, Alert } from 'react-native';
 import { Card, Button } from 'react-native-elements';
+import { WordpressApi } from '../../../../constants/api';
 import styles from './styles/BasicReport';
 import Colors from '../../../../constants/Colors';
 
+const wordpressApi = new WordpressApi();
+
 class BasicReport extends Component {
+  static defaultProps ={
+    wordpressApi,
+  }
   constructor(props) {
     super(props);
     this.state = {
@@ -49,6 +55,7 @@ class BasicReport extends Component {
       },
     };
     this.update = this.update.bind(this);
+    this.addStockToList = this.addStockToList.bind(this);
   }
 
   async componentDidMount() {
@@ -57,6 +64,22 @@ class BasicReport extends Component {
      */
     const isPaid = await AsyncStorage.getItem('@isPaid');
     this.setState({ is_paid: isPaid === undefined ? false : isPaid });
+  }
+
+  async addStockToList() {
+    const login = await AsyncStorage.getItem('@login');
+    if (undefined === login) {
+      Alert.alert('警告', '用户未登录，请先登录',
+        [
+          { text: '确定' },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      const params = { userId: login, code: this.props.code };
+      console.log(params);
+      this.props.wordpressApi.addStockToList(params);
+    }
   }
 
   update() {
@@ -69,8 +92,6 @@ class BasicReport extends Component {
   }
 
   render() {
-    console.log('http://synebusiness.cn/basic_report_chart.html?code='.concat(this.state.code));
-
     return (
       <View style={styles.root}>
         <ScrollView style={styles.root} >
@@ -123,6 +144,13 @@ class BasicReport extends Component {
                 <Text style={styles.labelText}>{this.state.priceInfo.weekMin}</Text>
               </View>
             </View>
+            <Button
+              icon={{ name: 'add' }}
+              backgroundColor='#03A9F4'
+              buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, left: 0, top: 5 }}
+              title='加入自选'
+              onPress={() => this.addStockToList}
+            />
           </Card>
           <Card title='公司简介'>
             <Text style={styles.labelSimpleText}>{this.state.basicInfo.breifInfo}</Text>

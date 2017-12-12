@@ -6,6 +6,7 @@ import Colors from '../../../constants/Colors';
 import { LoadingScreen } from '../../commons';
 import { BasicReport, StudyReport, FinancialReport } from './components';
 import { ReportApi } from '../../../constants/reportApi';
+import styles from './styles/ReportScreen';
 
 const reportApi = new ReportApi();
 
@@ -32,6 +33,7 @@ class ReportScreen extends Component {
     this.loadBaicReport = this.loadBaicReport.bind(this);
     this.loadFinancialReport = this.loadFinancialReport.bind(this);
     this.loadStudyReport = this.loadStudyReport.bind(this);
+    this.addToStockList = this.addToStockList.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +68,11 @@ class ReportScreen extends Component {
     this.financial_report_view.update();
   }
 
+  addToStockList() {
+    console.log('add user stock list');
+    console.log(this.state.stockCode);
+  }
+
   changeTab(ref) {
     if (ref.props.heading === '基本信息') {
       this.loadBaicReport();
@@ -83,7 +90,7 @@ class ReportScreen extends Component {
       return <LoadingScreen />;
     }
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.root}>
         <Tabs onChangeTab={({ ref }) => this.changeTab(ref)} >
           <Tab heading='基本信息'>
             <BasicReport

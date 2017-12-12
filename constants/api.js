@@ -73,6 +73,42 @@ class WordpressApi {
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }
+
+  async addStockToList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('userId', data.userId);
+    params.append('code', data.code);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async removeStockToList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('userId', data.userId);
+    params.append('code', data.code);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async addPostToList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('userId', data.userId);
+    params.append('postId', data.postId);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async removePostToList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('userId', data.userId);
+    params.append('postId', data.code);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
 }
 
 export {

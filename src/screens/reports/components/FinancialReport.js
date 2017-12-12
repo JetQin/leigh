@@ -93,7 +93,7 @@ class FinancialReport extends Component {
                 title='解锁更多数据'
                 backgroundColor={Colors.$blackBlueColor}
                 textStyle={{ color: Colors.$whiteColor }}
-                onPress={() => console.log('press')}
+                onPress={() => this.props.nav.navigate('Profile')}
               />
             </View>)
             :

@@ -19,10 +19,10 @@ class ProfileScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     const tabBarLabel = '个人信息';
-    const headerStyle = { 
-      backgroundColor: Colors.$whiteColor, 
-      borderBottomWidth: 3, 
-      borderBottomColor: Colors.$navigationHeaderTextColor, 
+    const headerStyle = {
+      backgroundColor: Colors.$whiteColor,
+      borderBottomWidth: 3,
+      borderBottomColor: Colors.$navigationHeaderTextColor,
       borderStyle: 'solid',
     };
     const headerLeft = (
@@ -156,7 +156,7 @@ class ProfileScreen extends Component {
     }
   }
 
-  searchArticle() {
+  async searchArticle() {
     const request = {
       type: this.state.type,
       page: this.state.hotNews.page + 1,
@@ -167,7 +167,7 @@ class ProfileScreen extends Component {
     this.setState({ hotNews: { page: this.state.hotNews.page + 1, data: posts.concat(this.state.hotNews.data) } });
   }
 
-  searchStock() {
+  async searchStock() {
     const params = {
       type: 'fetchStock',
       page: this.state.stock.page,
@@ -244,13 +244,13 @@ class ProfileScreen extends Component {
                   <Text>充值</Text>
                 </Button>
               </View>
-            </View>            
+            </View>
           </Tab>
           <Tab heading='文章收藏夹' >
-            <NewsInfo 
-              ref={(c) => { this.ArticleCard = c; }} 
-              news={this.state.myArticle.data} 
-              scroll={this.searchArticle} 
+            <NewsInfo
+              ref={(c) => { this.ArticleCard = c; }}
+              news={this.state.myArticle.data}
+              scroll={this.searchArticle}
               navigation={this.props.navigation}
             />
           </Tab>
