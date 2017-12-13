@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, ScrollView, RefreshControl, AsyncStorage, Alert } from 'react-native';
 import { Icon, ListItem, Avatar } from 'react-native-elements';
 import moment from 'moment';
 import styles from './styles/NewsCard';
+import { WordpressApi } from '../../../../constants/api';
+
+const wordpressApi = new WordpressApi();
 
 class NewsCard extends Component {
+  static defaultProps ={
+    wordpressApi,
+  }
   constructor(props) {
     super(props);
     this._onRefresh = this._onRefresh.bind(this);
@@ -24,6 +30,23 @@ class NewsCard extends Component {
     this.props.scroll().then(() => {
       this.setState({ refreshing: false, news: this.props.news });
     });
+  }
+
+  async addPostList(postId) {
+    const login = await AsyncStorage.getItem('@user_id');
+    console.log(login);
+    if (undefined === login || login === null) {
+      Alert.alert('警告', '用户未登录，请先登录',
+        [
+          { text: '确定' },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      const params = { userId: login, postId };
+      console.log(params);
+      this.props.wordpressApi.addPostToList(params);
+    }
   }
 
   render() {
@@ -55,7 +78,7 @@ class NewsCard extends Component {
                   <Icon size={12} name='tags' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
                   <Text style={styles.footerText}>{item.category}</Text>
                   <Icon size={12} name='comments' type='font-awesome' color='#384259' iconStyle={styles.icon} />
-                  <Icon size={12} name='bookmark' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
+                  <Icon size={12} name='bookmark' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => this.addPostList(item.id)} />
                   <Icon size={12} name='share' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
                 </View>
               }

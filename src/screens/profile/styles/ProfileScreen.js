@@ -53,9 +53,10 @@ const styles = EStyleSheet.create({
   },
   // 充值
   payContainer: {
-    height: '37%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // height: '37%',
+    flex: 1,
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
   },
 
   paneContainer: {

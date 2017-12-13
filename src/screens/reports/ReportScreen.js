@@ -6,6 +6,7 @@ import Colors from '../../../constants/Colors';
 import { LoadingScreen } from '../../commons';
 import { BasicReport, StudyReport, FinancialReport } from './components';
 import { ReportApi } from '../../../constants/reportApi';
+import styles from './styles/ReportScreen';
 
 const reportApi = new ReportApi();
 
@@ -32,6 +33,7 @@ class ReportScreen extends Component {
     this.loadBaicReport = this.loadBaicReport.bind(this);
     this.loadFinancialReport = this.loadFinancialReport.bind(this);
     this.loadStudyReport = this.loadStudyReport.bind(this);
+    this.addToStockList = this.addToStockList.bind(this);
   }
 
   componentDidMount() {
@@ -48,28 +50,27 @@ class ReportScreen extends Component {
 
   async loadBaicReport(code) {
     const response = await this.props.reportApi.fetchBasicReport(code);
-    console.log(response);
     this.setState({ basic_report: response, loading: true });
-    console.log(this.state.loading);
     if (this.basic_report_view) {
       this.basic_report_view.update();
     }
   }
 
   async loadStudyReport() {
-    console.log(this.state.stockCode);
     const response = await this.props.reportApi.fetchStudyReport(this.state.stockCode);
-    console.log(response);
     this.setState({ study_report: response });
     this.study_report_view.update();
   }
 
   async loadFinancialReport() {
-    console.log(this.state.stockCode);
     const response = await this.props.reportApi.fetchFinancialReport(this.state.stockCode);
-    console.log(response);
     this.setState({ financial_report: response });
     this.financial_report_view.update();
+  }
+
+  addToStockList() {
+    console.log('add user stock list');
+    console.log(this.state.stockCode);
   }
 
   changeTab(ref) {
@@ -89,16 +90,31 @@ class ReportScreen extends Component {
       return <LoadingScreen />;
     }
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.root}>
         <Tabs onChangeTab={({ ref }) => this.changeTab(ref)} >
           <Tab heading='基本信息'>
-            <BasicReport ref={(c) => (this.basic_report_view = c)} data={this.state.basic_report} />
+            <BasicReport
+              ref={(c) => (this.basic_report_view = c)}
+              data={this.state.basic_report}
+              code={this.state.stockCode}
+              nav={this.props.navigation}
+            />
           </Tab>
           <Tab heading='研报'>
-            <StudyReport ref={(c) => (this.study_report_view = c)} data={this.state.study_report} />
+            <StudyReport
+              ref={(c) => (this.study_report_view = c)}
+              data={this.state.study_report}
+              code={this.state.stockCode}
+              nav={this.props.navigation}
+            />
           </Tab>
           <Tab heading='财报'>
-            <FinancialReport ref={(c) => (this.financial_report_view = c)} data={this.state.financial_report} code={this.state.stockCode} />
+            <FinancialReport
+              ref={(c) => (this.financial_report_view = c)}
+              data={this.state.financial_report}
+              code={this.state.stockCode}
+              nav={this.props.navigation}
+            />
           </Tab>
         </Tabs>
       </View>
