@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, AsyncStorage, Image, Platform } from 'react-native';
+import { View, Text, AsyncStorage, Image, Platform, ScrollView } from 'react-native';
 import { Avatar, Badge, List, ListItem, PricingCard, normalize, fonts } from 'react-native-elements';
 import { Container, Button, Segment, Content, Tabs, Tab, Icon } from 'native-base';
 import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
@@ -8,7 +8,7 @@ import Colors from '../../../constants/Colors';
 import styles from './styles/ProfileScreen';
 import { fetchArticle } from './actions';
 import NewsInfo from './components/NewsInfo';
-import { StockCard } from '../holder/components';
+import StockInfo from './components/StockInfo';
 import { WordpressApi } from '../../../constants/api';
 
 const wordpressApi = new WordpressApi();
@@ -63,8 +63,111 @@ class ProfileScreen extends Component {
     super(props);
     this.state = {
       type: 'fetchArticle',
-      myArticle: { page: 1, data: [] },
-      myStock: { page: 1, data: [] },
+      myArticle: { 
+        page: 1, 
+        data: [
+          {
+            id: 20991,
+            name: '保监会举办2017年党务骨干培训班',
+            url: 'http://synebusiness.cn/?p=20998',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:05:33',
+          },
+          {
+            id: 20992,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+          {
+            id: 20993,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+          {
+            id: 20994,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+          {
+            id: 20995,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+          {
+            id: 20996,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+          {
+            id: 20997,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+          {
+            id: 20998,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+          {
+            id: 20992,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+
+        ], 
+      },
+      myStock: { 
+        page: 1, 
+        data: [
+          {
+            code: '600004',
+            name: '白云机场',
+            date: '2017-11-24 00:00:00',
+            open: '14.48',
+            high: '14.57',
+            low: '14.19',
+            close: '14.39',
+            price_change: '-0.11',
+            p_change: '-0.76',
+          },
+          {
+            code: '600006',
+            name: '东风汽车',
+            date: '2017-11-24 00:00:00',
+            open: '5.66',
+            high: '5.72',
+            low: '5.6',
+            close: '5.69',
+            price_change: '0.01',
+            p_change: '0.18',
+          },
+        ], 
+      },
       isLogin: false,
       user: {
         icon: '',
@@ -139,21 +242,21 @@ class ProfileScreen extends Component {
   }
 
   changeTab(ref) {
-    if (ref.props.heading === '我的新历') {
-      if (this.state.isLogin) {
-        this.fetchPosts(this.state.user.user_id, 'publish');
-      }
-    }
-    if (ref.props.heading === '文章收藏夹') {
-      if (this.state.isLogin) {
-        this.ArticleCard._onRefresh();
-      }
-    }
-    if (ref.props.heading === '自选行情') {
-      if (this.state.isLogin) {
-        this.stockCard._onRefresh();
-      }
-    }
+    // if (ref.props.heading === '我的新历') {
+    //   if (this.state.isLogin) {
+    //     this.fetchPosts(this.state.user.user_id, 'publish');
+    //   }
+    // }
+    // if (ref.props.heading === '文章收藏夹') {
+    //   if (this.state.isLogin) {
+    //     this.ArticleCard._onRefresh();
+    //   }
+    // }
+    // if (ref.props.heading === '自选行情') {
+    //   if (this.state.isLogin) {
+    //     this.stockCard._onRefresh();
+    //   }
+    // }
   }
 
   searchArticle() {
@@ -173,6 +276,30 @@ class ProfileScreen extends Component {
   }
 
   searchStock() {
+    return [
+      {
+        code: '600004',
+        name: '白云机场',
+        date: '2017-11-24 00:00:00',
+        open: '14.48',
+        high: '14.57',
+        low: '14.19',
+        close: '14.39',
+        price_change: '-0.11',
+        p_change: '-0.76',
+      },
+      {
+        code: '600006',
+        name: '东风汽车',
+        date: '2017-11-24 00:00:00',
+        open: '5.66',
+        high: '5.72',
+        low: '5.6',
+        close: '5.69',
+        price_change: '0.01',
+        p_change: '0.18',
+      },
+    ];
     // const params = {
     //   type: 'fetchStock',
     //   page: this.state.myStock.page + 1,
@@ -191,106 +318,110 @@ class ProfileScreen extends Component {
       <View style={styles.root}>
         <Tabs initialPage={0} onChangeTab={({ ref }) => this.changeTab(ref)} >
           <Tab heading='我的新历'>
-            <View style={styles.avatarContainer}>
-              <Avatar
-                xlarge
-                rounded
-                source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' }}
-                onPress={this.login}
-                activeOpacity={0.7}
-              />
-              <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>wordpress</Text>
-            </View>
-            <View style={styles.settingContainer}>
-              <Button transparent info onPress={this.changeAvatar}>
-                <FontAwesome name="gear" size={18} color={'#6A97BE'} />
-                <Text style={{ paddingLeft: '2%', fontSize: 18, color: '#6A97BE' }}>编辑头像</Text>
-              </Button>
-            </View>
-            <View style={styles.myCollectContainer}>
-              <View style={styles.followContainer}>
-                <Badge style={styles.collectContainer}>
-                  <View style={styles.collectText}>
-                    <Text>{this.state.user.myArticleNum}</Text>
-                    <Text>已收藏文章</Text>
-                  </View>
-                </Badge>
-                <Badge style={styles.collectContainer}>
-                  <View style={styles.collectText}>
-                    <Text>{this.state.user.myStockNum}</Text>
-                    <Text>已自选行情</Text>
-                  </View>
-                </Badge>
+            <ScrollView>
+              <View style={styles.avatarContainer}>
+                <Avatar
+                  large
+                  rounded
+                  source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' }}
+                  onPress={this.login}
+                  activeOpacity={0.7}
+                />
+                <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>wordpress</Text>
+              </View>             
+              <View style={styles.myCollectContainer}>
+                <View style={styles.settingContainer}>
+                  <Button transparent info onPress={this.changeAvatar}>
+                    <FontAwesome name="gear" size={18} color={'#6A97BE'} />
+                    <Text style={{ paddingLeft: '2%', fontSize: 16, color: '#6A97BE' }}>编辑头像</Text>
+                  </Button>
+                </View>
+                <View style={styles.followContainer}>
+                  <Badge style={styles.collectContainer}>
+                    <View style={styles.collectText}>
+                      <Text>{this.state.user.myArticleNum}</Text>
+                      <Text>已收藏文章</Text>
+                    </View>
+                  </Badge>
+                  <Badge style={styles.collectContainer}>
+                    <View style={styles.collectText}>
+                      <Text>{this.state.user.myStockNum}</Text>
+                      <Text>已自选行情</Text>
+                    </View>
+                  </Badge>
+                </View>
               </View>
-            </View>
-            <View style={styles.payContainer}>
-              <PricingCard
-                style={{ width: '30%' }}
-                color='#4f9deb'
-                title='会员单日'
-                price='$10'
-                info={[]}
-                // containerStyle={{ fontSize: 18 }}
-                wrapperStyle={{ fontSize: normalize(30) }}
-                button={{ title: '充值' }}
-              />
-              <PricingCard
-                style={{ width: '30%' }}
-                color='#4f9deb'
-                title='会员单月'
-                price='$150'
-                info={[]}
-                button={{ title: '充值' }}
-              />
-              <PricingCard
-                style={{ width: '30%' }}
-                color='#4f9deb'
-                title='会员12个月'
-                price='$1500'
-                info={[]}
-                button={{ title: '充值'}}
-              />
-            </View>
-            {/* <View style={styles.payContainer}>
-              <View style={styles.paneContainer}>
-                <Text style={styles.paneText}>会员单日</Text>
-                <Text style={styles.paneText}>会员单月</Text>
-                <Text style={styles.paneText}>会员12个月</Text>
+              <View style={styles.payContainer}>
+                <PricingCard
+                  style={{ width: '30%' }}
+                  color='#4f9deb'
+                  title='会员单日'
+                  price='$10'
+                  info={[]}
+                  // containerStyle={{ fontSize: 18 }}
+                  // wrapperStyle={{ fontSize: normalize(30) }}
+                  button={{ title: '充值' }}
+                />
+                <PricingCard
+                  style={{ width: '30%' }}
+                  color='#4f9deb'
+                  title='会员单月'
+                  price='$150'
+                  info={[]}
+                  button={{ title: '充值' }}
+                />
+                <PricingCard
+                  style={{ width: '30%' }}
+                  color='#4f9deb'
+                  title='会员12个月'
+                  price='$1500'
+                  info={[]}
+                  button={{ title: '充值' }}
+                />
               </View>
-              <View style={styles.moneyContainer}>               
-                <Button small style={styles.moneyText}>
-                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                  <Text style={{ color: '#8CD6D7' }}>10￥</Text>
-                </Button>
-                <Button small style={styles.moneyText}>
-                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                  <Text style={{ color: '#8CD6D7' }}>150￥</Text>
-                </Button>
-                <Button small style={styles.moneyText}>
-                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                  <Text style={{ color: '#8CD6D7' }}>1500￥</Text>
-                </Button>
-              </View>
-              <View style={{ marginTop: '5%' }}>
-                <Button style={styles.buttonStyle}>
-                  <Text>充值</Text>
-                </Button>
-              </View>
-            </View>             */}
+              {/* <View style={styles.payContainer}>
+                <View style={styles.paneContainer}>
+                  <Text style={styles.paneText}>会员单日</Text>
+                  <Text style={styles.paneText}>会员单月</Text>
+                  <Text style={styles.paneText}>会员12个月</Text>
+                </View>
+                <View style={styles.moneyContainer}>               
+                  <Button small style={styles.moneyText}>
+                    <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
+                    <Text style={{ color: '#8CD6D7' }}>10￥</Text>
+                  </Button>
+                  <Button small style={styles.moneyText}>
+                    <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
+                    <Text style={{ color: '#8CD6D7' }}>150￥</Text>
+                  </Button>
+                  <Button small style={styles.moneyText}>
+                    <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
+                    <Text style={{ color: '#8CD6D7' }}>1500￥</Text>
+                  </Button>
+                </View>
+                <View style={{ marginTop: '5%' }}>
+                  <Button style={styles.buttonStyle}>
+                    <Text>充值</Text>
+                  </Button>
+                </View>
+              </View>             */}
+            </ScrollView>
           </Tab>
           <Tab heading='文章收藏夹' >
             <NewsInfo 
               ref={(c) => { this.ArticleCard = c; }} 
               news={this.state.myArticle.data} 
-              scroll={this.searchArticle} 
+              // scroll={this.searchArticle} 
               navigation={this.props.navigation}
             />
+            
           </Tab>
           <Tab heading='自选行情' >
-            <StockCard
+            
+            <StockInfo
               ref={(c) => { this.stockCard = c; }}
               stocks={this.state.myStock.data} 
-              scroll={this.searchStock}
+              // scroll={this.searchStock}
               navigation={this.props.navigation}
             />
           </Tab>
