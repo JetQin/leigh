@@ -225,7 +225,7 @@ class ProfileScreen extends Component {
                 title='会员单日'
                 price='$10'
                 info={['Free']}
-                // titleFont={{ fontFamily: 'montserratBold' }}
+                titleFont='montserratBold'
                 // infoFont={{ fontFamily: 'montserratBold' }}
                 // buttonFont={{ fontFamily: 'montserratBold' }}
                 // containerStyle={{ fontSize: 18 }}

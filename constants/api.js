@@ -77,7 +77,8 @@ class WordpressApi {
   async addStockToList(data) {
     const wordpressApiUrl = apiUrl;
     const params = new FormData();
-    params.append('userId', data.userId);
+    params.append('type', 'addStock');
+    params.append('user_id', data.userId);
     params.append('code', data.code);
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
@@ -86,8 +87,18 @@ class WordpressApi {
   async removeStockToList(data) {
     const wordpressApiUrl = apiUrl;
     const params = new FormData();
-    params.append('userId', data.userId);
+    params.append('type', 'removeStock');
+    params.append('user_id', data.userId);
     params.append('code', data.code);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async getUserStockList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', 'getUserStock');
+    params.append('user_id', data.userId);
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }
@@ -95,8 +106,9 @@ class WordpressApi {
   async addPostToList(data) {
     const wordpressApiUrl = apiUrl;
     const params = new FormData();
-    params.append('userId', data.userId);
-    params.append('postId', data.postId);
+    params.append('type', 'addPost');
+    params.append('user_id', data.userId);
+    params.append('post_id', data.postId);
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }
@@ -104,8 +116,18 @@ class WordpressApi {
   async removePostToList(data) {
     const wordpressApiUrl = apiUrl;
     const params = new FormData();
-    params.append('userId', data.userId);
-    params.append('postId', data.code);
+    params.append('type', 'removePost');
+    params.append('user_id', data.userId);
+    params.append('post_id', data.code);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async getUserPostList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', 'getUserPost');
+    params.append('user_id', data.userId);
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }
