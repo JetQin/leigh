@@ -24,11 +24,11 @@ class SigninScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: '个人信息',
     titleStyle: { color: Colors.$redColor },
-    headerStyle: { 
-      backgroundColor: Colors.$whiteColor, 
-      borderBottomWidth: 3, 
-      borderBottomColor: Colors.$navigationHeaderTextColor, 
-      borderStyle: 'solid', 
+    headerStyle: {
+      backgroundColor: Colors.$whiteColor,
+      borderBottomWidth: 3,
+      borderBottomColor: Colors.$navigationHeaderTextColor,
+      borderStyle: 'solid',
     },
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -53,19 +53,19 @@ class SigninScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       username: '',
-      usernameHelp: '', 
-      password: '', 
+      usernameHelp: '',
+      password: '',
       passwordHelp: '',
-      aotoLogin: false, 
-      email: '', 
+      aotoLogin: false,
+      email: '',
       emailHelp: '',
-      rUsername: '', 
+      rUsername: '',
       rUsernameHelp: '',
-      rPassword: '', 
+      rPassword: '',
       rPasswordHelp: '',
-      rPasswordRe: '', 
+      rPasswordRe: '',
       rPasswordReHelp: '',
       validateFlag: true,
     };
@@ -89,7 +89,7 @@ class SigninScreen extends Component {
   }
 
   changeEmail(mail) {
-    this.setState({ email: mail });   
+    this.setState({ email: mail });
   }
 
   changeRegisterusername(rusername) {
@@ -164,7 +164,7 @@ class SigninScreen extends Component {
   }
   /**
    * 注册
-   * @returns 
+   * @returns
    * @memberof SigninScreen
    */
   signin() {
@@ -204,7 +204,7 @@ class SigninScreen extends Component {
       password: this.state.registerPassword,
       email: this.state.email,
     };
-    
+
     this.props.register(formData)
       .then((response) => {
         try {
@@ -213,16 +213,16 @@ class SigninScreen extends Component {
           }
         } catch (error) {
           console.log(error);
-        }            
+        }
       })
-      .catch(errors => console.log(errors));    
+      .catch(errors => console.log(errors));
   }
 
   /**
    * 登录
    * @memberof SigninScreen
    */
-  login() { 
+  login() {
     this.validateUsername();
     if (!this.state.validateFlag) {
       this.usernameInput._myInput.setNativeProps({
@@ -246,6 +246,12 @@ class SigninScreen extends Component {
       .then((response) => {
         try {
           AsyncStorage.setItem('@login', JSON.stringify(response.data.user_login));
+          AsyncStorage.setItem('@user_id', JSON.stringify(response.data.user_id));
+          console.log(response);
+          const login = AsyncStorage.getItem('@login');
+          const userId = AsyncStorage.getItem('@user_id');
+          console.log(login);
+          console.log(userId);
         } catch (error) {
           console.log(error);
         }
@@ -280,7 +286,7 @@ class SigninScreen extends Component {
                   placeholder='请输入您的用户名或者注册邮箱'
                   onChange={this.changeUsername}
                   helpInfo={this.state.usernameHelp}
-                  ref={(c) => { this.usernameInput = c; }}                  
+                  ref={(c) => { this.usernameInput = c; }}
                 />
               </View>
               <View>
@@ -289,26 +295,26 @@ class SigninScreen extends Component {
                   password={this.props.password}
                   onChange={this.changePassword}
                   helpInfo={this.state.passwordHelp}
-                  ref={(c) => { this.passwordInput = c; }} 
+                  ref={(c) => { this.passwordInput = c; }}
                 />
               </View>
               <View>
-                <CheckBox 
-                  label="下次自动登陆" checked={this.state.aotoLogin} 
-                  value={this.state.aotoLogin} 
+                <CheckBox
+                  label="下次自动登陆" checked={this.state.aotoLogin}
+                  value={this.state.aotoLogin}
                   checkStyle={styles.check}
                   labelStyle={styles.labelCheck}
                 />
-              </View>               
-            </View>   
+              </View>
+            </View>
             <View style={styles.flexContainer}>
               <View style={styles.cell}>
                 <Button style={styles.buttonStyle} onPress={this.login} >
                   <MaterialCommunityIcons name='account' style={{ fontSize: 20, color: Colors.$whiteColor, marginRight: '2%' }} />
-                  <Text>登入</Text>                  
+                  <Text>登入</Text>
                 </Button>
-              </View> 
-              <View style={[styles.cell, styles.smallBtn]}> 
+              </View>
+              <View style={[styles.cell, styles.smallBtn]}>
                 <Button small style={styles.buttonStyle}>
                   <Text>微信登陆</Text>
                 </Button>
@@ -323,7 +329,7 @@ class SigninScreen extends Component {
             <Button transparent info >
               <MaterialCommunityIcons name='phone' style={[{ fontSize: 15, marginLeft: '4%', paddingRight: '0%' }, styles.myColor]} />
               <Text style={[{ paddingLeft: '0%' }, styles.myColor]}>联系我们</Text>
-            </Button>                                  
+            </Button>
           </Tab>
           <Tab heading='注册'>
             <View style={styles.formTitle}>
@@ -335,7 +341,7 @@ class SigninScreen extends Component {
                   placeholder='请输入您的邮箱地址'
                   onChange={this.changeEmail}
                   helpInfo={this.state.emailHelp}
-                  ref={(c) => { this.emailInput = c; }}  
+                  ref={(c) => { this.emailInput = c; }}
                 />
               </View>
               <View>
@@ -343,16 +349,16 @@ class SigninScreen extends Component {
                   placeholder='请输入用户名'
                   onChange={this.changeRegisterusername}
                   helpInfo={this.state.rUsernameHelp}
-                  ref={(c) => { this.rusernameInput = c; }} 
+                  ref={(c) => { this.rusernameInput = c; }}
                 />
-              </View>             
+              </View>
               <View>
                 <Input
                   placeholder='请输入密码'
                   password={this.props.password}
                   onChange={this.changeRegisterPassword}
                   helpInfo={this.state.rPasswordHelp}
-                  ref={(c) => { this.rPasswordInput = c; }} 
+                  ref={(c) => { this.rPasswordInput = c; }}
                 />
               </View>
               <View>
@@ -361,18 +367,18 @@ class SigninScreen extends Component {
                   password={this.props.password}
                   onChange={this.changeRegisterPasswordRe}
                   helpInfo={this.state.rPasswordReHelp}
-                  ref={(c) => { this.rPasswordReInput = c; }} 
+                  ref={(c) => { this.rPasswordReInput = c; }}
                 />
-              </View>             
-            </View>                     
+              </View>
+            </View>
             <View style={styles.flexContainer}>
               <View style={styles.cell}>
                 <Button style={styles.buttonStyle} onPress={this.signin} >
                   <MaterialCommunityIcons name='lead-pencil' style={{ fontSize: 20, color: Colors.$whiteColor }} />
-                  <Text>注册</Text>                 
+                  <Text>注册</Text>
                 </Button>
-              </View> 
-              <View style={[styles.cell, styles.smallBtn]}> 
+              </View>
+              <View style={[styles.cell, styles.smallBtn]}>
                 <Button small style={styles.buttonStyle}>
                   <Text>微信登陆</Text>
                 </Button>
@@ -385,7 +391,7 @@ class SigninScreen extends Component {
             </View>
           </Tab>
         </Tabs>
-        
+
       </View>
     );
   }

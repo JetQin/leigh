@@ -7,6 +7,14 @@ class ReportApi {
   constructor() {
     this.apiUrl = apiUrl;
   }
+  async fetchAnalystName(name) {
+    const params = new FormData();
+    params.append('type', 'anyalyst_basic');
+    params.append('analystName', name);
+    const response = await axios.post(this.apiUrl, params);
+    return response.data;
+  }
+
   async fetchBasicReport(stockCode) {
     console.log(stockCode);
     const params = new FormData();

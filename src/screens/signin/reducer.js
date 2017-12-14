@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 };
 
 const SigninReducer = (state = INITIAL_STATE, action) => {
-  console.log("****************action*************");
+  console.log('****************action*************');
   console.log(action);
   switch (action.type) {
     case `${AUTHENTICATE}_PENDING`:

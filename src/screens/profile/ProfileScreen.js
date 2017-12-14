@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { View, Text, AsyncStorage, Image, Platform, ScrollView } from 'react-native';
-import { Avatar, Badge, List, ListItem, PricingCard, normalize, fonts } from 'react-native-elements';
-import { Container, Button, Segment, Content, Tabs, Tab, Icon } from 'native-base';
-import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
+import { ScrollView, View, Text, AsyncStorage, Image } from 'react-native';
+import { Avatar, Badge, PricingCard } from 'react-native-elements';
+import { Button, Tabs, Tab, Icon } from 'native-base';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import styles from './styles/ProfileScreen';
 import { fetchArticle } from './actions';
@@ -20,10 +19,10 @@ class ProfileScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
     const tabBarLabel = '个人信息';
-    const headerStyle = { 
-      backgroundColor: Colors.$whiteColor, 
-      borderBottomWidth: 3, 
-      borderBottomColor: Colors.$navigationHeaderTextColor, 
+    const headerStyle = {
+      backgroundColor: Colors.$whiteColor,
+      borderBottomWidth: 3,
+      borderBottomColor: Colors.$navigationHeaderTextColor,
       borderStyle: 'solid',
     };
     const headerLeft = (
@@ -82,63 +81,6 @@ class ProfileScreen extends Component {
             category: '金融',
             date: '2017-11-15 09:02:21',
           },
-          {
-            id: 20993,
-            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
-            url: 'http://synebusiness.cn/?p=20992',
-            picUrl: '',
-            category: '金融',
-            date: '2017-11-15 09:02:21',
-          },
-          {
-            id: 20994,
-            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
-            url: 'http://synebusiness.cn/?p=20992',
-            picUrl: '',
-            category: '金融',
-            date: '2017-11-15 09:02:21',
-          },
-          {
-            id: 20995,
-            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
-            url: 'http://synebusiness.cn/?p=20992',
-            picUrl: '',
-            category: '金融',
-            date: '2017-11-15 09:02:21',
-          },
-          {
-            id: 20996,
-            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
-            url: 'http://synebusiness.cn/?p=20992',
-            picUrl: '',
-            category: '金融',
-            date: '2017-11-15 09:02:21',
-          },
-          {
-            id: 20997,
-            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
-            url: 'http://synebusiness.cn/?p=20992',
-            picUrl: '',
-            category: '金融',
-            date: '2017-11-15 09:02:21',
-          },
-          {
-            id: 20998,
-            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
-            url: 'http://synebusiness.cn/?p=20992',
-            picUrl: '',
-            category: '金融',
-            date: '2017-11-15 09:02:21',
-          },
-          {
-            id: 20992,
-            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
-            url: 'http://synebusiness.cn/?p=20992',
-            picUrl: '',
-            category: '金融',
-            date: '2017-11-15 09:02:21',
-          },
-
         ], 
       },
       myStock: { 
@@ -219,8 +161,6 @@ class ProfileScreen extends Component {
             myStockNum: params.data.stockNum,
           },
         });
-        console.log(loginInfo);
-        // this.fetchPosts(params.data.user_id, 'publish');
         this.props.navigation.setParams({ isLogin: true });
         this.props.navigation.setParams({ logout: this.logout });
       } else {
@@ -259,58 +199,30 @@ class ProfileScreen extends Component {
     // }
   }
 
-  searchArticle() {
-    // const request = {
-    //   type: this.state.type,
-    //   page: this.state.myArticle.page + 1,
-    //   category: 'hotnews',
-    // };
-    // const posts = await this.props.wordpressApi.fetchPosts(request);
-    // console.log(posts);
-    // this.setState({ 
-    //   hotNews: { 
-    //     page: this.state.myArticle.page + 1, 
-    //     data: posts.concat(this.state.myArticle.data) 
-    //   } 
-    // });
+  async searchArticle() {
+    const request = {
+      type: this.state.type,
+      page: this.state.hotNews.page + 1,
+      category: 'hotnews',
+    };
+    const posts = await this.props.wordpressApi.fetchPosts(request);
+    console.log(posts);
+    this.setState({ hotNews: { page: this.state.hotNews.page + 1, data: posts.concat(this.state.hotNews.data) } });
   }
 
-  searchStock() {
-    return [
-      {
-        code: '600004',
-        name: '白云机场',
-        date: '2017-11-24 00:00:00',
-        open: '14.48',
-        high: '14.57',
-        low: '14.19',
-        close: '14.39',
-        price_change: '-0.11',
-        p_change: '-0.76',
-      },
-      {
-        code: '600006',
-        name: '东风汽车',
-        date: '2017-11-24 00:00:00',
-        open: '5.66',
-        high: '5.72',
-        low: '5.6',
-        close: '5.69',
-        price_change: '0.01',
-        p_change: '0.18',
-      },
-    ];
-    // const params = {
-    //   type: 'fetchStock',
-    //   page: this.state.myStock.page + 1,
-    // };
-    // const response = await this.props.wordpressApi.fetchStock(params);
-    // this.setState({
-    //   stock: {
-    //     data: response,
-    //     page: 1 + this.state.myStock.page,
-    //   },
-    // });
+  async searchStock() {
+    const params = {
+      type: 'fetchStock',
+      page: this.state.stock.page,
+    };
+    const response = await this.props.api.fetchStock(params);
+    this.setState({
+      stock: {
+        data: response,
+        page: 1 + this.state.stock.page,
+        ascSortName: this.state.stock.ascSortName,
+        ascSortPrice: this.state.stock.ascSortPrice },
+    });
   }
 
   render() {
@@ -318,38 +230,88 @@ class ProfileScreen extends Component {
       <View style={styles.root}>
         <Tabs initialPage={0} onChangeTab={({ ref }) => this.changeTab(ref)} >
           <Tab heading='我的新历'>
-            <ScrollView>
-              <View style={styles.avatarContainer}>
-                <Avatar
-                  large
-                  rounded
-                  source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' }}
-                  onPress={this.login}
-                  activeOpacity={0.7}
-                />
-                <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>wordpress</Text>
-              </View>             
-              <View style={styles.myCollectContainer}>
-                <View style={styles.settingContainer}>
-                  <Button transparent info onPress={this.changeAvatar}>
-                    <FontAwesome name="gear" size={18} color={'#6A97BE'} />
-                    <Text style={{ paddingLeft: '2%', fontSize: 16, color: '#6A97BE' }}>编辑头像</Text>
-                  </Button>
-                </View>
-                <View style={styles.followContainer}>
-                  <Badge style={styles.collectContainer}>
-                    <View style={styles.collectText}>
-                      <Text>{this.state.user.myArticleNum}</Text>
-                      <Text>已收藏文章</Text>
-                    </View>
-                  </Badge>
-                  <Badge style={styles.collectContainer}>
-                    <View style={styles.collectText}>
-                      <Text>{this.state.user.myStockNum}</Text>
-                      <Text>已自选行情</Text>
-                    </View>
-                  </Badge>
-                </View>
+            <View style={styles.avatarContainer}>
+              <Avatar
+                xlarge
+                rounded
+                source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' }}
+                onPress={this.login}
+                activeOpacity={0.7}
+              />
+              <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>wordpress</Text>
+            </View>
+            <View style={styles.settingContainer}>
+              <Button transparent info onPress={this.changeAvatar}>
+                <FontAwesome name="gear" size={18} color={'#6A97BE'} />
+                <Text style={{ paddingLeft: '2%', fontSize: 18, color: '#6A97BE' }}>编辑头像</Text>
+              </Button>
+            </View>
+            <View style={styles.myCollectContainer}>
+              <View style={styles.followContainer}>
+                <Badge style={styles.collectContainer}>
+                  <View style={styles.collectText}>
+                    <Text>{this.state.user.myArticleNum}</Text>
+                    <Text>已收藏文章</Text>
+                  </View>
+                </Badge>
+                <Badge style={styles.collectContainer}>
+                  <View style={styles.collectText}>
+                    <Text>{this.state.user.myStockNum}</Text>
+                    <Text>已自选行情</Text>
+                  </View>
+                </Badge>
+              </View>
+            </View>
+            <ScrollView style={styles.payContainer}>
+              <PricingCard
+                // containerStyle={{ width: 120, height: 200 }}
+                color='#4f9deb'
+                title='会员单日'
+                price='$10'
+                info={['Free']}
+                titleFont='montserratBold'
+                // infoFont={{ fontFamily: 'montserratBold' }}
+                // buttonFont={{ fontFamily: 'montserratBold' }}
+                // containerStyle={{ fontSize: 18 }}
+                // wrapperStyle={{ fontSize: normalize(30) }}
+                button={{ title: '充值' }}
+              />
+              {/* <PricingCard
+                style={{ width: '30%' }}
+                color='#4f9deb'
+                title='会员单月'
+                price='$150'
+                info={[]}
+                button={{ title: '充值' }}
+              />
+              <PricingCard
+                style={{ width: '30%' }}
+                color='#4f9deb'
+                title='会员12个月'
+                price='$1500'
+                info={[]}
+                button={{ title: '充值' }}
+              /> */}
+            </ScrollView>
+            {/* <View style={styles.payContainer}>
+              <View style={styles.paneContainer}>
+                <Text style={styles.paneText}>会员单日</Text>
+                <Text style={styles.paneText}>会员单月</Text>
+                <Text style={styles.paneText}>会员12个月</Text>
+              </View>
+              <View style={styles.moneyContainer}>
+                <Button small style={styles.moneyText}>
+                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
+                  <Text style={{ color: '#8CD6D7' }}>10￥</Text>
+                </Button>
+                <Button small style={styles.moneyText}>
+                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
+                  <Text style={{ color: '#8CD6D7' }}>150￥</Text>
+                </Button>
+                <Button small style={styles.moneyText}>
+                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
+                  <Text style={{ color: '#8CD6D7' }}>1500￥</Text>
+                </Button>
               </View>
               <View style={styles.payContainer}>
                 <PricingCard
@@ -379,39 +341,13 @@ class ProfileScreen extends Component {
                   button={{ title: '充值' }}
                 />
               </View>
-              {/* <View style={styles.payContainer}>
-                <View style={styles.paneContainer}>
-                  <Text style={styles.paneText}>会员单日</Text>
-                  <Text style={styles.paneText}>会员单月</Text>
-                  <Text style={styles.paneText}>会员12个月</Text>
-                </View>
-                <View style={styles.moneyContainer}>               
-                  <Button small style={styles.moneyText}>
-                    <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                    <Text style={{ color: '#8CD6D7' }}>10￥</Text>
-                  </Button>
-                  <Button small style={styles.moneyText}>
-                    <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                    <Text style={{ color: '#8CD6D7' }}>150￥</Text>
-                  </Button>
-                  <Button small style={styles.moneyText}>
-                    <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                    <Text style={{ color: '#8CD6D7' }}>1500￥</Text>
-                  </Button>
-                </View>
-                <View style={{ marginTop: '5%' }}>
-                  <Button style={styles.buttonStyle}>
-                    <Text>充值</Text>
-                  </Button>
-                </View>
-              </View>             */}
-            </ScrollView>
+              </View>*/}
           </Tab>
           <Tab heading='文章收藏夹' >
-            <NewsInfo 
-              ref={(c) => { this.ArticleCard = c; }} 
-              news={this.state.myArticle.data} 
-              // scroll={this.searchArticle} 
+            <NewsInfo
+              ref={(c) => { this.ArticleCard = c; }}
+              news={this.state.myArticle.data}
+              scroll={this.searchArticle}
               navigation={this.props.navigation}
             />
             
@@ -420,8 +356,8 @@ class ProfileScreen extends Component {
             
             <StockInfo
               ref={(c) => { this.stockCard = c; }}
-              stocks={this.state.myStock.data} 
-              // scroll={this.searchStock}
+              stocks={this.state.myStock.data}
+              scroll={this.searchStock}
               navigation={this.props.navigation}
             />
           </Tab>

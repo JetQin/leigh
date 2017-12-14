@@ -73,6 +73,88 @@ class WordpressApi {
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }
+
+  async searchNews(request) {
+    const wordpressApiUrl = apiUrl;
+    console.log(request);
+    const params = new FormData();
+    params.append('type', request.type);
+    params.append('page', request.page);
+    params.append('searchValue', request.searchValue);
+    const response = await axios.post(wordpressApiUrl, params);
+    console.log(response);
+    return response.data;
+  }
+
+  async searchStock(request) {
+    const wordpressApiUrl = apiUrl;
+    console.log(request);
+    const params = new FormData();
+    params.append('type', request.type);
+    params.append('page', request.page);
+    params.append('searchValue', request.searchValue);
+    const response = await axios.post(wordpressApiUrl, params);
+    console.log(response);
+    return response.data;
+  }
+  
+  async addStockToList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', 'addStock');
+    params.append('user_id', data.userId);
+    params.append('code', data.code);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async removeStockToList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', 'removeStock');
+    params.append('user_id', data.userId);
+    params.append('code', data.code);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async getUserStockList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', 'getUserStock');
+    params.append('user_id', data.userId);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async addPostToList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', 'addPost');
+    params.append('user_id', data.userId);
+    params.append('post_id', data.postId);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async removePostToList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', 'removePost');
+    params.append('user_id', data.userId);
+    params.append('post_id', data.code);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
+
+  async getUserPostList(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', 'getUserPost');
+    params.append('user_id', data.userId);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
 }
 
 export {

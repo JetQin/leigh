@@ -28,7 +28,7 @@ class SearchScreen extends Component {
       data: [],
       page: 1,
     },
-    searchType: '',
+    searchType: '搜行情',
     searchValue: '',
   };
 
