@@ -61,7 +61,7 @@ class SearchScreen extends Component {
       page: this.state.news.page,
       value: this.state.searchValue,
     };
-    const posts = await this.props.wordpressApi.fetchPosts(params);
+    const posts = await this.props.wordpressApi.searchNews(params);
     this.setState({ 
       news: {       
         data: posts.concat(this.state.news.data),
