@@ -5,7 +5,6 @@ import { Button, Tabs, Tab, Icon } from 'native-base';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
 import Colors from '../../../constants/Colors';
 import styles from './styles/ProfileScreen';
-import { fetchArticle } from './actions';
 import NewsInfo from './components/NewsInfo';
 import { StockCard } from '../holder/components';
 import { WordpressApi } from '../../../constants/api';
@@ -61,7 +60,6 @@ class ProfileScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'fetchArticle',
       myArticle: { page: 1, data: [] },
       myStock: { page: 1, data: [] },
       isLogin: false,
@@ -184,95 +182,59 @@ class ProfileScreen extends Component {
       <View style={styles.root}>
         <Tabs initialPage={0} onChangeTab={({ ref }) => this.changeTab(ref)} >
           <Tab heading='我的新历'>
-            <View style={styles.avatarContainer}>
-              <Avatar
-                xlarge
-                rounded
-                source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' }}
-                onPress={this.login}
-                activeOpacity={0.7}
-              />
-              <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>wordpress</Text>
-            </View>
-            <View style={styles.settingContainer}>
-              <Button transparent info onPress={this.changeAvatar}>
-                <FontAwesome name="gear" size={18} color={'#6A97BE'} />
-                <Text style={{ paddingLeft: '2%', fontSize: 18, color: '#6A97BE' }}>编辑头像</Text>
-              </Button>
-            </View>
-            <View style={styles.myCollectContainer}>
-              <View style={styles.followContainer}>
-                <Badge style={styles.collectContainer}>
-                  <View style={styles.collectText}>
-                    <Text>{this.state.user.myArticleNum}</Text>
-                    <Text>已收藏文章</Text>
+            <View style={styles.layout}>
+              <View style={styles.top}>
+                <View style={styles.avatarContainer}>
+                  <Avatar
+                    medium
+                    rounded
+                    source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg' }}
+                    onPress={this.login}
+                    activeOpacity={0.7}
+                  />
+                  <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>wordpress</Text>
+                </View>
+                <View style={styles.settingContainer}>
+                  <Button transparent info onPress={this.changeAvatar}>
+                    <FontAwesome name="gear" size={18} color={'#6A97BE'} />
+                    <Text style={{ paddingLeft: '2%', fontSize: 12, color: '#6A97BE' }}>编辑头像</Text>
+                  </Button>
+                </View>
+                <View style={styles.myCollectContainer}>
+                  <View style={styles.followContainer}>
+                    <Badge style={styles.collectContainer}>
+                      <View style={styles.collectText}>
+                        <Text>{this.state.user.myArticleNum}</Text>
+                        <Text>已收藏文章</Text>
+                      </View>
+                    </Badge>
+                    <Badge style={styles.collectContainer}>
+                      <View style={styles.collectText}>
+                        <Text>{this.state.user.myStockNum}</Text>
+                        <Text>已自选行情</Text>
+                      </View>
+                    </Badge>
                   </View>
-                </Badge>
-                <Badge style={styles.collectContainer}>
-                  <View style={styles.collectText}>
-                    <Text>{this.state.user.myStockNum}</Text>
-                    <Text>已自选行情</Text>
-                  </View>
-                </Badge>
+                </View>
+              </View>
+              <View style={styles.bottom}>
+                <View style={styles.payContainer}>
+                  <PricingCard
+                    // containerStyle={{ width: 120, height: 200 }}
+                    color='#4f9deb'
+                    title='会员单日'
+                    price='$10'
+                    info={['Free']}
+                    titleFont='montserratBold'
+                    // infoFont={{ fontFamily: 'montserratBold' }}
+                    // buttonFont={{ fontFamily: 'montserratBold' }}
+                    // containerStyle={{ fontSize: 18 }}
+                    // wrapperStyle={{ fontSize: normalize(30) }}
+                    button={{ title: '充值' }}
+                  />
+                </View>
               </View>
             </View>
-            <ScrollView style={styles.payContainer}>
-              <PricingCard
-                // containerStyle={{ width: 120, height: 200 }}
-                color='#4f9deb'
-                title='会员单日'
-                price='$10'
-                info={['Free']}
-                titleFont='montserratBold'
-                // infoFont={{ fontFamily: 'montserratBold' }}
-                // buttonFont={{ fontFamily: 'montserratBold' }}
-                // containerStyle={{ fontSize: 18 }}
-                // wrapperStyle={{ fontSize: normalize(30) }}
-                button={{ title: '充值' }}
-              />
-              {/* <PricingCard
-                style={{ width: '30%' }}
-                color='#4f9deb'
-                title='会员单月'
-                price='$150'
-                info={[]}
-                button={{ title: '充值' }}
-              />
-              <PricingCard
-                style={{ width: '30%' }}
-                color='#4f9deb'
-                title='会员12个月'
-                price='$1500'
-                info={[]}
-                button={{ title: '充值' }}
-              /> */}
-            </ScrollView>
-            {/* <View style={styles.payContainer}>
-              <View style={styles.paneContainer}>
-                <Text style={styles.paneText}>会员单日</Text>
-                <Text style={styles.paneText}>会员单月</Text>
-                <Text style={styles.paneText}>会员12个月</Text>
-              </View>
-              <View style={styles.moneyContainer}>
-                <Button small style={styles.moneyText}>
-                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                  <Text style={{ color: '#8CD6D7' }}>10￥</Text>
-                </Button>
-                <Button small style={styles.moneyText}>
-                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                  <Text style={{ color: '#8CD6D7' }}>150￥</Text>
-                </Button>
-                <Button small style={styles.moneyText}>
-                  <MaterialCommunityIcons name='coin' style={{ fontSize: 20, color: '#BFA218' }} />
-                  <Text style={{ color: '#8CD6D7' }}>1500￥</Text>
-                </Button>
-              </View>
-              <View style={{ marginTop: '5%' }}>
-                <Button style={styles.buttonStyle}>
-                  <Text>充值</Text>
-                </Button>
-              </View>
-              </View>*/}
           </Tab>
           <Tab heading='文章收藏夹' >
             <NewsInfo

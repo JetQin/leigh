@@ -4,6 +4,15 @@ const styles = EStyleSheet.create({
   root: {
     flex: 1,
   },
+  layout: {
+    flex: 1,
+  },
+  top: {
+    flex: 0.5,
+  },
+  bottom: {
+    flex: 0.5,
+  },
   // 头像
   avatarContainer: {
     backgroundColor: '#F1F8FF',
@@ -13,7 +22,6 @@ const styles = EStyleSheet.create({
   },
   // 设置
   settingContainer: {
-    height: '8%',
     flexDirection: 'row',
     justifyContent: 'flex-end',
     paddingRight: '4%',
