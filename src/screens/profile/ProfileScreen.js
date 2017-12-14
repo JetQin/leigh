@@ -78,6 +78,8 @@ class ProfileScreen extends Component {
 
   componentDidMount() {
     this.loginSuccesful();
+    const stockCard = this.stockCard;
+    const articleCard = this.articleCard;
   }
 
   logout() {
@@ -116,6 +118,7 @@ class ProfileScreen extends Component {
         });
         this.props.navigation.setParams({ isLogin: true });
         this.props.navigation.setParams({ logout: this.logout });
+        this.fetchUserStock();
       } else {
         this.props.navigation.setParams({ isLogin: false });
         console.log(this.props.navigation.state);
@@ -123,6 +126,19 @@ class ProfileScreen extends Component {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  async fetchUserStock() {
+    const userId = await AsyncStorage.getItem('@user_id');
+    if (userId !== undefined) {
+      const params = { type: 'getUserStock', userId };
+      const stockdata = await this.props.wordpressApi.getUserStockList(params);
+      this.setState({ myStock: { page: this.state.myStock.page + 1, data: stockdata } });
+    }
+  }
+
+  deleteStockRecord() {
+    console.log('delete stock');
   }
 
   login() {
@@ -154,7 +170,7 @@ class ProfileScreen extends Component {
   render() {
     return (
       <View style={styles.root}>
-        <Tabs initialPage={0} >
+        <Tabs initialPage={0} locked >
           <Tab heading='我的新历'>
             <View style={styles.layout}>
               <View style={styles.top}>
@@ -236,7 +252,7 @@ class ProfileScreen extends Component {
             <StockInfo
               ref={(c) => { this.stockCard = c; }}
               stocks={this.state.myStock.data}
-              scroll={this.searchStock}
+              scroll={this.fetchUserStock}
               navigation={this.props.navigation}
             />
           </Tab>
