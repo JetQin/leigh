@@ -10,11 +10,11 @@ import { WordpressApi } from '../../../constants/api';
 
 const api = new WordpressApi();
 
-class HolderScreen extends Component {
+class SearchScreen extends Component {
   static defaultProps = {
     api,
   }
-class SearchScreen extends Component {
+  
   static navigationOptions = ({ navigation }) => ({
     header: null,
   });
