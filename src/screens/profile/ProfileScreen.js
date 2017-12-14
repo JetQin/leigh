@@ -115,8 +115,6 @@ class ProfileScreen extends Component {
             myStockNum: params.data.stockNum,
           },
         });
-        console.log(loginInfo);
-        // this.fetchPosts(params.data.user_id, 'publish');
         this.props.navigation.setParams({ isLogin: true });
         this.props.navigation.setParams({ logout: this.logout });
       } else {

@@ -248,6 +248,10 @@ class SigninScreen extends Component {
           AsyncStorage.setItem('@login', JSON.stringify(response.data.user_login));
           AsyncStorage.setItem('@user_id', JSON.stringify(response.data.user_id));
           console.log(response);
+          const login = AsyncStorage.getItem('@login');
+          const userId = AsyncStorage.getItem('@user_id');
+          console.log(login);
+          console.log(userId);
         } catch (error) {
           console.log(error);
         }
