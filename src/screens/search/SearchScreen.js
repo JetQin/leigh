@@ -6,8 +6,15 @@ import Colors from '../../../constants/Colors';
 import styles from './styles/SearchScreen';
 import { StockCard } from '../holder/components';
 import NewsCard from '../news/components/NewsCard';
+import { WordpressApi } from '../../../constants/api';
+
+const api = new WordpressApi();
 
 class SearchScreen extends Component {
+  static defaultProps = {
+    api,
+  }
+  
   static navigationOptions = ({ navigation }) => ({
     header: null,
   });
@@ -61,7 +68,7 @@ class SearchScreen extends Component {
       page: this.state.news.page,
       value: this.state.searchValue,
     };
-    const posts = await this.props.wordpressApi.fetchPosts(params);
+    const posts = await this.props.api.searchNews(params);
     this.setState({ 
       news: {       
         data: posts.concat(this.state.news.data),

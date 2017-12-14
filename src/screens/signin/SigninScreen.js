@@ -245,7 +245,7 @@ class SigninScreen extends Component {
     this.props.authenticate(formData)
       .then((response) => {
         try {
-          AsyncStorage.setItem('@login', JSON.stringify(response.action.payload.data.user_login));
+          AsyncStorage.setItem('@login', JSON.stringify(response.action.payload));
           AsyncStorage.setItem('@user_id', JSON.stringify(response.action.payload.data.user_id));
         } catch (error) {
           console.log(error);

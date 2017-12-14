@@ -95,7 +95,7 @@ class BasicReport extends Component {
     return (
       <View style={styles.root}>
         <ScrollView style={styles.root} >
-          <Card title={this.state.basicInfo.company}>
+          <Card title={this.state.basicInfo.company === undefined ? '--' : this.state.basicInfo.company}>
             <WebView
               style={styles.chartContainer}
               scrollEnabled={false}
@@ -149,7 +149,7 @@ class BasicReport extends Component {
               backgroundColor='#03A9F4'
               buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, left: 0, top: 5 }}
               title='加入自选'
-              onPress={() => this.addStockToList}
+              onPress={this.addStockToList}
             />
           </Card>
           <Card title='公司简介'>
