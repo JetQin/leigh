@@ -44,8 +44,13 @@ class NewsCard extends Component {
       );
     } else {
       const params = { userId: login, postId };
-      console.log(params);
       this.props.wordpressApi.addPostToList(params);
+      Alert.alert('提示', '收藏成功',
+        [
+          { text: '确定' },
+        ],
+        { cancelable: false }
+      );
     }
   }
 
