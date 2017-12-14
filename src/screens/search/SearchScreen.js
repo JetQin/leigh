@@ -6,7 +6,14 @@ import Colors from '../../../constants/Colors';
 import styles from './styles/SearchScreen';
 import { StockCard } from '../holder/components';
 import NewsCard from '../news/components/NewsCard';
+import { WordpressApi } from '../../../constants/api';
 
+const api = new WordpressApi();
+
+class HolderScreen extends Component {
+  static defaultProps = {
+    api,
+  }
 class SearchScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     header: null,
