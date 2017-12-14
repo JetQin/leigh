@@ -1,4 +1,5 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Dimensions } from 'react-native';
 
 const styles = EStyleSheet.create({
   root: {
@@ -9,33 +10,45 @@ const styles = EStyleSheet.create({
   },
   top: {
     flex: 0.5,
+    // width: Dimensions.get('window').width,
+    // height: (Dimensions.get('window').width - 100) / 2,
+    // borderBottomLeftRadius: Dimensions.get('window').width / 2,
+    // borderBottomRightRadius: Dimensions.get('window').width / 2,
+    backgroundColor: '#F1F8FF',
   },
   bottom: {
     flex: 0.5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    left: 0,
   },
   // 头像
   avatarContainer: {
-    backgroundColor: '#F1F8FF',
-    flex: 0.3,
+    flex: 0.4,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: '2%',
+    paddingTop: 20,
+    // paddingLeft: (Dimensions.get('window').width / 2) - 100,
   },
   // 设置
   settingContainer: {
+    flex: 0.1,
     flexDirection: 'row',
-    justifyContent: 'flex-end',
-    paddingRight: '4%',
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'blue',
+  },
+  settingBtn: {
+    position: 'absolute',
+    right: 5,
+    justifyContent: 'center',
   },
   // 我的收藏
   myCollectContainer: {
-    // height: '25%',
-    flex: 0.3,
-    backgroundColor: 'red',
-    borderBottomLeftRadius: 800,
-    borderBottomRightRadius: 800,
+    flex: 0.4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   // 已收藏文章
   followContainer: {
@@ -47,17 +60,40 @@ const styles = EStyleSheet.create({
   },
 
   collectContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#D2D4D7',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '20%',
+    marginLeft: 30,
+    marginRight: 30,
   },
-
+  headerTitleContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerTitle: {
+    color: 'black',
+    left: 15,
+    fontSize: 18,
+    paddingTop: 12,
+    fontFamily: 'montserrat',
+  },
+  title: {
+    fontSize: 16,
+    fontFamily: 'montserratBold',
+  },
+  labelText: {
+    fontSize: 14,
+    fontFamily: 'montserratBold',
+  },
+  label: {
+    fontSize: 12,
+    fontFamily: 'montserrat',
+  },
   collectText: {
     alignItems: 'center',
   },
@@ -108,13 +144,6 @@ const styles = EStyleSheet.create({
     left: 10,
     width: 20,
     height: 20,
-  },
-  headerTitle: {
-    color: '$navigationHeaderTextColor',
-    left: 15,
-    fontSize: 18,
-    paddingTop: 12,
-    fontFamily: 'montserrat',
   },
 
 });
