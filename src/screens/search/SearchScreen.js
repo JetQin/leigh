@@ -6,8 +6,15 @@ import Colors from '../../../constants/Colors';
 import styles from './styles/SearchScreen';
 import { StockCard } from '../holder/components';
 import NewsCard from '../news/components/NewsCard';
+import { WordpressApi } from '../../../constants/api';
+
+const api = new WordpressApi();
 
 class SearchScreen extends Component {
+  static defaultProps = {
+    api,
+  }
+
   static navigationOptions = ({ navigation }) => ({
     header: null,
   });
@@ -32,12 +39,16 @@ class SearchScreen extends Component {
     };
   }
 
+  componentDidMount() {
+
+  }
   doSearch() {
     if (this.state.searchType === '搜行情') {
-      this.searchStock();
+      // this.searchStock();
+      this.stockCard._onRefresh();
     }
     if (this.state.searchType === '搜新闻') {
-      this.searchNews();
+      this.newsCard._onRefresh();
     }
   }
   async searchStock() {
@@ -62,7 +73,7 @@ class SearchScreen extends Component {
       page: this.state.news.page,
       value: this.state.searchValue,
     };
-    const posts = await this.props.wordpressApi.fetchPosts(params);
+    const posts = await this.props.api.searchNews(params);
     this.setState({
       news: {
         data: posts.concat(this.state.news.data),
@@ -90,7 +101,7 @@ class SearchScreen extends Component {
     if (this.state.news) {
       news = (
         <NewsCard
-          ref={(c) => { this.NewsCard = c; }}
+          ref={(c) => { this.newsCard = c; }}
           news={this.state.news.data}
           scroll={this.searchNews}
           navigation={this.props.navigation}
@@ -121,7 +132,7 @@ class SearchScreen extends Component {
         <Tabs initialPage={0} onChangeTab={({ ref }) => this.changeTab(ref)}>
           <Tab heading='搜行情'>
             <View style={styles.stockContainer}>
-              <Text>Hello</Text>
+              {stock}
             </View>
           </Tab>
           <Tab heading='搜新闻'>

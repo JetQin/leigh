@@ -30,7 +30,7 @@ class BasicReport extends Component {
       basicInfo: {
         breifInfo: '--',
         industry: '--',
-        company: 'TEST',
+        company: '--',
       },
       stockInfo: {
         turnoverVolume3M: '--',
@@ -95,7 +95,7 @@ class BasicReport extends Component {
     return (
       <View style={styles.root}>
         <ScrollView style={styles.root} >
-          <Card title={this.state.basicInfo.company === undefined ? '--' : this.state.basicInfo.company}>
+          <Card title={undefined === this.state.basicInfo.company ? '--' : this.state.basicInfo.company}>
             <WebView
               style={styles.chartContainer}
               scrollEnabled={false}

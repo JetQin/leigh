@@ -59,14 +59,8 @@ class ProfileScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      myArticle: {
-        page: 1,
-        data: [],
-      },
-      myStock: {
-        page: 1,
-        data: [],
-      },
+      myArticle: { page: 1, data: [] },
+      myStock: { page: 1, data: [] },
       isLogin: false,
       user: {
         icon: '',
@@ -80,19 +74,32 @@ class ProfileScreen extends Component {
     this.changeAvatar = this.changeAvatar.bind(this);
     this.logout = this.logout.bind(this);
     this.charge = this.charge.bind(this);
-    this.fetchUserArticle = this.fetchUserArticle.bind(this);
-    this.fetchUserStock = this.fetchUserStock.bind(this);
   }
 
   componentDidMount() {
-    // AsyncStorage.clear();
     this.loginSuccesful();
+    const stockCard = this.stockCard;
+    const articleCard = this.articleCard;
   }
 
-  login() {
-    if (!this.state.isLogin) {
-      this.props.navigation.navigate('Signin');
+  logout() {
+    console.log('logout');
+    try {
+      AsyncStorage.removeItem('@login');
+      AsyncStorage.removeItem('@user_id');
+    } catch (error) {
+      console.log(error);
     }
+    this.setState({
+      isLogin: false,
+      user: {
+        name: '',
+        user_id: '',
+        myArticleNum: 0,
+        myStockNum: 0,
+      },
+    });
+    this.props.navigation.setParams({ isLogin: false });
   }
 
   async loginSuccesful() {
@@ -112,50 +119,21 @@ class ProfileScreen extends Component {
         this.props.navigation.setParams({ isLogin: true });
         this.props.navigation.setParams({ logout: this.logout });
         this.fetchUserStock();
-        this.fetchUserArticle();
       } else {
         this.props.navigation.setParams({ isLogin: false });
+        console.log(this.props.navigation.state);
       }
     } catch (error) {
       console.log(error);
     }
   }
 
-  logout() {
-    try {
-      AsyncStorage.removeItem('@login');
-      AsyncStorage.removeItem('@user_id');
-    } catch (error) {
-      console.log(error);
-    }
-    this.setState({
-      isLogin: false,
-      user: {
-        name: '',
-        user_id: '',
-        myArticleNum: 0,
-        myStockNum: 0,
-      },
-    });
-    this.props.navigation.setParams({ isLogin: false });
-  }
-
   async fetchUserStock() {
-    if (undefined !== this.state.user.user_id) {
-      const params = { type: 'getUserStock', userId: this.state.user.user_id };
+    const userId = await AsyncStorage.getItem('@user_id');
+    if (userId !== undefined) {
+      const params = { type: 'getUserStock', userId };
       const stockdata = await this.props.wordpressApi.getUserStockList(params);
       this.setState({ myStock: { page: this.state.myStock.page + 1, data: stockdata } });
-    }
-  }
-
-  async fetchUserArticle() {
-    if (undefined !== this.state.user.user_id) {
-      const request = {
-        type: 'getUserPost',
-        user_id: this.state.user.user_id,
-      };
-      const posts = await this.props.wordpressApi.getUserPostList(request);
-      this.setState({ myArticle: { page: this.state.myArticle.page + 1, data: posts } });
     }
   }
 
@@ -163,8 +141,10 @@ class ProfileScreen extends Component {
     console.log('delete stock');
   }
 
-  deleteArticleRecord() {
-    console.log('delete article');
+  login() {
+    if (!this.state.isLogin) {
+      this.props.navigation.navigate('Signin');
+    }
   }
 
   changeAvatar() {
@@ -174,6 +154,14 @@ class ProfileScreen extends Component {
   charge(type) {
     console.log(type);
     console.log('charge');
+  }
+
+  async searchArticle() {
+    const request = {
+      type: 'getUserPost',
+      user_id: this.state.user.user_id,
+    };
+    const posts = await this.props.wordpressApi.getUserPostList(request);
   }
 
   render() {
@@ -251,9 +239,9 @@ class ProfileScreen extends Component {
           </Tab>
           <Tab heading='文章收藏夹' >
             <NewsInfo
-              ref={(c) => { this.articleCard = c; }}
+              ref={(c) => { this.ArticleCard = c; }}
               news={this.state.myArticle.data}
-              scroll={this.fetchUserArticle}
+              // scroll={this.searchArticle}
               navigation={this.props.navigation}
             />
           </Tab>

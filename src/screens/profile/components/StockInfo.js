@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { ScrollView, RefreshControl, View, Text, TouchableHighlight } from 'react-native';
+import { ScrollView, RefreshControl, View, Text } from 'react-native';
 import { Icon, List, ListItem } from 'react-native-elements';
-// import Swipeable from 'react-native-swipeable';
 import { SwipeRow, Button } from 'native-base';
 import Colors from '../../../../constants/Colors';
 
@@ -51,8 +50,6 @@ class StockInfo extends Component {
                   borderLeftColor: item.price_change > 0 ? Colors.$redColor : Colors.$greenColor,
                 }}
                 key={i}
-                // onPress={() => (this.props.navigation.navigate('Report', { code: item.code }))}
-                // onLongPress={this.onLongPress}
                 title={
                   <SwipeRow
                     rightOpenValue={-80}
