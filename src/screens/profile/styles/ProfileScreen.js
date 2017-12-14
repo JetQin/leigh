@@ -16,9 +16,10 @@ const styles = EStyleSheet.create({
   // 头像
   avatarContainer: {
     backgroundColor: '#F1F8FF',
-    height: '30%',
+    flex: 0.3,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: '2%',
   },
   // 设置
   settingContainer: {
@@ -26,12 +27,13 @@ const styles = EStyleSheet.create({
     justifyContent: 'flex-end',
     paddingRight: '4%',
     alignItems: 'center',
-    backgroundColor: '#F1F8FF',
+    backgroundColor: 'blue',
   },
   // 我的收藏
   myCollectContainer: {
-    height: '25%',
-    backgroundColor: '#F1F8FF',
+    // height: '25%',
+    flex: 0.3,
+    backgroundColor: 'red',
     borderBottomLeftRadius: 800,
     borderBottomRightRadius: 800,
   },
@@ -53,7 +55,7 @@ const styles = EStyleSheet.create({
     borderColor: '#D2D4D7',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: '40%',
+    marginTop: '20%',
   },
 
   collectText: {
