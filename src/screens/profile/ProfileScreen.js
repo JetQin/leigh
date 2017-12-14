@@ -60,8 +60,62 @@ class ProfileScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      myArticle: { page: 1, data: [] },
-      myStock: { page: 1, data: [] },
+      myArticle: { 
+        page: 1,
+        data: [
+          {
+            id: 20998,
+            name: '保监会举办2017年党务骨干培训班',
+            url: 'http://synebusiness.cn/?p=20998',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:05:33',
+          },
+          {
+            id: 20992,
+            name: '保监会：支持深度贫困地区打赢脱贫攻坚战',
+            url: 'http://synebusiness.cn/?p=20992',
+            picUrl: '',
+            category: '金融',
+            date: '2017-11-15 09:02:21',
+          },
+          {
+            id: 20993,
+            name: '重庆防控信用卡风险 不得以单一发卡量为激励指标',
+            url: 'http://synebusiness.cn/?p=20993',
+            picUrl: 'http://cms-bucket.nosdn.127.net/c33af6bab15a46e2aa3a2343aa036a0220171115081734.png?imageView&thumbnail=140y88',
+            category: '金融',
+            date: '2017-11-15 05:37:23',
+          },
+        ], 
+      },
+      myStock: {
+        page: 1, 
+        data: [
+          {
+            code: '600004',
+            name: '白云机场',
+            date: '2017-11-24 00:00:00',
+            open: '14.48',
+            high: '14.57',
+            low: '14.19',
+            close: '14.39',
+            price_change: '-0.11',
+            p_change: '-0.76',
+          },
+          {
+            code: '600006',
+            name: '东风汽车',
+            date: '2017-11-24 00:00:00',
+            open: '5.66',
+            high: '5.72',
+            low: '5.6',
+            close: '5.69',
+            price_change: '0.01',
+            p_change: '0.18',
+          },
+        ], 
+      },
       isLogin: false,
       user: {
         icon: '',
@@ -153,13 +207,10 @@ class ProfileScreen extends Component {
 
   async searchArticle() {
     const request = {
-      type: this.state.type,
-      page: this.state.hotNews.page + 1,
-      category: 'hotnews',
+      type: 'getUserPost',
+      user_id: this.state.user.user_id,
     };
-    const posts = await this.props.wordpressApi.fetchPosts(request);
-    console.log(posts);
-    this.setState({ hotNews: { page: this.state.hotNews.page + 1, data: posts.concat(this.state.hotNews.data) } });
+    const posts = await this.props.wordpressApi.getUserPostList(request);
   }
 
   async searchStock() {
@@ -282,7 +333,7 @@ class ProfileScreen extends Component {
             <NewsInfo
               ref={(c) => { this.ArticleCard = c; }}
               news={this.state.myArticle.data}
-              scroll={this.searchArticle}
+              // scroll={this.searchArticle}
               navigation={this.props.navigation}
             />
 
