@@ -82,6 +82,7 @@ class ProfileScreen extends Component {
     this.charge = this.charge.bind(this);
     this.fetchUserArticle = this.fetchUserArticle.bind(this);
     this.fetchUserStock = this.fetchUserStock.bind(this);
+    this.changeTab = this.changeTab.bind(this);
   }
 
   componentDidMount() {
@@ -111,8 +112,6 @@ class ProfileScreen extends Component {
         });
         this.props.navigation.setParams({ isLogin: true });
         this.props.navigation.setParams({ logout: this.logout });
-        this.fetchUserStock();
-        this.fetchUserArticle();
       } else {
         this.props.navigation.setParams({ isLogin: false });
       }
@@ -152,7 +151,7 @@ class ProfileScreen extends Component {
     if (undefined !== this.state.user.user_id) {
       const request = {
         type: 'getUserPost',
-        user_id: this.state.user.user_id,
+        userId: this.state.user.user_id,
       };
       const posts = await this.props.wordpressApi.getUserPostList(request);
       this.setState({ myArticle: { page: this.state.myArticle.page + 1, data: posts } });
@@ -176,10 +175,19 @@ class ProfileScreen extends Component {
     console.log('charge');
   }
 
+  changeTab(ref) {
+    if (ref.props.heading === '文章收藏夹') {
+      this.fetchUserArticle();
+    }
+    if (ref.props.heading === '自选行情') {
+      this.fetchUserStock();
+    }
+  }
+
   render() {
     return (
       <View style={styles.root}>
-        <Tabs initialPage={0} locked >
+        <Tabs initialPage={0} locked onChangeTab={({ ref }) => this.changeTab(ref)}>
           <Tab heading='我的新历'>
             <View style={styles.layout}>
               <View style={styles.top}>

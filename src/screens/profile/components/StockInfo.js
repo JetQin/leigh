@@ -22,7 +22,6 @@ class StockInfo extends Component {
   }
 
   _onRefresh() {
-    console.log('refresh');
     this.setState({ refreshing: true });
     this.props.scroll().then(() => {
       this.setState({ refreshing: false, stocks: this.props.stocks });
@@ -30,7 +29,6 @@ class StockInfo extends Component {
   }
 
   render() {
-    console.log(this.props.stocks);
     return (
       <ScrollView
         refreshControl={

@@ -26,10 +26,10 @@ export default class NewsInfo extends Component {
   }
 
   // deleteRow(secId, rowId, rowMap) {
-    // rowMap[`${secId}${rowId}`].props.closeRow();
-    // const newData = [...this.state.listViewData];
-    // newData.splice(rowId, 1);
-    // this.setState({ listViewData: newData });
+  // rowMap[`${secId}${rowId}`].props.closeRow();
+  // const newData = [...this.state.listViewData];
+  // newData.splice(rowId, 1);
+  // this.setState({ listViewData: newData });
   // }
 
   render() {
@@ -45,38 +45,41 @@ export default class NewsInfo extends Component {
           />
         }
       >
-        {
-          this.state.news.map((item, i) => (
-            <ListItem
-              key={i}
-              onPress={() => (this.props.navigation.navigate('ViewHtml', { uri: item.url }))}
-              leftIcon={item.picUrl === '' ? <View style={styles.emptyView} /> : <Avatar medium source={{ uri: item.picUrl }} />}
-              avatarContainerStyle={{ paddingLeft: 0, left: 0 }}
-              title={item.name}
-              titleStyle={{ paddingLeft: 10 }}
-              hideChevron
-              subtitle={
-                <SwipeRow
-                  rightOpenValue={-80}
-                  body={
-                    <View style={styles.footer}>
-                      <Text style={styles.footerText}>{moment(item.date, 'YYYY-MM-DD').startOf('day').fromNow()}</Text>
-                      <Icon size={12} name='tags' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
-                      <Text style={styles.footerText}>{item.category}</Text>
-                      <Icon size={12} name='comments' type='font-awesome' color='#384259' iconStyle={styles.icon} />
-                    </View>
-                  }
-                  right={
-                    <Button danger onPress={() => alert('Trash')}>
-                      <Text>删除</Text>
-                    </Button>
-                  }
-                />
-              }
-              subtitleContainerStyle={{ paddingLeft: 10, paddingTop: 8, paddingBottom: 5 }}
-            />
-          ))
-        }
+        <List >
+          {
+            this.props.news.map((item, i) => (
+              <ListItem
+                key={i}
+                onPress={() => (this.props.navigation.navigate('ViewHtml', { uri: item.url }))}
+                leftIcon={item.picUrl === '' ? <View style={styles.emptyView} /> : <Avatar medium source={{ uri: item.picUrl }} />}
+                avatarContainerStyle={{ paddingLeft: 0, left: 0 }}
+                title={item.name}
+                titleStyle={{ paddingLeft: 10 }}
+                hideChevron
+                subtitle={
+                  <SwipeRow
+                    rightOpenValue={-80}
+                    body={
+                      <View style={styles.footer}>
+                        <Text style={styles.footerText}>{moment(item.date, 'YYYY-MM-DD').startOf('day').fromNow()}</Text>
+                        <Icon size={12} name='tags' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
+                        <Text style={styles.footerText}>{item.category}</Text>
+                        <Icon size={12} name='comments' type='font-awesome' color='#384259' iconStyle={styles.icon} />
+                      </View>
+                    }
+                    right={
+                      <Button danger onPress={() => alert('Trash')}>
+                        <Text>删除</Text>
+                      </Button>
+                    }
+                  />
+                }
+                subtitleContainerStyle={{ paddingLeft: 10, paddingTop: 8, paddingBottom: 5 }}
+              />
+            ))
+
+          }
+        </List>
       </ScrollView>
     );
   }
