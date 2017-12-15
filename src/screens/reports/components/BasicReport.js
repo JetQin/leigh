@@ -68,7 +68,6 @@ class BasicReport extends Component {
 
   async addStockToList() {
     const login = await AsyncStorage.getItem('@user_id');
-    console.log(login);
     if (undefined === login || login === null) {
       Alert.alert('警告', '用户未登录，请先登录',
         [
@@ -79,6 +78,12 @@ class BasicReport extends Component {
     } else {
       const params = { userId: login, code: this.props.code };
       this.props.wordpressApi.addStockToList(params);
+      Alert.alert('提示', '收藏成功',
+        [
+          { text: '确定' },
+        ],
+        { cancelable: false }
+      );
     }
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage, Image } from 'react-native';
+import { View, Text, AsyncStorage, Image, Alert, NativeModules } from 'react-native';
 import { Avatar, Badge } from 'react-native-elements';
 import { Button, Tabs, Tab, Icon } from 'native-base';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
@@ -8,6 +8,7 @@ import styles from './styles/ProfileScreen';
 import { NewsInfo, StockInfo, PricingCard } from './components/';
 import { WordpressApi } from '../../../constants/api';
 
+const { InAppUtils } = NativeModules;
 const wordpressApi = new WordpressApi();
 
 class ProfileScreen extends Component {
@@ -173,6 +174,27 @@ class ProfileScreen extends Component {
   charge(type) {
     console.log(type);
     console.log('charge');
+    // const products = [
+    //   'com.xyz.abc',
+    // ];
+    // InAppUtils.loadProducts(products, (error, products) => {
+    //   // update store here.
+    // });
+    InAppUtils.canMakePayments((enabled) => {
+      if (enabled) {
+        Alert.alert('IAP enabled');
+      } else {
+        Alert.alert('IAP disabled');
+      }
+    });
+    // const productIdentifier = 'com.xyz.abc';
+    // InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
+    //   // NOTE for v3.0: User can cancel the payment which will be available as error object here.
+    //   if (response && response.productIdentifier) {
+    //     Alert.alert('Purchase Successful', `Your Transaction ID is ${response.transactionIdentifier}`);
+    //     // unlock store here.
+    //   }
+    // });
   }
 
   changeTab(ref) {
