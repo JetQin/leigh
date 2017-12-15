@@ -73,7 +73,7 @@ class SearchScreen extends Component {
     const params = {
       type: 'searchNews',
       page: this.state.news.page,
-      value: this.state.searchValue,
+      searchValue: this.state.searchValue,
     };
     const posts = await this.props.api.searchNews(params);
     this.setState({
