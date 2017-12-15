@@ -153,6 +153,15 @@ class WordpressApi {
     const response = await axios.post(wordpressApiUrl, params);
     return response.data;
   }
+
+  async getUserCollectNum(data) {
+    const wordpressApiUrl = apiUrl;
+    const params = new FormData();
+    params.append('type', data.type);
+    params.append('userId', data.userId);
+    const response = await axios.post(wordpressApiUrl, params);
+    return response.data;
+  }
 }
 
 export {

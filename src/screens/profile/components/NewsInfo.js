@@ -61,11 +61,11 @@ export default class NewsInfo extends Component {
                     rightOpenValue={-80}
                     body={
                       <View style={{ flex: 1, marginLeft: 0, flexDirection: 'row' }}>
-                        <View style={{ paddingRight:10 }}>
+                        <View style={{ paddingRight: 10, flex: 0.13 }}>
                           {item.picUrl === '' ? <View style={styles.emptyView} /> : <Avatar medium source={{ uri: item.picUrl }} />}
                         </View>
-                        <View>
-                          <Text numberOfLines={1} style={{ fontSize: normalize(14), color: '#43484d', width: '80%' }}>{item.name}</Text>
+                        <View style={{ flex: 0.87 }}>
+                          <Text numberOfLines={1} style={{ fontSize: normalize(14), color: '#43484d' }}>{item.name}</Text>
                           <View style={[styles.footer, { paddingTop: 8  }]}>
                             <Text style={styles.footerText}>{moment(item.date, 'YYYY-MM-DD').startOf('day').fromNow()}</Text>
                             <Icon size={12} name='tags' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />

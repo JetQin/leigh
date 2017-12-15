@@ -109,14 +109,14 @@ const styles = StyleSheet.create({
   pricingTitle: {
     textAlign: 'center',
     color: colors.primary,
-    fontSize: 30,
+    fontSize: 20,
     fontFamily: 'montserratBold',
   },
   pricingPrice: {
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 10,
-    fontSize: 25,
+    fontSize: 15,
     fontFamily: 'montserratBold',
   },
   pricingInfo: {
@@ -137,6 +137,10 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     marginBottom: 10,
+    borderRadius: 10,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

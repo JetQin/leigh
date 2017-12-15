@@ -9,15 +9,17 @@ const styles = EStyleSheet.create({
     flex: 1,
   },
   top: {
-    flex: 0.5,
+    flex: 0.6,
     // width: Dimensions.get('window').width,
     // height: (Dimensions.get('window').width - 100) / 2,
     // borderBottomLeftRadius: Dimensions.get('window').width / 2,
     // borderBottomRightRadius: Dimensions.get('window').width / 2,
     backgroundColor: '#F1F8FF',
+    borderBottomLeftRadius: 300,
+    borderBottomRightRadius: 300,
   },
   bottom: {
-    flex: 0.5,
+    flex: 0.4,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
@@ -49,14 +51,6 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  // 已收藏文章
-  followContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginLeft: '15%',
-    marginRight: '15%',
   },
 
   collectContainer: {
