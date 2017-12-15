@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage, Image, Alert, NativeModules } from 'react-native';
+import { View, Text, AsyncStorage, Image, Alert } from 'react-native';
 import { Avatar, Badge } from 'react-native-elements';
 import { Button, Tabs, Tab, Icon } from 'native-base';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
@@ -8,7 +8,6 @@ import styles from './styles/ProfileScreen';
 import { NewsInfo, StockInfo, PricingCard } from './components/';
 import { WordpressApi } from '../../../constants/api';
 
-const { InAppUtils } = NativeModules;
 const wordpressApi = new WordpressApi();
 
 class ProfileScreen extends Component {
@@ -70,7 +69,6 @@ class ProfileScreen extends Component {
       },
       isLogin: false,
       user: {
-        icon: '',
         name: '',
         user_id: '',
         myArticleNum: 0,
@@ -84,11 +82,14 @@ class ProfileScreen extends Component {
     this.fetchUserArticle = this.fetchUserArticle.bind(this);
     this.fetchUserStock = this.fetchUserStock.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.deleteStockRecord = this.deleteStockRecord.bind(this);
+    this.deleteArticleRecord = this.deleteArticleRecord.bind(this);
   }
 
   componentDidMount() {
     // AsyncStorage.clear();
     this.loginSuccesful();
+    this.fetchUserCollectNum();
   }
 
   login() {
@@ -159,12 +160,41 @@ class ProfileScreen extends Component {
     }
   }
 
-  deleteStockRecord() {
-    console.log('delete stock');
+  async deleteArticleRecord(id) {
+    if (id) {
+      const request = {
+        code: id,
+        userId: this.state.user.user_id,
+      };
+      const posts = await this.props.wordpressApi.removePostToList(request);
+      console.log(posts);
+      Alert.alert('提示', '删除成功',
+        [
+          { text: '确定' },
+        ],
+        { cancelable: false }
+      );
+      this.articleCard._onRefresh();
+    }
   }
 
-  deleteArticleRecord() {
-    console.log('delete article');
+  async deleteStockRecord(id) {
+    if (id) {
+      const request = {
+        code: id,
+        userId: this.state.user.user_id,
+      };
+      const posts = await this.props.wordpressApi.removeStockToList(request);
+      console.log(posts);
+      Alert.alert('提示', '删除成功',
+        [
+          { text: '确定' },
+        ],
+        { cancelable: false }
+      );
+      // this.fetchUserArticle();
+      this.stockCard._onRefresh();
+    }
   }
 
   changeAvatar() {
@@ -180,13 +210,13 @@ class ProfileScreen extends Component {
     // InAppUtils.loadProducts(products, (error, products) => {
     //   // update store here.
     // });
-    InAppUtils.canMakePayments((enabled) => {
-      if (enabled) {
-        Alert.alert('IAP enabled');
-      } else {
-        Alert.alert('IAP disabled');
-      }
-    });
+    // InAppUtils.canMakePayments((enabled) => {
+    //   if (enabled) {
+    //     Alert.alert('IAP enabled');
+    //   } else {
+    //     Alert.alert('IAP disabled');
+    //   }
+    // });
     // const productIdentifier = 'com.xyz.abc';
     // InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
     //   // NOTE for v3.0: User can cancel the payment which will be available as error object here.
@@ -203,6 +233,29 @@ class ProfileScreen extends Component {
     }
     if (ref.props.heading === '自选行情') {
       this.fetchUserStock();
+    }
+    if (ref.props.heading === '我的新历') {
+      this.fetchUserCollectNum();
+    }
+  }
+
+  async fetchUserCollectNum() {
+    if (this.state.user.user_id) {
+      const formData = {
+        type: 'selectCount',
+        userId: this.state.user.user_id,
+      };
+      const posts = await this.props.wordpressApi.getUserCollectNum(formData);
+      console.log(posts);
+      console.log(posts.data.post_count);
+      this.setState({
+        user: {
+          name: posts.data.user_login,
+          user_id: posts.data.user_id,
+          myArticleNum: posts.data.post_count,
+          myStockNum: posts.data.stock_count,
+        },
+      });
     }
   }
 
@@ -284,6 +337,7 @@ class ProfileScreen extends Component {
               ref={(c) => { this.articleCard = c; }}
               news={this.state.myArticle.data}
               scroll={this.fetchUserArticle}
+              delete={this.deleteArticleRecord}
               navigation={this.props.navigation}
             />
           </Tab>
@@ -292,6 +346,7 @@ class ProfileScreen extends Component {
               ref={(c) => { this.stockCard = c; }}
               stocks={this.state.myStock.data}
               scroll={this.fetchUserStock}
+              delete={this.deleteStockRecord}
               navigation={this.props.navigation}
             />
           </Tab>

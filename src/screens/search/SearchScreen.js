@@ -45,9 +45,11 @@ class SearchScreen extends Component {
   doSearch() {
     if (this.state.searchType === '搜行情') {
       // this.searchStock();
+      this.state.stock.page = 1;
       this.stockCard._onRefresh();
     }
     if (this.state.searchType === '搜新闻') {
+      // this.state.news.page = 1;
       this.newsCard._onRefresh();
     }
   }
@@ -71,7 +73,7 @@ class SearchScreen extends Component {
     const params = {
       type: 'searchNews',
       page: this.state.news.page,
-      value: this.state.searchValue,
+      searchValue: this.state.searchValue,
     };
     const posts = await this.props.api.searchNews(params);
     this.setState({
