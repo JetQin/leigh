@@ -83,6 +83,8 @@ class ProfileScreen extends Component {
     this.fetchUserArticle = this.fetchUserArticle.bind(this);
     this.fetchUserStock = this.fetchUserStock.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.deleteStockRecord = this.deleteStockRecord.bind(this);
+    this.deleteArticleRecord = this.deleteArticleRecord.bind(this);
   }
 
   componentDidMount() {
@@ -158,12 +160,30 @@ class ProfileScreen extends Component {
     }
   }
 
-  deleteStockRecord() {
-    console.log('delete stock');
+  async deleteArticleRecord(id) {
+    if (id) {
+      const request = {
+        code: id,
+        userId: this.state.user.user_id,
+      };
+      const posts = await this.props.wordpressApi.removePostToList(request);
+      console.log(posts);
+      // this.fetchUserArticle();
+      this.articleCard._onRefresh();
+    }
   }
 
-  deleteArticleRecord() {
-    console.log('delete article');
+  async deleteStockRecord(id) {
+    if (id) {
+      const request = {
+        code: id,
+        userId: this.state.user.user_id,
+      };
+      const posts = await this.props.wordpressApi.removeStockToList(request);
+      console.log(posts);
+      // this.fetchUserArticle();
+      this.stockCard._onRefresh();
+    }
   }
 
   changeAvatar() {
@@ -262,6 +282,7 @@ class ProfileScreen extends Component {
               ref={(c) => { this.articleCard = c; }}
               news={this.state.myArticle.data}
               scroll={this.fetchUserArticle}
+              delete={this.deleteArticleRecord}
               navigation={this.props.navigation}
             />
           </Tab>
@@ -270,6 +291,7 @@ class ProfileScreen extends Component {
               ref={(c) => { this.stockCard = c; }}
               stocks={this.state.myStock.data}
               scroll={this.fetchUserStock}
+              delete={this.deleteStockRecord}
               navigation={this.props.navigation}
             />
           </Tab>

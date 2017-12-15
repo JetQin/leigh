@@ -9,6 +9,7 @@ export default class NewsInfo extends Component {
   constructor(props) {
     super(props);
     this._onRefresh = this._onRefresh.bind(this);
+    this._deleteNews = this._deleteNews.bind(this);
     this.state = {
       refreshing: false,
       news: [],
@@ -23,6 +24,9 @@ export default class NewsInfo extends Component {
     this.props.scroll().then(() => {
       this.setState({ refreshing: false, news: this.props.news });
     });
+  }
+  _deleteNews(id) {
+    this.props.delete(id);
   }
 
   // deleteRow(secId, rowId, rowMap) {
@@ -45,7 +49,7 @@ export default class NewsInfo extends Component {
           />
         }
       >
-        <List >
+        <List style={{ marginTop: 0 }}>
           {
             this.props.news.map((item, i) => (
               <ListItem
@@ -60,7 +64,7 @@ export default class NewsInfo extends Component {
                   <SwipeRow
                     rightOpenValue={-80}
                     body={
-                      <View style={styles.footer}>
+                      <View style={[styles.footer, { flex: 1 }]}>
                         <Text style={styles.footerText}>{moment(item.date, 'YYYY-MM-DD').startOf('day').fromNow()}</Text>
                         <Icon size={12} name='tags' type='font-awesome' color='#384259' iconStyle={styles.icon} onPress={() => console.log('hello')} />
                         <Text style={styles.footerText}>{item.category}</Text>
@@ -68,13 +72,13 @@ export default class NewsInfo extends Component {
                       </View>
                     }
                     right={
-                      <Button danger onPress={() => alert('Trash')}>
+                      <Button danger onPress={() => this._deleteNews(item.id)}>
                         <Text>删除</Text>
                       </Button>
                     }
                   />
                 }
-                subtitleContainerStyle={{ paddingLeft: 10, paddingTop: 8, paddingBottom: 5 }}
+                subtitleContainerStyle={{ paddingLeft: 10, paddingTop: 0, paddingBottom: 0 }}
               />
             ))
 

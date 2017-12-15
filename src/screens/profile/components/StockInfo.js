@@ -10,6 +10,7 @@ class StockInfo extends Component {
   constructor(props) {
     super(props);
     this._onRefresh = this._onRefresh.bind(this);
+    this._deleteStock = this._deleteStock.bind(this);
     this.state = {
       refreshing: false,
       stocks: [],
@@ -28,7 +29,14 @@ class StockInfo extends Component {
     });
   }
 
+  _deleteStock(code) {
+    this.props.delete(code);
+  }
+
   render() {
+    if (!this.props.stocks) {
+      return (<View />);
+    }
     return (
       <ScrollView
         refreshControl={
@@ -38,7 +46,7 @@ class StockInfo extends Component {
           />
         }
       >
-        <List >
+        <List style={{ marginTop: 0 }}>
           {
             this.props.stocks.map((item, i) => (
               <ListItem
@@ -83,7 +91,7 @@ class StockInfo extends Component {
                       </View>
                     }
                     right={
-                      <Button danger onPress={() => alert('Trash')}>
+                      <Button danger onPress={() => this._deleteStock(item.code)}>
                         <Text>删除</Text>
                       </Button>
                     }
