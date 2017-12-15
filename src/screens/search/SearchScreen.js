@@ -49,7 +49,7 @@ class SearchScreen extends Component {
       this.stockCard._onRefresh();
     }
     if (this.state.searchType === '搜新闻') {
-      this.state.news.page = 1;
+      // this.state.news.page = 1;
       this.newsCard._onRefresh();
     }
   }
