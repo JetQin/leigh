@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage, Image } from 'react-native';
+import { View, Text, AsyncStorage, Image, Alert } from 'react-native';
 import { Avatar, Badge } from 'react-native-elements';
 import { Button, Tabs, Tab, Icon } from 'native-base';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons/';
@@ -69,7 +69,6 @@ class ProfileScreen extends Component {
       },
       isLogin: false,
       user: {
-        icon: '',
         name: '',
         user_id: '',
         myArticleNum: 0,
@@ -90,6 +89,7 @@ class ProfileScreen extends Component {
   componentDidMount() {
     // AsyncStorage.clear();
     this.loginSuccesful();
+    this.fetchUserCollectNum();
   }
 
   login() {
@@ -169,6 +169,12 @@ class ProfileScreen extends Component {
       const posts = await this.props.wordpressApi.removePostToList(request);
       console.log(posts);
       // this.fetchUserArticle();
+      Alert.alert('提示', '删除成功',
+        [
+          { text: '确定' },
+        ],
+        { cancelable: false }
+      );
       this.articleCard._onRefresh();
     }
   }
@@ -181,6 +187,12 @@ class ProfileScreen extends Component {
       };
       const posts = await this.props.wordpressApi.removeStockToList(request);
       console.log(posts);
+      Alert.alert('提示', '删除成功',
+        [
+          { text: '确定' },
+        ],
+        { cancelable: false }
+      );
       // this.fetchUserArticle();
       this.stockCard._onRefresh();
     }
@@ -201,6 +213,29 @@ class ProfileScreen extends Component {
     }
     if (ref.props.heading === '自选行情') {
       this.fetchUserStock();
+    }
+    if (ref.props.heading === '我的新历') {
+      this.fetchUserCollectNum();
+    }
+  }
+
+  async fetchUserCollectNum() {
+    if (this.state.user.user_id) {
+      const formData = {
+        type: 'selectCount',
+        userId: this.state.user.user_id,
+      };
+      const posts = await this.props.wordpressApi.getUserCollectNum(formData);
+      console.log(posts);
+      console.log(posts.data.post_count);
+      this.setState({ 
+        user: { 
+          name: posts.data.user_login,
+          user_id: posts.data.user_id,
+          myArticleNum: posts.data.post_count, 
+          myStockNum: posts.data.stock_count, 
+        }, 
+      });
     }
   }
 
