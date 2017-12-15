@@ -50,6 +50,7 @@ class StockInfo extends Component {
           {
             this.props.stocks.map((item, i) => (
               <ListItem
+                style={{ padding: 0, margin: 0, borderBottomWidth: 1, borderBottomColor: '#BBB' }}
                 containerStyle={{
                   borderLeftWidth: 5,
                   borderStyle: 'solid',
