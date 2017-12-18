@@ -97,7 +97,7 @@ class HomeScreen extends React.Component {
 
       <View style={styles.root}>
         <View style={styles.topContainer}>
-          <Swiper style={styles.wrapper} showsButtons >
+          <Swiper style={styles.wrapper} showsButtons autoplay>
             {swiperItems}
           </Swiper>
         </View>
