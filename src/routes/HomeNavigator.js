@@ -20,10 +20,10 @@ export const HomeNavigator = TabNavigator({
     title: '个人中心',
     screen: ProfileScreen,
   },
-  More: {
-    title: '关于',
-    screen: MoreScreen,
-  },
+  // More: {
+  //   title: '关于',
+  //   screen: MoreScreen,
+  // },
 
 },
 {
