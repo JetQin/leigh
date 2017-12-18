@@ -16,7 +16,11 @@ class NewsScreen extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: '商业新闻',
-    headerStyle: { backgroundColor: Colors.$redColor },
+    headerStyle: {
+      borderBottomWidth: 3,
+      borderBottomColor: Colors.$navigationHeaderTextColor,
+      borderStyle: 'solid',
+    },
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <Image source={require('../../../assets/imgs/logo.png')} style={styles.logo} />
@@ -26,7 +30,7 @@ class NewsScreen extends Component {
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <Button transparent onPress={() => navigation.navigate('Search')}>
-          <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+          <Icon name='md-search' style={{ fontSize: 30, color: Colors.$navigationHeaderTextColor }} />
         </Button>
       </View>
     ),

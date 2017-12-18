@@ -1,6 +1,5 @@
 import { TabNavigator } from 'react-navigation';
 import { HomeScreen, ProfileScreen, NewsScreen, HolderScreen, MoreScreen } from '../screens';
-//import ProfileNavigator from './ProfileNavigator';
 import Colors from '../../constants/Colors';
 
 export const HomeNavigator = TabNavigator({
@@ -8,13 +7,13 @@ export const HomeNavigator = TabNavigator({
     title: '主页',
     screen: HomeScreen,
   },
-  Holder: {
-    title: '市场行情',
-    screen: HolderScreen,
-  },
   News: {
     title: '商业新闻',
     screen: NewsScreen,
+  },
+  Holder: {
+    title: '市场行情',
+    screen: HolderScreen,
   },
   Profile: {
     title: '个人中心',
@@ -34,7 +33,7 @@ export const HomeNavigator = TabNavigator({
     showLabel: true,
     showIcon: true,
     inactiveTintColor: Colors.$blackBlueColor,
-    activeTintColor: 'red',
+    activeTintColor: Colors.$navigationHeaderTextColor,
     indicatorStyle: { backgroundColor: Colors.$redColor },
     style: {
       backgroundColor: Colors.$whiteColor,

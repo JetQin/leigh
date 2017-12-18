@@ -26,7 +26,7 @@ const styles = EStyleSheet.create({
     flex: 0.5,
   },
   title: {
-    color: '$whiteColor',
+    color: '$blackColor',
     left: 15,
     fontSize: 18,
     paddingTop: 12,
