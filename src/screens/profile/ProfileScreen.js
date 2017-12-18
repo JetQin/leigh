@@ -334,6 +334,10 @@ class ProfileScreen extends Component {
               </View>
             </View>
           </Tab>
+          <Tab heading='动态' >
+            <Text style={{ fontSize: 16, fontFamily: 'montserratBold', justifyContent: 'center', alignItems: 'center' }}>
+            后续版本将实现该功能</Text>
+          </Tab>
           <Tab heading='文章收藏夹' >
             <NewsInfo
               ref={(c) => { this.articleCard = c; }}
