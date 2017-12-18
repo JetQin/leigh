@@ -16,7 +16,11 @@ class HolderScreen extends Component {
   }
 
   static navigationOptions = ({ navigation }) => ({
-    headerStyle: { backgroundColor: Colors.$redColor },
+    headerStyle: {
+      borderBottomWidth: 3,
+      borderBottomColor: Colors.$navigationHeaderTextColor,
+      borderStyle: 'solid',
+    },
     tabBarLabel: '市场行情',
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -27,7 +31,7 @@ class HolderScreen extends Component {
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <Button transparent onPress={() => navigation.navigate('Search')}>
-          <Icon name='search' type='Feather' size={30} color={Colors.$whiteColor} />
+          <Icon name='search' type='Feather' size={30} color={Colors.$navigationHeaderTextColor} />
         </Button>
       </View>
     ),
@@ -64,6 +68,7 @@ class HolderScreen extends Component {
   componentDidMount() {
     const stockCard = this.stockCard;
     const nasdaqStockCard = this.nasdaqStockCard;
+    this.stockCard._onRefresh();
   }
 
   async fetchStock() {
@@ -217,7 +222,8 @@ class HolderScreen extends Component {
     const nasdaqButtons = [{ element: component3 }, { element: component4 }];
     return (
       <View style={styles.root}>
-        <Tabs initialPage={1} onChangeTab={({ ref }) => this.changeTab(ref)}>
+        {/*<Tabs initialPage={1} onChangeTab={({ ref }) => this.changeTab(ref)}>*/}
+        <Tabs>
           <Tab heading='沪深'>
             <ButtonGroup
               buttons={buttons}
@@ -227,7 +233,7 @@ class HolderScreen extends Component {
               {stock}
             </View>
           </Tab>
-          <Tab heading='美股' >
+          {/*<Tab heading='美股' >
             <ButtonGroup
               buttons={nasdaqButtons}
               containerStyle={{ height: 30 }}
@@ -235,7 +241,7 @@ class HolderScreen extends Component {
             <View style={styles.stockContainer}>
               {nasdaqStock}
             </View>
-          </Tab>
+          </Tab>*/}
         </Tabs>
       </View>
     );

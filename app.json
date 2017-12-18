@@ -5,14 +5,18 @@
     "version": "1.0.0",
     "slug": "leigh",
     "ios": {
-      "bundleIdentifier": "cn.synebusiness"
+      "bundleIdentifier": "cn.synebusiness.leigh"
     },
     "android": {
+<<<<<<< HEAD
       "package": "cn.synebusiness"
     },
     "splash": {
       "image": "./assets/imgs/splash.png",
       "backgroundColor": "#FFFFFF"
+=======
+      "package": "cn.synebusiness.leigh"
+>>>>>>> 90f6ef0efd075eff90f8b913ee3d661c9a114a65
     }
   }
 }

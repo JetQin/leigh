@@ -11,6 +11,7 @@ class StockInfo extends Component {
     super(props);
     this._onRefresh = this._onRefresh.bind(this);
     this._deleteStock = this._deleteStock.bind(this);
+    this.open = this.open.bind(this);
     this.state = {
       refreshing: false,
       stocks: [],
@@ -31,6 +32,9 @@ class StockInfo extends Component {
 
   _deleteStock(code) {
     this.props.delete(code);
+  }
+  open() {
+    console.log('open');
   }
 
   render() {
@@ -59,6 +63,7 @@ class StockInfo extends Component {
                 key={i}
                 title={
                   <SwipeRow
+                    ref={(c) => { this.row = c; }}
                     rightOpenValue={-80}
                     body={
                       <View style={{ flex: 0.75 }}>

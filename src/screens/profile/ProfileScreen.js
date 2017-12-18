@@ -174,7 +174,8 @@ class ProfileScreen extends Component {
         ],
         { cancelable: false }
       );
-      this.articleCard._onRefresh();
+      // this.articleCard._onRefresh();
+      this.setState({ myArticle: { page: this.state.myArticle.page, data: this.state.myArticle.data.filter((item) => item.id !== id) } });
     }
   }
 
@@ -193,7 +194,8 @@ class ProfileScreen extends Component {
         { cancelable: false }
       );
       // this.fetchUserArticle();
-      this.stockCard._onRefresh();
+      // this.stockCard._onRefresh();
+      this.setState({ myStock: { page: this.state.myStock.page, data: this.state.myStock.data.filter((item) => item.code !== id) } });
     }
   }
 
@@ -331,6 +333,10 @@ class ProfileScreen extends Component {
                 />
               </View>
             </View>
+          </Tab>
+          <Tab heading='动态' >
+            <Text style={{ fontSize: 16, fontFamily: 'montserratBold', justifyContent: 'center', alignItems: 'center' }}>
+            后续版本将实现该功能</Text>
           </Tab>
           <Tab heading='文章收藏夹' >
             <NewsInfo

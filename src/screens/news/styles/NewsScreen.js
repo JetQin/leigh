@@ -17,7 +17,7 @@ const styles = EStyleSheet.create({
     fontFamily: 'montserrat',
   },
   headerTitle: {
-    color: '$whiteColor',
+    color: '$blackColor',
     left: 15,
     fontSize: 18,
     paddingTop: 12,
