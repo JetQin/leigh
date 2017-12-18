@@ -16,7 +16,11 @@ class HolderScreen extends Component {
   }
 
   static navigationOptions = ({ navigation }) => ({
-    headerStyle: { backgroundColor: Colors.$redColor },
+    headerStyle: {
+      borderBottomWidth: 3,
+      borderBottomColor: Colors.$navigationHeaderTextColor,
+      borderStyle: 'solid',
+    },
     tabBarLabel: '市场行情',
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -27,7 +31,7 @@ class HolderScreen extends Component {
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <Button transparent onPress={() => navigation.navigate('Search')}>
-          <Icon name='search' type='Feather' size={30} color={Colors.$whiteColor} />
+          <Icon name='search' type='Feather' size={30} color={Colors.$navigationHeaderTextColor} />
         </Button>
       </View>
     ),

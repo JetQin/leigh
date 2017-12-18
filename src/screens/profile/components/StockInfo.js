@@ -32,7 +32,6 @@ class StockInfo extends Component {
 
   _deleteStock(code) {
     this.props.delete(code);
-    console.log(this.row);
   }
   open() {
     console.log('open');

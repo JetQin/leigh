@@ -24,7 +24,7 @@ const styles = EStyleSheet.create({
     marginBottom: 5,
   },
   title: {
-    color: '$whiteColor',
+    color: '$blackColor',
     left: 15,
     fontSize: 18,
     paddingTop: 12,

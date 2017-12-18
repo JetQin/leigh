@@ -21,7 +21,11 @@ class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     tabBarLabel: '主页',
     titleStyle: { color: Colors.$redColor },
-    headerStyle: { backgroundColor: Colors.$redColor },
+    headerStyle: {
+      borderBottomWidth: 3,
+      borderBottomColor: Colors.$navigationHeaderTextColor,
+      borderStyle: 'solid',
+    },
     headerLeft: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <Image source={require('../../../assets/imgs/logo.png')} style={styles.logo} />
@@ -31,7 +35,7 @@ class HomeScreen extends React.Component {
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <Button transparent onPress={() => navigation.navigate('Search')}>
-          <Icon name='md-search' style={{ fontSize: 30, color: Colors.$whiteColor }} />
+          <Icon name='md-search' style={{ fontSize: 30, color: Colors.$navigationHeaderTextColor }} />
         </Button>
       </View>
     ),
@@ -97,12 +101,12 @@ class HomeScreen extends React.Component {
 
       <View style={styles.root}>
         <View style={styles.topContainer}>
-          <Swiper style={styles.wrapper} showsButtons >
+          <Swiper style={styles.wrapper} showsButtons autoplay>
             {swiperItems}
           </Swiper>
         </View>
         <View style={styles.indexContainer}>
-          <Swiper style={styles.wrapper}>
+          <Swiper style={styles.wrapper} autoplay>
             <IndexCard indexs={this.state.indexs} />
           </Swiper>
         </View>
