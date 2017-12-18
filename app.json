@@ -5,10 +5,10 @@
     "version": "1.0.0",
     "slug": "leigh",
     "ios": {
-      "bundleIdentifier": "cn.synebusiness"
+      "bundleIdentifier": "cn.synebusiness.leigh"
     },
     "android": {
-      "package": "cn.synebusiness"
+      "package": "cn.synebusiness.leigh"
     }
   }
 }
