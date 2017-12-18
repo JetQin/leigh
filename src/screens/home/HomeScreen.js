@@ -102,7 +102,7 @@ class HomeScreen extends React.Component {
           </Swiper>
         </View>
         <View style={styles.indexContainer}>
-          <Swiper style={styles.wrapper}>
+          <Swiper style={styles.wrapper} autoplay>
             <IndexCard indexs={this.state.indexs} />
           </Swiper>
         </View>

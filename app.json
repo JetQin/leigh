@@ -9,6 +9,10 @@
     },
     "android": {
       "package": "cn.synebusiness"
+    },
+    "splash": {
+      "image": "./assets/imgs/splash.png",
+      "backgroundColor": "#FFFFFF"
     }
   }
 }
