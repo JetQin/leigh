@@ -200,8 +200,8 @@ class SigninScreen extends Component {
     }
     const formData = {
       type: 'register',
-      user_name: this.state.registerusername,
-      password: this.state.registerPassword,
+      user_name: this.state.rUsername,
+      password: this.state.rPassword,
       email: this.state.email,
     };
 
