@@ -45,11 +45,25 @@ class SearchScreen extends Component {
   doSearch() {
     if (this.state.searchType === '搜行情') {
       // this.searchStock();
+      // this.setState({
+      //   stock: {
+      //     data: [],
+      //     page: 1,
+      //   },
+      // });
       this.state.stock.page = 1;
+      this.state.stock.data = [];
       this.stockCard._onRefresh();
     }
     if (this.state.searchType === '搜新闻') {
-      // this.state.news.page = 1;
+      this.state.news.page = 1;
+      this.state.news.data = [];
+      // this.setState({
+      //   news: {
+      //     data: [],
+      //     page: 1,
+      //   },
+      // });
       this.newsCard._onRefresh();
     }
   }
@@ -59,11 +73,12 @@ class SearchScreen extends Component {
       page: this.state.stock.page,
       searchValue: this.state.searchValue,
     };
+    console.log("page:" + this.state.stock.page);
     const response = await this.props.api.searchStock(params);
     console.log(response);
     this.setState({
       stock: {
-        data: response,
+        data: response.concat(this.state.stock.data),
         page: 1 + this.state.stock.page,
       },
     });
